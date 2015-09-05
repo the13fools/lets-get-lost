@@ -411,17 +411,18 @@ a.pagination-item:hover {
  * Show sidebar by default when screen is big
  */ 
 @media (min-width: 65.1em) {
-  #sidebar-checkbox:checked ~ .sidebar,
-  #sidebar-checkbox:checked ~ .wrap {
-    -webkit-transform: translateX(-14rem);
-        -ms-transform: translateX(-14rem);
-            transform: translateX(-14rem);
-  } 
-
   .wrap {
-    -webkit-transform: translateX(7rem);
-        -ms-transform: translateX(7rem);
-            transform: translateX(7rem);
+    -webkit-transform: translateX(10rem);
+        -ms-transform: translateX(10rem);
+            transform: translateX(10rem);
+  }
+
+  #sidebar-checkbox:checked ~ .sidebar,
+  #sidebar-checkbox:checked ~ .wrap,
+  #sidebar-checkbox:checked ~ .sidebar-toggle {
+    -webkit-transform: translateX(0rem);
+        -ms-transform: translateX(0rem);
+            transform: translateX(0rem);
   }
 
   .sidebar {
@@ -431,7 +432,7 @@ a.pagination-item:hover {
   }
 }
 
-@media (min-width: 84em) {
+@media (min-width: 80em) {
   .wrap {
     -webkit-transform: translateX(0rem);
         -ms-transform: translateX(0rem);
@@ -440,12 +441,6 @@ a.pagination-item:hover {
 }
 
 @media (max-width: 65em) {
-/*  #sidebar-checkbox:checked ~ .wrap {
-    -webkit-transform: translateX(-14rem);
-        -ms-transform: translateX(-14rem);
-            transform: translateX(-14rem);
-  }*/
-  
   .sidebar {
     left: -14rem;
   }
