@@ -416,7 +416,7 @@ a.pagination-item:hover {
  * on the right side.
  */
 
-.layout-reverse .sidebar {
+/*.layout-reverse .sidebar {
   left: auto;
   right: -14rem;
 }
@@ -432,6 +432,54 @@ a.pagination-item:hover {
       -ms-transform: translateX(-14rem);
           transform: translateX(-14rem);
 }
+*/
+
+
+/*
+ * Show sidebar by default when screen is big
+ */ 
+@media (min-width: 65.1em) {
+  #sidebar-checkbox:checked ~ .sidebar,
+  #sidebar-checkbox:checked ~ .wrap {
+    -webkit-transform: translateX(-14rem);
+        -ms-transform: translateX(-14rem);
+            transform: translateX(-14rem);
+  } 
+
+  .wrap {
+    -webkit-transform: translateX(7rem);
+        -ms-transform: translateX(7rem);
+            transform: translateX(7rem);
+  }
+
+  .sidebar {
+    z-index: 10;
+    visibility: visible;
+    left: 0rem;
+  }
+}
+
+@media (min-width: 84em) {
+  .wrap {
+    -webkit-transform: translateX(0rem);
+        -ms-transform: translateX(0rem);
+            transform: translateX(0rem);
+  }
+}
+
+@media (max-width: 65em) {
+/*  #sidebar-checkbox:checked ~ .wrap {
+    -webkit-transform: translateX(-14rem);
+        -ms-transform: translateX(-14rem);
+            transform: translateX(-14rem);
+  }*/
+  
+  .sidebar {
+    left: -14rem;
+  }
+}
+
+
 
 
 /*
