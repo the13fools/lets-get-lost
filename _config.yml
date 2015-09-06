@@ -1,13 +1,13 @@
 # Permalinks
 #
 # Use of `relative_permalinks` ensures post links from the index work properly.
-permalink:           pretty
+permalink:           /:title.html
 relative_permalinks: true
 
 # Setup
 title:               "Let's Get Lost"
 tagline:             'Meandering Explorations of Shape and Space'
-description:         'Experimental notes from an experimental class that took place at <a href="http://hcssim.org" target="_blank">HCSSiM</a>.'
+description:         'Experimental notes from an experimental class that took place at <a href="http://hcssim.org" target="_blank">HCSSiM 2015</a>.'
 url:                 http://foolzone.com
 baseurl:             '/lets-get-lost'
 paginate:            1
