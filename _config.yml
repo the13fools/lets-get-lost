@@ -7,10 +7,11 @@ relative_permalinks: true
 # Setup
 title:               "Let's Get Lost"
 tagline:             'Meandering Explorations of Shape and Space'
-description:         'A reserved <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that places the utmost gravity on content with a hidden drawer. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.'
-url:                 http://lanyon.getpoole.com
+description:         'Experimental notes from an experimental class that took place at <a href="http://hcssim.org" target="_blank">HCSSiM</a>.'
+url:                 http://foolzone.com
 baseurl:             '/lets-get-lost'
-paginate:            5
+paginate:            1
+markdown: 		     kramdown
 
 # About/contact
 author:
