@@ -410,15 +410,17 @@ a.pagination-item:hover {
 /*
  * Show sidebar by default when screen is big
  */ 
-@media (min-width: 65.1em) {
+@media (min-width: 70em) {
+  .container {
+    margin-left: 0rem;
+  }
   .wrap {
-    -webkit-transform: translateX(10rem);
-        -ms-transform: translateX(10rem);
-            transform: translateX(10rem);
+    -webkit-transform: translateX(17rem);
+        -ms-transform: translateX(17rem);
+            transform: translateX(17rem);
   }
 
   #sidebar-checkbox:checked ~ .sidebar,
-  #sidebar-checkbox:checked ~ .wrap,
   #sidebar-checkbox:checked ~ .sidebar-toggle {
     -webkit-transform: translateX(0rem);
         -ms-transform: translateX(0rem);
@@ -432,12 +434,12 @@ a.pagination-item:hover {
   }
 }
 
-@media (min-width: 80em) {
+/*@media (min-width: 80em) {
   .wrap {
     -webkit-transform: translateX(0rem);
         -ms-transform: translateX(0rem);
             transform: translateX(0rem);
-  }
+  }*/
 }
 
 @media (max-width: 65em) {
@@ -448,14 +450,14 @@ a.pagination-item:hover {
 
 
 /* Yellow */
-.sidebar{
+/*.sidebar{
   background-color: #f4bf75;
 }
 
 .container a,
 .related-posts li a:hover {
   color: #f4bf75;
-}
+}*/
 
 
 /*
