@@ -430,6 +430,12 @@ a.pagination-item:hover {
         -ms-transform: translateX(17rem);
             transform: translateX(17rem);
   }
+  .masthead { 
+    -webkit-transform: translateX(-4rem);
+        -ms-transform: translateX(-4rem);
+            transform: translateX(-4rem);
+    padding-left: 4rem;
+  }
 
   #sidebar-checkbox:checked ~ .sidebar,
   #sidebar-checkbox:checked ~ #sidebar-background,
