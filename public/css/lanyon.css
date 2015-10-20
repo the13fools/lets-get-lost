@@ -150,8 +150,18 @@ h1, h2, h3, h4, h5, h6 {
   overflow-y: auto;
   font-family: "PT Sans", Helvetica, Arial, sans-serif;
   font-size: .875rem; /* 15px */
-  color: rgba(255,255,255,.6);
+  color: rgba(0,0,0,.4);
   background-color: #202020;
+  -webkit-transition: all .3s ease-in-out;
+          transition: all .3s ease-in-out;
+}
+#sidebar-background {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  bottom: 0;
+  left: -14rem;
+  width: 14rem;
   -webkit-transition: all .3s ease-in-out;
           transition: all .3s ease-in-out;
 }
@@ -164,7 +174,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Sidebar content */
 .sidebar a {
   font-weight: normal;
-  color: #fff;
+  color: rgba(0,0,0,.7);
 }
 .sidebar-item {
   padding: 1rem;
@@ -286,10 +296,11 @@ a.sidebar-nav-item:focus {
 }
 
 #sidebar-checkbox:checked + .sidebar {
-  z-index: 10;
+  z-index: 20;
   visibility: visible;
 }
 #sidebar-checkbox:checked ~ .sidebar,
+#sidebar-checkbox:checked ~ #sidebar-background,
 #sidebar-checkbox:checked ~ .wrap,
 #sidebar-checkbox:checked ~ .sidebar-toggle {
   -webkit-transform: translateX(14rem);
@@ -421,6 +432,7 @@ a.pagination-item:hover {
   }
 
   #sidebar-checkbox:checked ~ .sidebar,
+  #sidebar-checkbox:checked ~ #sidebar-background,
   #sidebar-checkbox:checked ~ .sidebar-toggle {
     -webkit-transform: translateX(0rem);
         -ms-transform: translateX(0rem);
@@ -428,8 +440,12 @@ a.pagination-item:hover {
   }
 
   .sidebar {
-    z-index: 10;
+    z-index: 20;
     visibility: visible;
+    left: 0rem;
+  }
+
+  #sidebar-background {
     left: 0rem;
   }
 }
@@ -450,11 +466,11 @@ a.pagination-item:hover {
 
 
 /* Yellow */
-/*.sidebar{
-  background-color: #f4bf75;
+.sidebar{
+  background-color: transparent;
 }
 
-.container a,
+/*.container a,
 .related-posts li a:hover {
   color: #f4bf75;
 }*/

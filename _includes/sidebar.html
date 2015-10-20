@@ -36,3 +36,17 @@
     </p>
   </div>
 </div>
+
+<script src="{{ site.baseurl }}/public/js/trianglify.min.js"></script>
+<script>
+  var pattern = Trianglify({
+    width: 200,
+    height: 800,
+    cell_size: 20,
+    x_colors: "YlOrRd",
+    y_colors: 'match_x',
+  });
+  var canvas = pattern.canvas()
+  canvas.setAttribute("id", "sidebar-background");
+  document.body.appendChild(canvas);
+</script>
