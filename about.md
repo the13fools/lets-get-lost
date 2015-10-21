@@ -1,6 +1,7 @@
 ---
 layout: page
 title: About
+position: 1
 ---
 
 <p class="message">

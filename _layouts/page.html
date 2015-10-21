@@ -6,3 +6,20 @@ layout: default
   <h1 class="page-title">{{ page.title }}</h1>
   {{ content }}
 </div>
+
+<div class="pagination">
+	{% assign pages_list = site.pages | where:"layout", "page" | sort:"position" %}
+	{% assign prev = page.position | plus: -1 %}
+	{% assign next = page.position | plus: 1 %}
+	{% if prev > -1 %}
+    	<a class="pagination-item older" href="{{ site.baseurl }}{{ pages_list[prev].url }}">Prev</a>
+	{% else %}
+    	<span class="pagination-item older">Prev</span>
+  	{% endif %}
+  	
+  	{% if next <= pages_list.last.position %}
+    	<a class="pagination-item newer" href="{{ site.baseurl }}{{ pages_list[next].url }}">Next</a>
+	{% else %}
+    	<span class="pagination-item newer">Next</span>
+  	{% endif %}
+</div>
