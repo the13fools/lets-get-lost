@@ -445,6 +445,12 @@ a.pagination-item:hover {
             transform: translateX(0rem);
   }
 
+  #sidebar-checkbox:checked ~ .wrap {
+    -webkit-transform: translateX(17rem);
+        -ms-transform: translateX(17rem);
+            transform: translateX(17rem);
+  }
+
   .sidebar {
     z-index: 20;
     visibility: visible;
