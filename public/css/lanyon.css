@@ -365,6 +365,11 @@ a.sidebar-nav-item:focus {
   color: inherit;
 }
 
+.page img {
+  padding-top: 1rem;
+  margin: auto;
+}
+
 
 /*
  * Pagination

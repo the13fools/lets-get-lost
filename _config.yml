@@ -10,7 +10,6 @@ tagline:             'Meandering Explorations of Shape and Space'
 description:         'Experimental notes from an experimental class that took place at <a href="http://www.hcssim.org" target="_blank">HCSSiM 2015</a>.'
 url:                 http://foolzone.com
 baseurl:             '/lets-get-lost'
-paginate:            1
 markdown: 		     kramdown
 
 # About/contact

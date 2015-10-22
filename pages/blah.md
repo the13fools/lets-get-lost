@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Blah	
-position: 0
+position: 2
 ---
 
 <p class="message">
