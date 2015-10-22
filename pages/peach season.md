@@ -18,6 +18,7 @@ The actual runnable code for this visualization can be found on [cubetube](http:
 The display proved to be a very compelling and powerful teaching tool - the students in the class were captivated by it, and having a concrete visual representation helped them more fully grasp the (fairly abstract) ideas that were being discussed.  
 
 One other path that we briefly explored, but didn't develop was building up the 3-sphere via the Hopf fibration (as is illustrated [here](http://nilesjohnson.net/hopf.html)).
+
 <div style="margin: 0px auto; text-align: center;">
 <iframe width="420" height="315" src="https://www.youtube.com/embed/AKotMPGFJYk" frameborder="0" allowfullscreen></iframe></div>
 
