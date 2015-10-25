@@ -8,6 +8,6 @@ Source Modifications released under [GPLv3](http://www.gnu.org/licenses/gpl-3.0.
 
 Content released under CC-SA-NC.  
 
-If you would like to re-use content for commercial applications, please reach out.
+If you would like to re-purpose content or source for commercial applications, please reach out.
 
-<3
+<3 fool

@@ -466,26 +466,56 @@ a.pagination-item:hover {
     left: 0rem;
   }
 }
-
-/*@media (min-width: 80em) {
-  .wrap {
-    -webkit-transform: translateX(0rem);
-        -ms-transform: translateX(0rem);
-            transform: translateX(0rem);
-  }*/
 }
 
-@media (max-width: 65em) {
+ @media (max-width: 65em) {
   .sidebar {
     left: -14rem;
   }
 }
 
-
-/* Yellow */
-.sidebar{
+.sidebar {
   background-color: transparent;
 }
+
+/*
+ * Editor 
+ */
+
+.editor {
+  width: 100%;
+  height: 10em;
+}
+
+.editor-big {
+  height: 40em;
+}
+
+.editor-control {
+  background-color: #f6f6f6; overflow: auto;
+}
+
+.editor-run,
+.editor-expand {
+  float:left; 
+  background-color: #efefef; 
+  padding: 0em 1em;
+  cursor: pointer;
+}
+
+.editor-expand {
+  float: right;
+}
+
+.editor-run:hover,
+.editor-expand:hover {
+  background-color: #dcdcdc; 
+}
+
+.ace_editor {
+        position: relative !important;
+    }
+
 
 /*.container a,
 .related-posts li a:hover {

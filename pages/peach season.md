@@ -6,7 +6,7 @@ position: 1
 
 Our meandering journey to the land of leaves begins at breakfast.  One of the great secrets of summer in western massachussets is the peaches.  They are juicy, sweet, and fragrant, a full sensory experience.  
 
-One suggested explanation for this is that the peaches in this corner of the world are actually shadows of even fuller hyper-peaches (in the spirit of [flatland](http://www.math.harvard.edu/~knill/mathmovies/swf/flatland1965.html) or this great hungarian [animation](anim.mome.hu/en/films/rabbitanddeer/) animated short).  In our mini, we started along this thought, and arrived a way of building up a 3-ball and 3-sphere (actually a 3-peach and 3-peel) from lower dimentional versions.  
+One suggested explanation for this is that the peaches in this corner of the world are actually shadows of even fuller hyper-peaches (in the spirit of [flatland](http://www.math.harvard.edu/~knill/mathmovies/swf/flatland1965.html) or this great hungarian [animated short](anim.mome.hu/en/films/rabbitanddeer/)).  In our mini, we started along this thought, and arrived a way of building up a 3-ball and 3-sphere (actually a 3-peach and 3-peel) from lower dimentional versions.  
 
 A full reproduction of this exercise will have to come another time.  On a high level though, what we did was explored the construction of 3-spheres via [Heegaard Splitting](https://en.wikipedia.org/wiki/Heegaard_splitting). In particular, the class independently arrived at a similar construction to the one discussed [here](http://www.geocities.ws/jsfhome/Think4d/Hyprsphr/envsintr.html).
 
@@ -38,5 +38,6 @@ The problem on the right is then an easy problem to answer, we just ask each stu
 
 This approach of breaking down a problem into constituent parts that are easier to model was in many ways the goal here.  
 
-
-[neat minimal surface](https://www.shadertoy.com/view/Md23Rd)
+<p class="message">
+	Today's Tangent: <a href="https://www.shadertoy.com/view/Md23Rd">A neat gyroid</a>, part of a large family of <a href="http://facstaff.susqu.edu/brakke/evolver/examples/periodic/periodic.html">minimal surfaces</a> (more examples <a href="http://www.indiana.edu/~minimal/archive/index.html">here</a>).
+</p>
