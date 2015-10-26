@@ -8,7 +8,7 @@ Our meandering journey to the land of leaves begins at breakfast.  One of the gr
 
 One suggested explanation for this is that the peaches in this corner of the world are actually shadows of even fuller hyper-peaches (in the spirit of [flatland](http://www.math.harvard.edu/~knill/mathmovies/swf/flatland1965.html) or this great hungarian [animated short](anim.mome.hu/en/films/rabbitanddeer/)).  In our mini, we started along this thought, and arrived a way of building up a 3-ball and 3-sphere (actually a 3-peach and 3-peel) from lower dimentional versions.  
 
-A full reproduction of this exercise will have to come another time.  On a high level though, what we did was explored the construction of 3-spheres via [Heegaard Splitting](https://en.wikipedia.org/wiki/Heegaard_splitting). In particular, the class independently arrived at a similar construction to the one discussed [here](http://www.geocities.ws/jsfhome/Think4d/Hyprsphr/envsintr.html).
+A full reproduction of this exercise will have to come another time.  On a high level though, what we did was explored the construction of 3-spheres via [Heegaard Splitting](https://en.wikipedia.org/wiki/Heegaard_splitting). In particular, the class independently arrived at a similar construction to the one discussed [here](https://glyphobet.net/3-sphere/node2.html#SECTION00021000000000000000) or [here](http://www.geocities.ws/jsfhome/Think4d/Hyprsphr/envsintr.html).
 
 One thing that I think was unique about the presentation though was that we used a [3d display](http://www.cubetube.org/) to create a perceptual representation of a hypersphere after the class invented a model.  
 <img src="{{ site.baseurl }}/public/img/hypersphere.gif" alt="hypersphere, woo!!!">

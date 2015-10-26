@@ -59,6 +59,7 @@ loadContent = function(id, contentUrl, lineNumber) {
 	})
 	.done(function( js ) {
 		editor.setValue(js);
+		editor.getSession().setUndoManager(new ace.UndoManager());
 		editor.clearSelection();
 		editor.gotoLine(lineNumber);
 	});
