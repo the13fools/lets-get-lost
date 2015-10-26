@@ -49,21 +49,14 @@ With that overview, it's time to build our first demo.  The goal here is twofold
 1. To build an interactive spring simulation aimed at building intuition
 2. To setup and expose a skeleton of code which will progressively gain flesh
 
-<!-- <script src="{{ site.baseurl }}/public/js/three.min.js"></script>  --><!-- This is to use the vector data-types to make it easier to make 3d visualizations later -->
-<!-- <script type="text/javascript" src="{{ site.baseurl }}/public/js/disk.js"></script> -->
 
-<script src="{{ site.baseurl }}/public/js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="{{ site.baseurl }}/public/js/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
 <!-- load ace themelist extension -->
-<script src="{{ site.baseurl }}/public/js/ace/ext-themelist.js" type="text/javascript" charset="utf-8"></script>
-<script src="{{ site.baseurl }}/public/js/fool-util.js" type="text/javascript" charset="utf-8"></script>
+<script src="{{ site.baseurl }}/public/js/lib/ace/ext-themelist.js" type="text/javascript" charset="utf-8"></script>
+<script src="{{ site.baseurl }}/public/js/lib/fool-util.js" type="text/javascript" charset="utf-8"></script>
 
 <div>
-<div id="e1" class="editor">function foo(items) {
-    var i;
-    for (i = 0; i &lt; items.length; i++) {
-        alert("Ace Rocks " + items[i]);
-    }
-}
+<div id="e1" class="editor">
 </div>
 
 </div>
@@ -71,20 +64,74 @@ With that overview, it's time to build our first demo.  The goal here is twofold
 <div id="blah">
 </div>
 
+<!-- This is to use the vector data-types to make it easier to make 3d visualizations later -->
+<script src="{{ site.baseurl }}/public/js/lib/three.min.js"></script> 
+<script type="text/javascript" src="{{ site.baseurl }}/public/js/disk.js"></script>
+
 <script type="text/javascript">
 // from fool-util
 initEditor('e1');
-loadContent('e1', '{{ site.baseurl }}/public/js/fool-util.js', '10');
+loadContent('e1', '{{ site.baseurl }}/public/js/disk.js', '10');
 </script>
 
-<script>
-//var $ = document.getElementById.bind(document);
+<div id='content'>
+			<canvas id="rope-canvas" height='300' width='1000'></canvas>
+			<div id="frequency"></div><div id="frequency-text"></div>
+		<!-- 	<div id="driving-position"></div><div id="driving-position-text"></div> -->
+		</div>
 
+<script type="text/javascript">
+	animate();
 
+	function animate() {
 
+		requestAnimationFrame( animate );
 
-var themes = ace.require("ace/ext/themelist").themes.map(function(t){return t.theme});
+		var time = Date.now();
 
+		iface.simulate(time);
+	}
+</script>
+
+<script type="text/javascript">
+  function updatePosition() {
+    var pos = $( "#driving-position" ).slider( "value" );
+    drivingPosition = pos;
+    $("#driving-position-text").text(drivingPosition);
+  }
+
+  function updateFrequency() {
+    var frequency = $( "#frequency" ).slider( "value" );
+    iface.frequencyMultiplier = frequency;
+    console.log("sdfds");
+    $("#frequency-text").text(iface.frequencyMultiplier + "");
+  }
+
+  $(function() {
+  	$( "#frequency" ).slider({
+      orientation: "horizontal",
+      range: "min",
+      max: 1000,
+      value: 100,
+      slide: updateFrequency,
+      change: updateFrequency
+    });
+
+    $( "#driving-position" ).slider({
+      orientation: "horizontal",
+      range: "min",
+      max: 1,
+      min: -.2,
+      value: 0,
+      step: .05,
+      slide: updatePosition,
+      change: updatePosition
+    });
+  });
+
+  $( ".e1.editor-run" ).click(function() {
+		updateFrequency();
+	});
 </script>
 
 

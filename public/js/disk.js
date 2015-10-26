@@ -1,3 +1,5 @@
+// reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects
+iface = new Object();
 
 var nodes = 10;
 
@@ -218,10 +220,10 @@ var colors = ["#a50026",
 				"#4575b4",
 				"#313695"];
 
-var frequencyMultiplier = 1;
+iface.frequencyMultiplier = 1;
 var drivingPosition = 0; 
 
-function simulate(time) {
+iface.simulate = function (time) {
 	if (!lastTime) {
 		lastTime = time;
 		return;
@@ -230,7 +232,7 @@ function simulate(time) {
 	// Step through the simulation several times per animation
 	for (step = 0; step < 5; step++) {
 
-		driveTime += TIMESTEP * frequencyMultiplier / 5;
+		driveTime += TIMESTEP * iface.frequencyMultiplier / 5;
 		rope.removePreviousSpringForces();
 		rope.addSpringForces();
 
