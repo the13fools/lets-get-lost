@@ -7,7 +7,8 @@ initEditor = function(id) {
 	editor.setOptions({
 	    // "scrollPastEnd": 0.8,
 	    autoScrollEditorIntoView: true,
-	    vScrollBarAlwaysVisible: false
+	    vScrollBarAlwaysVisible: false,
+	    highlightSelectedWord: true
 
 	});
 
@@ -27,11 +28,21 @@ initEditor = function(id) {
 	  	$( "#" + id ).toggleClass( "editor-big", 500, "easeOutSine" )
 	  	.promise().done(function(){
 	  		var dom = ace.require("ace/lib/dom");
-	  		ace.edit(id).resize();
+	  		editor.resize();
 	  	});
 	});
 
 	$( "." + id + ".editor-run" ).click(function() {
 		eval(editor.getValue());
 	});
+
+
+	// Hack around wierd firefox bug.
+	if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1)
+	{
+	     editor.on("focus", function() {
+			window.scrollTo(0, $("#"+id).offset().top);
+		});
+	}
+
 }
