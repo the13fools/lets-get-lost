@@ -55,64 +55,37 @@ With that overview, it's time to build our first demo.  The goal here is twofold
 <script src="{{ site.baseurl }}/public/js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
 <!-- load ace themelist extension -->
 <script src="{{ site.baseurl }}/public/js/ace/ext-themelist.js" type="text/javascript" charset="utf-8"></script>
+<script src="{{ site.baseurl }}/public/js/fool-util.js" type="text/javascript" charset="utf-8"></script>
 
+<div>
 <div id="e1" class="editor">function foo(items) {
     var i;
     for (i = 0; i &lt; items.length; i++) {
         alert("Ace Rocks " + items[i]);
     }
-}</div>
-<div class="editor-control">
-<div class="editor-run"><span class="el el-caret-right"></span>
-Run</div>
-<div class="editor-expand">
-Expand <span class="el el-resize-full"></span></div>
+}
 </div>
 
+</div>
 
-<div></div>
+<div id="blah">
+</div>
 
 <script type="text/javascript">
-$( ".editor-expand" ).click(function() {
-  $( "#e1" ).toggleClass( "editor-big", 500, "easeOutSine" )
-  	.promise().done(function(){
-  		var dom = ace.require("ace/lib/dom");
-  		ace.edit("e1").resize();
-  	});
-});
+// from fool-util
+initEditor('e1');
+loadContent('e1', '{{ site.baseurl }}/public/js/fool-util.js', '10');
 </script>
 
 <script>
 //var $ = document.getElementById.bind(document);
-var dom = ace.require("ace/lib/dom");
-//add command to all new editor instaces
-ace.require("ace/commands/default_commands").commands.push({
-    name: "Toggle Fullscreen",
-    bindKey: "Command-L",
-    exec: function(editor) {
-        var fullScreen = dom.toggleCssClass(document.body, "fullScreen")
-        dom.setCssClass(editor.container, "fullScreen", fullScreen)
-        editor.setAutoScrollEditorIntoView(!fullScreen)
-        editor.resize()
-    }
-})
 
-var editor = ace.edit("e1");
-editor.setTheme("ace/theme/tomorrow");
-editor.session.setMode("ace/mode/javascript");
-editor.renderer.setScrollMargin(10, 10);
-editor.setOptions({
-    // "scrollPastEnd": 0.8,
-    autoScrollEditorIntoView: true,
-    vScrollBarAlwaysVisible: false
 
-});
+
 
 var themes = ace.require("ace/ext/themelist").themes.map(function(t){return t.theme});
 
 </script>
-
-
 
 
 

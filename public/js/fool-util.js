@@ -44,5 +44,23 @@ initEditor = function(id) {
 			window.scrollTo(0, $("#"+id).offset().top);
 		});
 	}
+	
+}
+
+loadContent = function(id, contentUrl, lineNumber) {
+
+	var editor = ace.edit(id);
+
+	// Load content
+	$.ajax({
+		url: contentUrl,
+		processData: false,
+		cache: false
+	})
+	.done(function( js ) {
+		editor.setValue(js);
+		editor.clearSelection();
+		editor.gotoLine(lineNumber);
+	});
 
 }
