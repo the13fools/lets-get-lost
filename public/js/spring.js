@@ -43,24 +43,7 @@ function Spring(p1, p2, restLength, springConstant) {
 
 iface.initialXposition = 1.1;
 
-function System(nodes) {
-	springRestDistance = 1 / ((nodes - 1) * 1.1);
-
-	var particles = [];
-	var fixedPoints = [];
-	var springs = [];
-
-	var center = new Particle(0, 0, 0, MASS, -1);
-	fixedPoints.push(center);
-	console.log(iface.initialXposition);
-	particles.push(new Particle(iface.initialXposition, 0, 0, MASS, -1));
-
-	springs.push(new Spring(
-		fixedPoints[0],
-		particles[0],
-		1, 
-		springConstant));
-
+function System(particles, fixedPoints, springs) {
 	this.particles = particles;
 	this.fixedPoints = fixedPoints;
 	this.springs = springs;
@@ -118,6 +101,27 @@ Particle.prototype.stepForward = function(timesq) {
 	this.position.copy(this.tmp);
 }
 
+function InitSystem() {
+		springRestDistance = 1;
+
+	var particles = [];
+	var fixedPoints = [];
+	var springs = [];
+
+	var center = new Particle(0, 0, 0, MASS, -1);
+	fixedPoints.push(center);
+	console.log(iface.initialXposition);
+	particles.push(new Particle(iface.initialXposition, 0, 0, MASS, -1));
+
+	springs.push(new Spring(
+		fixedPoints[0],
+		particles[0],
+		springRestDistance, 
+		springConstant));
+
+	return [particles, fixedPoints, springs];
+}
+
 // Color array that we will be using to help perception.
 // http://bl.ocks.org/mbostock/5577023
 var colors = ["#a50026",
@@ -132,9 +136,9 @@ var colors = ["#a50026",
 				"#4575b4",
 				"#313695"];
 
-
+var init = InitSystem();
 // This is down here because function calls need to come after definitions.
-var system = new System();
+var system = new System(init[0], init[1], init[2]);
 var driveTime = 0;
 system.addSpringForces();
 
@@ -146,7 +150,8 @@ var xShift = 250;
 var yShift = 100;
 
 iface.reset = function () {
-	system = new System();
+	init = InitSystem();
+	system = new System(init[0], init[1], init[2]);
 	system.addSpringForces();
 }
 
