@@ -65,9 +65,6 @@ One consequence of (2) is that there are some aspects of the first few examples 
 
 </div>
 
-<div id="blah">
-</div>
-
 <!-- This is to use the vector data-types to make it easier to make 3d visualizations later -->
 <script src="{{ site.baseurl }}/public/js/lib/three.min.js"></script> 
 <script type="text/javascript" src="{{ site.baseurl }}/public/js/spring.js"></script>
@@ -81,7 +78,6 @@ loadContent('e1', '{{ site.baseurl }}/public/js/spring.js', '7');
 <div id='content'>
 			<canvas id="system-canvas" height='150' width='700' style='width: 100%;'></canvas>
 			<div style='float: left;'>X position</div><div id="Xposition" style='width: 80%; float: left; left: 10px; top: 7px;'></div><div id="Xposition-text" style="position: relative; left: 25px;">1.1</div>
-		<!-- 	<div id="driving-position"></div><div id="driving-position-text"></div> -->
 		</div>
 
 <script type="text/javascript">

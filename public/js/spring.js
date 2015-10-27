@@ -102,8 +102,6 @@ Particle.prototype.stepForward = function(timesq) {
 }
 
 function InitSystem() {
-		springRestDistance = 1;
-
 	var particles = [];
 	var fixedPoints = [];
 	var springs = [];
