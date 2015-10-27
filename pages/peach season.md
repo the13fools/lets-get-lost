@@ -39,5 +39,5 @@ The problem on the right is then an easy problem to answer, we just ask each stu
 This approach of breaking down a problem into constituent parts that are easier to model was in many ways the goal here.  
 
 <p class="message">
-	Today's Tangent: <a href="https://www.shadertoy.com/view/Md23Rd">A neat gyroid</a>, part of a large family of <a href="http://facstaff.susqu.edu/brakke/evolver/examples/periodic/periodic.html">minimal surfaces</a> (more examples <a href="http://www.indiana.edu/~minimal/archive/index.html">here</a>).
+	Tangents: <a href="https://www.shadertoy.com/view/Md23Rd">A neat gyroid</a>, part of a large family of <a href="http://facstaff.susqu.edu/brakke/evolver/examples/periodic/periodic.html">minimal surfaces</a> (more examples <a href="http://www.indiana.edu/~minimal/archive/index.html">here</a>).
 </p>

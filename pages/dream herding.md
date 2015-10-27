@@ -79,7 +79,7 @@ loadContent('e1', '{{ site.baseurl }}/public/js/spring.js', '7');
 </script>
 
 <div id='content'>
-			<canvas id="rope-canvas" height='150' width='700' style='width: 100%;'></canvas>
+			<canvas id="system-canvas" height='150' width='700' style='width: 100%;'></canvas>
 			<div style='float: left;'>X position</div><div id="Xposition" style='width: 80%; float: left; left: 10px; top: 7px;'></div><div id="Xposition-text" style="position: relative; left: 25px;">1.1</div>
 		<!-- 	<div id="driving-position"></div><div id="driving-position-text"></div> -->
 		</div>
@@ -129,9 +129,15 @@ Take a moment to play with this example and to get familiar with the code, as we
 
 Some things to think about:
 
-* Notice how there are constants at the top of the file.  Try changing them and rerunning the simulation.  Does it behave as you would expect?
-* The middle of the file is the implementation of numerical integration.  Think about the connection between the code and the mathematical ideas.
-* At the bottom of the file, there is the "render loop", where the system is evolved in time, and the representation of the system updates a GUI.  Try changing values here to see what happens.  
+* Notice how there are constants at the top of the file.  Try changing them and rerunning the simulation.  Does it behave as you would expect? This is the "physics" of our simulation.
+* The middle of the file is the implementation of numerical integration.  Think about the connection between the code and the mathematical ideas. This is the "math" of simulation.
+* At the bottom of the file, there is the "render loop", where the system is evolved in time, and the representation of the system updates a picture.  Try changing values here to see what happens.  
 
 
-ADD TANGENT HERE!!!
+<p class="message">
+  Tangents: The approach taken in the design of this site takes much inspiration from <a href="https://worrydream.com">Bret Victor</a> (<a href="http://worrydream.com/LadderOfAbstraction/">this</a> is a good place to start) and <a href="http://arxiv.org/abs/math/9404236">William Thurston</a>.  And to add a tangent to a tangent, here is an <a href="http://www.math.rutgers.edu/~zeilberg/Opinion95.html">opinion</a> of <a href="http://www.math.rutgers.edu/~zeilberg/OPINIONS.html">Doron Zeilberger</a>.
+
+  <br><br>
+
+  In short, the internet provides a new tool for thought and communication - <a href="http://bost.ocks.org/mike/algorithms/">exploring</a> <a href="http://www.r2d3.us/visual-intro-to-machine-learning-part-1/">applications</a> that help more people to see a little further and more clearly than they would have otherwise feels like a socially productive use of time.  
+</p>

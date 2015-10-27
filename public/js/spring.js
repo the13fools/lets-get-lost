@@ -11,6 +11,7 @@ var TIMESTEP = 1 / 100000;
 var TIMESTEP_SQ = TIMESTEP * TIMESTEP;
 
 
+// Data structure for physics
 function Particle(x, y, z, mass, index) {
 	// read/write
 	this.position = new THREE.Vector3(x, y, 0); // current 
@@ -42,7 +43,7 @@ function Spring(p1, p2, restLength, springConstant) {
 
 iface.initialXposition = 1.1;
 
-function Rope(nodes) {
+function System(nodes) {
 	springRestDistance = 1 / ((nodes - 1) * 1.1);
 
 	var particles = [];
@@ -66,7 +67,7 @@ function Rope(nodes) {
 }
 
 var diff = new THREE.Vector3();
-Rope.prototype.removePreviousSpringForces = function() {
+System.prototype.removePreviousSpringForces = function() {
 	// We are modelling connections using Hooke's law: 
 	// F = kX, where X is declenation from the "natural" length
 	for (i = 0; i < this.springs.length; i++) {
@@ -83,7 +84,7 @@ Rope.prototype.removePreviousSpringForces = function() {
 	}
 };
 
-Rope.prototype.addSpringForces = function() {
+System.prototype.addSpringForces = function() {
 	for (i = 0; i < this.springs.length; i++) {
 		var spring = this.springs[i];
 		diff.subVectors(spring.p1.position, 
@@ -133,9 +134,9 @@ var colors = ["#a50026",
 
 
 // This is down here because function calls need to come after definitions.
-var rope = new Rope();
+var system = new System();
 var driveTime = 0;
-rope.addSpringForces();
+system.addSpringForces();
 
 var lastTime;
 
@@ -145,27 +146,30 @@ var xShift = 250;
 var yShift = 100;
 
 iface.reset = function () {
-	rope = new Rope();
-	rope.addSpringForces();
+	system = new System();
+	system.addSpringForces();
 }
 
+// Render loop, called by https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
 iface.simulate = function (time) {
 	if (!lastTime) {
 		lastTime = time;
 		return;
 	}
 
-	rope.removePreviousSpringForces();
-	rope.addSpringForces();
+	system.removePreviousSpringForces();
+	system.addSpringForces();
 
-	rope.particles[0].stepForward(TIMESTEP);
+	system.particles[0].stepForward(TIMESTEP);
 
-	var canvas = document.getElementById("rope-canvas");
+	// Draw the data to canvas https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
+
+	var canvas = document.getElementById("system-canvas");
 	var ctx = canvas.getContext("2d");
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-	var part = rope.particles[0];
-	var wall = rope.fixedPoints[0];
+	var part = system.particles[0];
+	var wall = system.fixedPoints[0];
 
 	ctx.beginPath();
 	ctx.moveTo(wall.position.x * 100 + xShift, wall.position.y * 100 + yShift);
