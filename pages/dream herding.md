@@ -22,11 +22,13 @@ Where $$k$$ is the "characteristic" of how spring-y your spring is, and $$X$$ is
 
 But we want to draw the spring in the computer, where we can't feel it with our hands. Instead we will feel it with our eyes by the way that it changes in time.  To do this, we must evolve the system.  To do that, we need some calculus - specifically, we must implement a scheme for doing numerical integration.  
 
+One advantage of this approach is that it makes it much easier to see high Xposition phenomena, another is that it allows us to simulate systems that might be very technically challenging to actually build.  
+
 ## Numerical Integration
 
 This is a large subject in it's own right, and there are many resources [avalible](http://physics.bu.edu/py502/lectures3/cmotion.pdf) which provide a more complete view the problems that arise (like numerical stability, speed of convergence, ect).
 
-For completeness, a short intuition on the core idea: 
+For completeness, a brief note to guide intuition: 
 [Taylor's Theorem](https://en.wikipedia.org/wiki/Taylor's_theorem) gives a way of approximating a function about a point in terms of it's derivatives at that point.  [Euler's Method](https://en.wikipedia.org/wiki/Euler_method) is then the naive application of this observation in order to approximate a function in terms of it's derivatives.
 
 For example, if you have a function which describes the change in velocity of a particle as a function of time, then you can approximate the resulting position by moving that velocity for a time step:
@@ -49,6 +51,8 @@ With that overview, it's time to build our first demo.  The goal here is twofold
 1. To build an interactive spring simulation aimed at building intuition
 2. To setup and expose a skeleton of code which will progressively gain flesh
 
+One consequence of (2) is that there are some aspects of the first few examples which could be simplified, but are the way they are in order to make the introduction of the full system more gradual.
+
 
 <script src="{{ site.baseurl }}/public/js/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
 <!-- load ace themelist extension -->
@@ -66,17 +70,17 @@ With that overview, it's time to build our first demo.  The goal here is twofold
 
 <!-- This is to use the vector data-types to make it easier to make 3d visualizations later -->
 <script src="{{ site.baseurl }}/public/js/lib/three.min.js"></script> 
-<script type="text/javascript" src="{{ site.baseurl }}/public/js/disk.js"></script>
+<script type="text/javascript" src="{{ site.baseurl }}/public/js/spring.js"></script>
 
 <script type="text/javascript">
 // from fool-util
 initEditor('e1');
-loadContent('e1', '{{ site.baseurl }}/public/js/disk.js', '10');
+loadContent('e1', '{{ site.baseurl }}/public/js/spring.js', '7');
 </script>
 
 <div id='content'>
-			<canvas id="rope-canvas" height='300' width='1000'></canvas>
-			<div id="frequency"></div><div id="frequency-text"></div>
+			<canvas id="rope-canvas" height='150' width='700' style='width: 100%;'></canvas>
+			<div style='float: left;'>X position</div><div id="Xposition" style='width: 80%; float: left; left: 10px; top: 7px;'></div><div id="Xposition-text" style="position: relative; left: 25px;">1.1</div>
 		<!-- 	<div id="driving-position"></div><div id="driving-position-text"></div> -->
 		</div>
 
@@ -84,6 +88,7 @@ loadContent('e1', '{{ site.baseurl }}/public/js/disk.js', '10');
 	animate();
 
 	function animate() {
+    iface.initialXposition = 1.1;
 
 		requestAnimationFrame( animate );
 
@@ -94,46 +99,39 @@ loadContent('e1', '{{ site.baseurl }}/public/js/disk.js', '10');
 </script>
 
 <script type="text/javascript">
-  function updatePosition() {
-    var pos = $( "#driving-position" ).slider( "value" );
-    drivingPosition = pos;
-    $("#driving-position-text").text(drivingPosition);
-  }
-
-  function updateFrequency() {
-    var frequency = $( "#frequency" ).slider( "value" );
-    iface.frequencyMultiplier = frequency;
-    console.log("sdfds");
-    $("#frequency-text").text(iface.frequencyMultiplier + "");
+  function updateXposition() {
+    var Xposition = $( "#Xposition" ).slider( "value" );
+    iface.initialXposition = Xposition;
+    console.log(iface);
+    $("#Xposition-text").text(iface.initialXposition + "");
+    iface.reset();
   }
 
   $(function() {
-  	$( "#frequency" ).slider({
+  	$( "#Xposition" ).slider({
       orientation: "horizontal",
       range: "min",
-      max: 1000,
-      value: 100,
-      slide: updateFrequency,
-      change: updateFrequency
-    });
-
-    $( "#driving-position" ).slider({
-      orientation: "horizontal",
-      range: "min",
-      max: 1,
-      min: -.2,
-      value: 0,
+      max: 3,
       step: .05,
-      slide: updatePosition,
-      change: updatePosition
+      value: 1.1,
+      change: updateXposition
     });
   });
 
   $( ".e1.editor-run" ).click(function() {
-		updateFrequency();
+		updateXposition();
 	});
+
 </script>
 
+<br>
+Take a moment to play with this example and to get familiar with the code, as we will be expanding on it in the coming sections.  
+
+Some things to think about:
+
+* Notice how there are constants at the top of the file.  Try changing them and rerunning the simulation.  Does it behave as you would expect?
+* The middle of the file is the implementation of numerical integration.  Think about the connection between the code and the mathematical ideas.
+* At the bottom of the file, there is the "render loop", where the system is evolved in time, and the representation of the system updates a GUI.  Try changing values here to see what happens.  
 
 
-
+ADD TANGENT HERE!!!

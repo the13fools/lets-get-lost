@@ -125,9 +125,9 @@ Rope.prototype.removePreviousSpringForces = function() {
 
 		// hacky :(
 		if(spring.p1.idx >= 0) {
-			this.particles[spring.p1.idx].forces.sub(diff);
+			spring.p1.forces.sub(diff);
 		}
-		this.particles[spring.p2.idx].forces.add(diff);
+		spring.p2.forces.add(diff);
 	}
 };
 
@@ -143,9 +143,9 @@ Rope.prototype.addSpringForces = function() {
 			spring.springConstant);
 
 		if(spring.p1.idx >= 0) {
-			this.particles[spring.p1.idx].forces.add(diff);
+			spring.p1.forces.add(diff);
 		}
-		this.particles[spring.p2.idx].forces.sub(diff);
+		spring.p2.forces.sub(diff);
 
 	}
 

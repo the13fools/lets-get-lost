@@ -12,6 +12,8 @@ initEditor = function(id) {
 
 	});
 
+	editor.$blockScrolling = Infinity;
+
 	// Control buttons
 	$('#' + id).parent().append(
 	'<div class="editor-control">' +
