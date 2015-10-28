@@ -74,7 +74,7 @@ One consequence of (2) is that there are some aspects of the first few examples 
 <script type="text/javascript">
 // from fool-util
 initEditor('e1');
-loadContent('e1', '{{ site.baseurl }}/public/js/spring.js', '7');
+loadContent('e1', '{{ site.baseurl }}/public/js/spring.js', '8');
 </script>
 
 <div id='content'>
@@ -86,23 +86,22 @@ loadContent('e1', '{{ site.baseurl }}/public/js/spring.js', '7');
 	animate();
 
 	function animate() {
-    iface.initialXposition = 1.1;
+    SpringEx.initialXposition = 1.1;
 
 		requestAnimationFrame( animate );
 
 		var time = Date.now();
 
-		iface.simulate(time);
+		SpringEx.simulate(time);
 	}
 </script>
 
 <script type="text/javascript">
   function updateXposition() {
     var Xposition = $( "#Xposition" ).slider( "value" );
-    iface.initialXposition = Xposition;
-    console.log(iface);
-    $("#Xposition-text").text(iface.initialXposition + "");
-    iface.reset();
+    SpringEx.initialXposition = Xposition;
+    $("#Xposition-text").text(SpringEx.initialXposition + "");
+    SpringEx.reset();
   }
 
   $(function() {

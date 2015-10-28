@@ -1,5 +1,6 @@
 // http://www.adequatelygood.com/JavaScript-Module-Pattern-In-Depth.html
-var SpringSystem = (function () {
+SpringSystem = (function () {
+	var ss = {};
 
 	var DAMPING = 0.0001;
 
@@ -154,4 +155,12 @@ var SpringSystem = (function () {
 		this.position.copy(this.tmp);
 	}
 
+	ss.Particle = Particle;
+	ss.Spring = Spring;
+	ss.Constraint = Constraint;
+	ss.System = System;
+
+	return ss;
 }());
+
+

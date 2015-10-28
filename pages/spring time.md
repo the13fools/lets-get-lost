@@ -24,8 +24,9 @@ Now it is time to gain experience and mastery of those ideas through play and de
 </div>
 
 <script type="text/javascript">	
-	iface.initialXposition = 2;
-	iface.reset();
+	SpringEx.initialXposition = 2;
+	SpringEx.DAMPING = 0;
+	SpringEx.reset();
 
 	animate();
 
@@ -34,7 +35,7 @@ Now it is time to gain experience and mastery of those ideas through play and de
 
 		var time = Date.now();
 
-		iface.simulate(time);
+		SpringEx.simulate(time);
 	}
 </script>
 
@@ -43,6 +44,30 @@ One thing you may have noticed in playing with the previous example is that with
 <img src="{{ site.baseurl }}/public/img/hookeslawforspring.png" alt="via https://commons.wikimedia.org/wiki/File:HookesLawForSpring-English.png">
 
 Modelling this sort of non-linearity is doable, but for our purposes, we can get pretty close by simply by placing constraints on the length that a spring can take. 
+
+<script type="text/javascript" src="{{ site.baseurl }}/public/js/spring-system.js"></script>
+<script type="text/javascript" src="{{ site.baseurl }}/public/js/constrained-spring.js"></script>
+
+<div id='content'>
+	<canvas id="blah" height='150' width='700' style='width: 100%;'></canvas>
+</div>
+
+<script type="text/javascript">	
+	// iconstr.initialXposition = 2;
+	// iconstr.reset();
+
+	// animate();
+
+	// function animate() {
+	// 	requestAnimationFrame( animate );
+
+	// 	var time = Date.now();
+
+	// 	iconstr.simulate(time);
+	// }
+</script>
+
+
 
 
 In doing this, we refactor the code to seperate the "math" thinking from the initialization of the model and from the display.  This will be helpful in conceptually making changes going forward.  
