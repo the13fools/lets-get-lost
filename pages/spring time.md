@@ -42,8 +42,10 @@ One thing you may have noticed in playing with the previous example is that with
 
 <img src="{{ site.baseurl }}/public/img/hookeslawforspring.png" alt="via https://commons.wikimedia.org/wiki/File:HookesLawForSpring-English.png">
 
-Modelling this sort of non-linearity is doable, but for our purposes, we can get pretty close by constraining 
-A simple approximation that we can implement to account for this is to add a displacement constraint on our mass - not allowing it to stretch it's spring more than a certain amount.
+Modelling this sort of non-linearity is doable, but for our purposes, we can get pretty close by simply by placing constraints on the length that a spring can take. 
+
+
+In doing this, we refactor the code to seperate the "math" thinking from the initialization of the model and from the display.  This will be helpful in conceptually making changes going forward.  
 
 # Under Pressure
 

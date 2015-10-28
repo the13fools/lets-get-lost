@@ -106,10 +106,10 @@ function InitSystem() {
 	var fixedPoints = [];
 	var springs = [];
 
-	var center = new Particle(0, 0, 0, MASS, -1);
+	var center = new Particle(0, 0, 0, MASS);
 	fixedPoints.push(center);
 	console.log(iface.initialXposition);
-	particles.push(new Particle(iface.initialXposition, 0, 0, MASS, -1));
+	particles.push(new Particle(iface.initialXposition, 0, 0, MASS));
 
 	springs.push(new Spring(
 		fixedPoints[0],
