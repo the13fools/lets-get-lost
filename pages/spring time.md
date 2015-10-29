@@ -20,7 +20,7 @@ Now it is time to gain experience and mastery of those ideas through play and de
 <script type="text/javascript" src="{{ site.baseurl }}/public/js/spring.js"></script>
 
 <div id='content'>
-	<canvas id="system-canvas" height='150' width='700' style='width: 100%;'></canvas>
+	<canvas id="springex-canvas" height='150' width='700' style='width: 100%;'></canvas>
 </div>
 
 <script type="text/javascript">	

@@ -165,7 +165,7 @@ SpringEx = (function () {
 
 		// Draw the data to canvas https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
 
-		var canvas = document.getElementById("system-canvas");
+		var canvas = document.getElementById("springex-canvas");
 		var ctx = canvas.getContext("2d");
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 

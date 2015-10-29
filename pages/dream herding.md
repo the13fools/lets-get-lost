@@ -78,7 +78,7 @@ loadContent('e1', '{{ site.baseurl }}/public/js/spring.js', '8');
 </script>
 
 <div id='content'>
-  	<canvas id="system-canvas" height='150' width='700' style='width: 100%;'></canvas>
+  	<canvas id="springex-canvas" height='150' width='700' style='width: 100%;'></canvas>
   	<div style='float: left;'>X position</div><div id="Xposition" style='width: 80%; float: left; left: 10px; top: 7px;'></div><div id="Xposition-text" style="position: relative; left: 25px;">1.1</div>
 </div>
 
