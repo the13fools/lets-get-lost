@@ -13,7 +13,7 @@ position: 3
 
 The previous section referenced a whirlwind of technical ideas and developed a code framework which implements them.  
 
-Now it is time to gain experience and mastery of those ideas through play and demos!  
+Now it is time to play!
 
 # Let's Get Physical
 
@@ -51,7 +51,7 @@ We do this in the example below.  Try to see what happens when you start the sys
 <script type="text/javascript" src="{{ site.baseurl }}/public/js/constrained-spring.js"></script>
 
 <div id='content'>
-	<canvas id="blahblah" height='150' width='700' style='width: 100%;'></canvas>
+	<canvas id="constrainedex-canvas" height='150' width='700' style='width: 100%;'></canvas>
 </div>
 
 <script type="text/javascript">	
@@ -77,27 +77,6 @@ We do this in the example below.  Try to see what happens when you start the sys
 <br/>
 
 <script type="text/javascript">
-  function updateXposition() {
-    var Xposition = $( "#con-Xposition" ).slider( "value" );
-    ConstrainedEx.initialXposition = Xposition;
-    $("#con-Xposition-text").text(ConstrainedEx.initialXposition + "");
-    ConstrainedEx.reset();
-  }
-
-  function updateLowerBound() {
-    var bound = $( "#con-lower-bound" ).slider( "value" );
-    ConstrainedEx.lowerBound = bound;
-    $("#con-lower-bound-text").text(ConstrainedEx.lowerBound + "");
-    ConstrainedEx.reset();
-  }
-
-  function updateUpperBound() {
-    var bound = $( "#con-upper-bound" ).slider( "value" );
-    ConstrainedEx.upperBound = bound;
-    $("#con-upper-bound-text").text(ConstrainedEx.upperBound + "");
-    ConstrainedEx.reset();
-  }
-
   $(function() {
   	$( "#con-Xposition" ).slider({
       orientation: "horizontal",
@@ -131,6 +110,28 @@ We do this in the example below.  Try to see what happens when you start the sys
       change: updateUpperBound
     });
   });
+
+  function updateXposition() {
+    var Xposition = $( "#con-Xposition" ).slider( "value" );
+    ConstrainedEx.initialXposition = Xposition;
+    $("#con-Xposition-text").text(ConstrainedEx.initialXposition + "");
+    ConstrainedEx.reset();
+  }
+
+  function updateLowerBound() {
+    var bound = $( "#con-lower-bound" ).slider( "value" );
+    ConstrainedEx.lowerBound = bound;
+    $("#con-lower-bound-text").text(ConstrainedEx.lowerBound + "");
+    ConstrainedEx.reset();
+  }
+
+  function updateUpperBound() {
+    var bound = $( "#con-upper-bound" ).slider( "value" );
+    ConstrainedEx.upperBound = bound;
+    $("#con-upper-bound-text").text(ConstrainedEx.upperBound + "");
+    ConstrainedEx.reset();
+  }
+
 
   var update = function() {
   	updateXposition();
@@ -177,7 +178,90 @@ Once you have spent enough time playing with the previous example, you might bec
 Let's reproduce the 2 degree of freedom (DOF)-system for fun.  As an exercise, try to modify the code to implement the 3 or 4 or $$n$$ DOF-system!
 
 
+<script type="text/javascript" src="{{ site.baseurl }}/public/js/dof-spring.js"></script>
 
+<div id='content'>
+	<canvas id="dofex-canvas" height='150' width='700' style='width: 100%;'></canvas>
+</div>
+
+<script type="text/javascript">	
+	//dofEx.initialXposition = 2;
+	dofEx.reset();
+
+	dofExAnimate();
+
+	function dofExAnimate() {
+		requestAnimationFrame( dofExAnimate );
+
+		var time = Date.now();
+
+		dofEx.simulate(time);
+	}
+</script>
+<div class="slider-label">Particle 1</div><div id="dof-initP1" class="slider"></div><div id="dof-initP1-text" class="slider-value">1.45</div>
+
+<div class="slider-label">Particle 2</div><div id="dof-initP2" class="slider"></div><div id="dof-initP2-text" class="slider-value">0.2</div>
+
+<br/>
+
+<script type="text/javascript">
+  // function updateXposition() {
+  //   var Xposition = $( "#con-Xposition" ).slider( "value" );
+  //   dofEx.initialXposition = Xposition;
+  //   $("#con-Xposition-text").text(dofEx.initialXposition + "");
+  //   dofEx.reset();
+  // }
+
+  // function updateLowerBound() {
+  //   var bound = $( "#con-lower-bound" ).slider( "value" );
+  //   dofEx.lowerBound = bound;
+  //   $("#con-lower-bound-text").text(dofEx.lowerBound + "");
+  //   dofEx.reset();
+  // }
+
+  // $(function() {
+  // 	$( "#con-Xposition" ).slider({
+  //     orientation: "horizontal",
+  //     range: "min",
+  //     max: 3,
+  //     step: .05,
+  //     value: 1.45,
+  //     change: updateXposition
+  //   });
+  // });
+
+  // $(function() {
+  // 	$( "#con-lower-bound" ).slider({
+  //     orientation: "horizontal",
+  //     range: "min",
+  //     max: 1,
+  //     step: .05,
+  //     value: .2,
+  //     change: updateLowerBound
+  //   });
+  // });
+
+  // var update = function() {
+  // 	updateXposition();
+  // 	updateLowerBound();
+  // 	updateUpperBound();
+  // }
+
+  // $( ".dofEd-logic.editor-run" ).click(update());
+
+</script>
+
+<div>
+<div id="dofEd-logic" class="editor">
+</div>
+</div>
+
+<script type="text/javascript">
+// from fool-util
+initEditor('dofEd-logic');
+loadContent('dofEd-logic', '{{ site.baseurl }}/public/js/dof-spring.js', '20');
+</script>
+<br/>
 
 
 

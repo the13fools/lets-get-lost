@@ -16,25 +16,10 @@ ConstrainedEx = (function () {
 
 	var ss = SpringSystem;
 
-	// Color array that we will be using to help perception.
-	// http://bl.ocks.org/mbostock/5577023
-	var colors = ["#a50026",
-					"#d73027",
-					"#f46d43",
-					"#fdae61",
-					"#fee090",
-					"#ffffbf",
-					"#e0f3f8",
-					"#abd9e9",
-					"#74add1",
-					"#4575b4",
-					"#313695"];
-
 	function InitSystem() {
 		var particles = [];
 		var fixedPoints = [];
 		var springs = [];
-		var constraints = [];
 
 		var center = new ss.Particle(0, 0, 0, exp.MASS);
 		fixedPoints.push(center);
@@ -44,20 +29,16 @@ ConstrainedEx = (function () {
 			fixedPoints[0],
 			particles[0],
 			exp.springRestDistance, 
-			exp.springConstant));
-
-		constraints.push(new ss.Constraint(
-			fixedPoints[0],
-			particles[0],
+			exp.springConstant,
 			exp.lowerBound,
 			exp.upperBound));
 
-		return [particles, fixedPoints, springs, constraints];
+		return [particles, fixedPoints, springs];
 	}
 
 	var init = InitSystem();
 	// This is down here because function calls need to come after definitions.
-	var system = new ss.System(init[0], init[1], init[2], init[3]);
+	var system = new ss.System(init[0], init[1], init[2]);
 	var driveTime = 0;
 	system.addSpringForces();
 
@@ -70,7 +51,7 @@ ConstrainedEx = (function () {
 
 	exp.reset = function () {
 		init = InitSystem();
-		system = new ss.System(init[0], init[1], init[2], init[3]);
+		system = new ss.System(init[0], init[1], init[2]);
 		system.addSpringForces();
 	}
 
@@ -91,14 +72,12 @@ ConstrainedEx = (function () {
 
 		// Draw the data to canvas https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
 
-		var canvas = document.getElementById("blahblah");
+		var canvas = document.getElementById("constrainedex-canvas");
 		var ctx = canvas.getContext("2d");
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 		var part = system.particles[0];
 		var wall = system.fixedPoints[0];
-
-		console.log(system)
 
 		ctx.beginPath();
 		ctx.moveTo(wall.position.x * 100 + xShift, wall.position.y * 100 + yShift);

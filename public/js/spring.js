@@ -62,6 +62,7 @@ SpringEx = (function () {
 			diff.multiplyScalar((spring.restLength - len) *
 				spring.springConstant);
 
+			spring.p1.forces.sub(diff);
 			spring.p2.forces.add(diff);
 		}
 	};
@@ -77,6 +78,7 @@ SpringEx = (function () {
 			diff.multiplyScalar((spring.restLength - len) *
 				spring.springConstant);
 
+			spring.p1.forces.add(diff);
 			spring.p2.forces.sub(diff);
 
 		}

@@ -28,36 +28,28 @@ SpringSystem = (function () {
 			return this.a;
 	}
 
-	function Spring(p1, p2, restLength, springConstant) {
+	function Spring(p1, p2, restLength, springConstant, minLength, maxLength) {
 		this.p1 = p1;
 		this.p2 = p2;
 		this.restLength = restLength;
 		this.springConstant = springConstant;
-	}
-
-	function Constraint(p1, p2, minLength, maxLength) {
-		this.p1 = p1;
-		this.p2 = p2;
 		this.minLength = minLength;
 		this.maxLength = maxLength;
 	}
 
-	function System(particles, fixedPoints, springs, constraints) {
+	function System(particles, fixedPoints, springs) {
 		this.particles = particles;
 		this.fixedPoints = fixedPoints;
 		this.springs = springs;
-		this.constraints = constraints;
-
-		console.log(constraints);
 
 		for (i = 0; i < this.fixedPoints.length; i++) {
 			this.fixedPoints[i].isFixed = true;
 		}
 
 		// For sanity, ensure constrained points are free to move.
-		for (i = 0; i < this.constraints.length; i++) {
-			assert(!this.constraints[i].p1.isFixed || 
-				!this.constraints[i].p2.isFixed);
+		for (i = 0; i < this.springs.length; i++) {
+			assert(!this.springs[i].p1.isFixed || 
+				!this.springs[i].p2.isFixed);
 		}
 	}
 
@@ -75,6 +67,7 @@ SpringSystem = (function () {
 			diff.multiplyScalar((spring.restLength - len) *
 				spring.springConstant);
 
+			spring.p1.forces.sub(diff);
 			spring.p2.forces.add(diff);
 		}
 	};
@@ -90,6 +83,7 @@ SpringSystem = (function () {
 			diff.multiplyScalar((spring.restLength - len) *
 				spring.springConstant);
 
+			spring.p1.forces.add(diff);
 			spring.p2.forces.sub(diff);
 
 		}
@@ -98,7 +92,7 @@ SpringSystem = (function () {
 
 	System.prototype.enforceConstraints = function(step) {
 		function enforce(i, system) {
-			var con = system.constraints[i];
+			var con = system.springs[i];
 			diff.subVectors(con.p1.position, 
 							con.p2.position);
 			var len = diff.length();
@@ -127,7 +121,7 @@ SpringSystem = (function () {
 		};
 
 		// tighten from both ends 
-		var len = this.constraints.length;
+		var len = this.springs.length;
 		if (step % 2 == 0) {
 			for (i = 0; i < len; i++) {
 				enforce( (~~(step / 2) + i) % len, this);
@@ -160,7 +154,6 @@ SpringSystem = (function () {
 
 	exp.Particle = Particle;
 	exp.Spring = Spring;
-	exp.Constraint = Constraint;
 	exp.System = System;
 
 	return exp;
