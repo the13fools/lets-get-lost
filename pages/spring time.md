@@ -28,10 +28,10 @@ Now it is time to gain experience and mastery of those ideas through play and de
 	SpringEx.DAMPING = 0;
 	SpringEx.reset();
 
-	animate();
+	springExAnimate();
 
-	function animate() {
-		requestAnimationFrame( animate );
+	function springExAnimate() {
+		requestAnimationFrame( springExAnimate );
 
 		var time = Date.now();
 
@@ -49,22 +49,22 @@ Modelling this sort of non-linearity is doable, but for our purposes, we can get
 <script type="text/javascript" src="{{ site.baseurl }}/public/js/constrained-spring.js"></script>
 
 <div id='content'>
-	<canvas id="blah" height='150' width='700' style='width: 100%;'></canvas>
+	<canvas id="blahblah" height='150' width='700' style='width: 100%;'></canvas>
 </div>
 
 <script type="text/javascript">	
-	// iconstr.initialXposition = 2;
-	// iconstr.reset();
+	ConstrainedEx.initialXposition = 2;
+	ConstrainedEx.reset();
 
-	// animate();
+	constrainedExAnimate();
 
-	// function animate() {
-	// 	requestAnimationFrame( animate );
+	function constrainedExAnimate() {
+		requestAnimationFrame( constrainedExAnimate );
 
-	// 	var time = Date.now();
+		var time = Date.now();
 
-	// 	iconstr.simulate(time);
-	// }
+		ConstrainedEx.simulate(time);
+	}
 </script>
 
 

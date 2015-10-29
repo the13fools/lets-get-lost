@@ -1,14 +1,15 @@
 // http://www.adequatelygood.com/JavaScript-Module-Pattern-In-Depth.html
 SpringSystem = (function () {
-	var ss = {};
+	var exp = {};
 
-	var DAMPING = 0.0001;
+	exp.DAMPING = 0.0001;
 
 	// Data structure for physics
 	function Particle(x, y, z, mass) {
 		// read/write
 		this.position = new THREE.Vector3(x, y, 0); // current 
 		this.forces = new THREE.Vector3(0, 0, 0); // F = ma -> F * 1/m = a
+		this.damping = exp.DAMPING;
 
 		// read only
 		this.previousPosition = new THREE.Vector3(x, y, 0); 
@@ -47,14 +48,16 @@ SpringSystem = (function () {
 		this.springs = springs;
 		this.constraints = constraints;
 
+		console.log(constraints);
+
 		for (i = 0; i < this.fixedPoints.length; i++) {
-			this.fixedPoints[i] = true;
+			this.fixedPoints[i].isFixed = true;
 		}
 
 		// For sanity, ensure constrained points are free to move.
 		for (i = 0; i < this.constraints.length; i++) {
 			assert(!this.constraints[i].p1.isFixed || 
-				!this.constraints[i].p1.isFixed);
+				!this.constraints[i].p2.isFixed);
 		}
 	}
 
@@ -147,20 +150,20 @@ SpringSystem = (function () {
 	// x_n+1 = (2 - damping) * x_n - x_n-1 + a(x_n) dt^2
 	Particle.prototype.stepForward = function(timesq) {
 		this.tmp.copy(this.position);
-		this.tmp.multiplyScalar(2 - DAMPING);
-		this.tmp.sub(this.previousPosition.multiplyScalar(1 - DAMPING));
+		this.tmp.multiplyScalar(2 - exp.DAMPING);
+		this.tmp.sub(this.previousPosition.multiplyScalar(1 - exp.DAMPING));
 		this.tmp.add(this.getAcceleration().multiplyScalar(timesq));
 
 		this.previousPosition.copy(this.position);
 		this.position.copy(this.tmp);
 	}
 
-	ss.Particle = Particle;
-	ss.Spring = Spring;
-	ss.Constraint = Constraint;
-	ss.System = System;
+	exp.Particle = Particle;
+	exp.Spring = Spring;
+	exp.Constraint = Constraint;
+	exp.System = System;
 
-	return ss;
+	return exp;
 }());
 
 

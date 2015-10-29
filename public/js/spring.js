@@ -1,6 +1,5 @@
-// reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects
 SpringEx = (function () {
-	var exp = new Object();
+	var exp = {};
 
 	exp.MASS = 1; // kg
 	exp.springRestDistance = 1; // m
@@ -10,9 +9,12 @@ SpringEx = (function () {
 
 	exp.TIMESTEP = 1 / 100000;
 
+	// changing this in console won't work b/c of slider
+	exp.initialXposition = 1.1;
+
 
 	// Data structure for physics
-	function Particle(x, y, z, mass, index) {
+	function Particle(x, y, z, mass) {
 		// read/write
 		this.position = new THREE.Vector3(x, y, 0); // current 
 		this.forces = new THREE.Vector3(0, 0, 0); // F = ma -> F * 1/m = a
@@ -21,7 +23,6 @@ SpringEx = (function () {
 		this.previousPosition = new THREE.Vector3(x, y, 0); 
 		this.original = new THREE.Vector3(x, y, 0);
 		this.invMass = 1 / mass;
-		this.idx = index;
 
 		// private 
 		this.a = new THREE.Vector3(0, 0, 0); // acceleration
@@ -40,8 +41,6 @@ SpringEx = (function () {
 		this.restLength = restLength;
 		this.springConstant = springConstant;
 	}
-
-	exp.initialXposition = 1.1;
 
 	function System(particles, fixedPoints, springs) {
 		this.particles = particles;
