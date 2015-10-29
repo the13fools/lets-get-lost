@@ -3,14 +3,16 @@ ConstrainedEx = (function () {
 
 	exp.MASS = 1; // kg
 	exp.springRestDistance = 1; // m
-	exp.springConstant = 100; // Newton / meter
+	exp.springConstant = 500; // Newton / meter
 
 	exp.DAMPING = 0.0001;
 
 	exp.TIMESTEP = 1 / 100000;
 
 	// changing this in console won't work b/c of slider
-	exp.initialXposition = 1.1;
+	exp.initialXposition = 1.45;
+	exp.lowerBound = .1;
+	exp.upperBound = 2;
 
 	var ss = SpringSystem;
 
@@ -44,11 +46,11 @@ ConstrainedEx = (function () {
 			exp.springRestDistance, 
 			exp.springConstant));
 
-		// constraints.push(new ss.Constraint(
-		// 	fixedPoints[0],
-		// 	particles[0],
-		// 	.2,
-		// 	2));
+		constraints.push(new ss.Constraint(
+			fixedPoints[0],
+			particles[0],
+			exp.lowerBound,
+			exp.upperBound));
 
 		return [particles, fixedPoints, springs, constraints];
 	}
@@ -72,6 +74,7 @@ ConstrainedEx = (function () {
 		system.addSpringForces();
 	}
 
+	var step = 0;
 	// Render loop, called by https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
 	exp.simulate = function (time) {
 		if (!lastTime) {
@@ -83,6 +86,8 @@ ConstrainedEx = (function () {
 		system.addSpringForces();
 
 		system.particles[0].stepForward(exp.TIMESTEP);
+		system.enforceConstraints(step);
+		step++;
 
 		// Draw the data to canvas https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
 

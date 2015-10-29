@@ -118,20 +118,6 @@ SpringEx = (function () {
 		return [particles, fixedPoints, springs];
 	}
 
-	// Color array that we will be using to help perception.
-	// http://bl.ocks.org/mbostock/5577023
-	var colors = ["#a50026",
-					"#d73027",
-					"#f46d43",
-					"#fdae61",
-					"#fee090",
-					"#ffffbf",
-					"#e0f3f8",
-					"#abd9e9",
-					"#74add1",
-					"#4575b4",
-					"#313695"];
-
 	var init = InitSystem();
 	// This is down here because function calls need to come after definitions.
 	var system = new System(init[0], init[1], init[2]);

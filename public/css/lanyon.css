@@ -516,6 +516,37 @@ a.pagination-item:hover {
         position: relative !important;
     }
 
+/*  
+ * Slider
+ */
+
+ .slider-label {
+  float: left;
+  width: 15%;
+ }
+
+ .slider { 
+  width: 70%; 
+  float: left; 
+  left: 10px; 
+  top: 7px;
+ }
+
+@media (max-width: 70em) {
+  .slider {
+    width: 50%;
+  }
+
+   .slider-label {
+    width: 25%;
+  }
+}
+
+ .slider-value {
+  position: relative; 
+  left: 25px;
+ }
+
 
 /*.container a,
 .related-posts li a:hover {

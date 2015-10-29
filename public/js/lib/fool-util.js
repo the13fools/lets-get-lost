@@ -75,3 +75,17 @@ assert = function (condition, message) {
         throw message; // Fallback
     }
 }
+
+// Color array that we will be using to help perception.
+// http://bl.ocks.org/mbostock/5577023
+var colors = ["#a50026",
+				"#d73027",
+				"#f46d43",
+				"#fdae61",
+				"#fee090",
+				"#ffffbf",
+				"#e0f3f8",
+				"#abd9e9",
+				"#74add1",
+				"#4575b4",
+				"#313695"];
