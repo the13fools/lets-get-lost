@@ -113,7 +113,7 @@ dofEx = (function () {
 		ctx.fillStyle = colors[1];
 		for (i = 0; i < system.particles.length; i++) {
 			var part = system.particles[i];
-			ctx.fillRect(part.position.x * scale + xShift, part.position.y * scale + yShift - 25, 50, 50);
+			ctx.fillRect(part.position.x * scale + xShift - 25, part.position.y * scale + yShift - 25, 50, 50);
 		}
 
 	}
@@ -123,10 +123,11 @@ dofEx = (function () {
 		var p2 = spring.p2;
 		console.log(spring)
 		ctx.beginPath();
-		ctx.moveTo(p1.position.x * scale + xShift, p1.position.y * scale + yShift);
+		ctx.moveTo(p1.position.x * scale + xShift + 25, p1.position.y * scale + yShift);
 		for (j = 1; j <= 10; j++) {
 			var shift = j % 2 == 0 ? 20 : -20;
-			ctx.lineTo(((10 - j) * p1.position.x + j * p2.position.x) / 10 * scale + xShift, 
+			if (j == 10) { shift = 0; }
+			ctx.lineTo(((10 - j) * (p1.position.x + 25 / scale) + j * (p2.position.x - 25 / scale) ) / 10 * scale + xShift, 
 				       ((10 - j) * p1.position.y + j * p2.position.y) / 10 * scale + shift + yShift);
 		} 
 
