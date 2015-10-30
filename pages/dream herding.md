@@ -79,14 +79,14 @@ loadContent('e1', '{{ site.baseurl }}/public/js/spring.js', '8');
 
 <div id='content'>
   	<canvas id="springex-canvas" height='150' width='700' style='width: 100%;'></canvas>
-  	<div class="slider-label">X position</div><div id="Xposition" class="slider"></div><div id="Xposition-text" class="slider-value">1.1</div>
+  	<div class="slider-label">X position</div><div id="Xposition" class="slider"></div><div id="Xposition-text" class="slider-value">1.4</div>
 </div>
 
 <script type="text/javascript">
 	animate();
 
 	function animate() {
-    SpringEx.initialXposition = 1.1;
+    SpringEx.initialXposition = 1.4;
 
 		requestAnimationFrame( animate );
 
@@ -110,7 +110,7 @@ loadContent('e1', '{{ site.baseurl }}/public/js/spring.js', '8');
       range: "min",
       max: 3,
       step: .05,
-      value: 1.1,
+      value: 1.4,
       change: updateXposition
     });
   });

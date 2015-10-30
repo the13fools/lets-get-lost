@@ -173,7 +173,7 @@ If you are curious about the details of how the constraint enforcement is implem
 
 # Under Pressure
 
-Once you have spent enough time playing with the previous example, you might become interested in connecting a few springs together to see what happens.  One such thing you can do is to connect the springs together between two fixed points (as demonstrated [here](http://www.acs.psu.edu/drussell/Demos/multi-dof-springs/multi-dof-springs.html){:target="_blank"}, as an aside, check out some of [Dan Russell's](http://www.acs.psu.edu/drussell/demos.html){:target="_blank"} other animations).
+Once you have spent enough time playing with the previous example, you might become interested in connecting a few springs together to see what happens.  One such thing you can do is to connect the springs together between two fixed points (as demonstrated [here](http://www.acs.psu.edu/drussell/Demos/multi-dof-springs/multi-dof-springs.html){:target="_blank"}, as an aside, check out some of [Dan Russell's](http://www.acs.psu.edu/drussell/demos.html){:target="_blank"} other animations).  There is a certian amount of poetics here if you think of how these sorts of models might apply to interpersonal relationships.
 
 Let's reproduce the 2 degree of freedom (DOF)-system for fun.  As an exercise, try to modify the code to implement the 3 or 4 or $$n$$ DOF-system!
 
@@ -198,56 +198,55 @@ Let's reproduce the 2 degree of freedom (DOF)-system for fun.  As an exercise, t
 		dofEx.simulate(time);
 	}
 </script>
-<div class="slider-label">Particle 1</div><div id="dof-initP1" class="slider"></div><div id="dof-initP1-text" class="slider-value">1.45</div>
+<div class="slider-label">Particle 1</div><div id="dof-initP1" class="slider"></div><div id="dof-initP1-text" class="slider-value">1</div>
 
-<div class="slider-label">Particle 2</div><div id="dof-initP2" class="slider"></div><div id="dof-initP2-text" class="slider-value">0.2</div>
+<div class="slider-label">Particle 2</div><div id="dof-initP2" class="slider"></div><div id="dof-initP2-text" class="slider-value">1.5</div>
 
 <br/>
 
 <script type="text/javascript">
-  // function updateXposition() {
-  //   var Xposition = $( "#con-Xposition" ).slider( "value" );
-  //   dofEx.initialXposition = Xposition;
-  //   $("#con-Xposition-text").text(dofEx.initialXposition + "");
-  //   dofEx.reset();
-  // }
+  function updateP1() {
+    var initP1 = $( "#dof-initP1" ).slider( "value" );
+    dofEx.initP1 = initP1;
+    $("#dof-initP1-text").text(dofEx.initP1 + "");
+    dofEx.reset();
+  }
 
-  // function updateLowerBound() {
-  //   var bound = $( "#con-lower-bound" ).slider( "value" );
-  //   dofEx.lowerBound = bound;
-  //   $("#con-lower-bound-text").text(dofEx.lowerBound + "");
-  //   dofEx.reset();
-  // }
+  function updateP2() {
+    var initP2 = $( "#dof-initP2" ).slider( "value" );
+    dofEx.initP2 = initP2;
+    $("#dof-initP2-text").text(dofEx.initP2 + "");
+    dofEx.reset();
+  }
 
-  // $(function() {
-  // 	$( "#con-Xposition" ).slider({
-  //     orientation: "horizontal",
-  //     range: "min",
-  //     max: 3,
-  //     step: .05,
-  //     value: 1.45,
-  //     change: updateXposition
-  //   });
-  // });
+  $(function() {
+  	$( "#dof-initP1" ).slider({
+      orientation: "horizontal",
+      range: "min",
+      max: 3,
+      step: .05,
+      value: 1,
+      change: updateP1
+    });
+  });
 
-  // $(function() {
-  // 	$( "#con-lower-bound" ).slider({
-  //     orientation: "horizontal",
-  //     range: "min",
-  //     max: 1,
-  //     step: .05,
-  //     value: .2,
-  //     change: updateLowerBound
-  //   });
-  // });
+  $(function() {
+  	$( "#dof-initP2" ).slider({
+      orientation: "horizontal",
+      range: "min",
+      max: 3,
+      step: .05,
+      value: 1.5,
+      change: updateP2
+    });
+  });
 
-  // var update = function() {
-  // 	updateXposition();
-  // 	updateLowerBound();
-  // 	updateUpperBound();
-  // }
+  var update = function() {
+  	updateP1();
+    updateP2();
+  }
 
-  // $( ".dofEd-logic.editor-run" ).click(update());
+  $( ".dofEd-logic.editor-run" ).click(update());
 
 </script>
 
@@ -259,7 +258,7 @@ Let's reproduce the 2 degree of freedom (DOF)-system for fun.  As an exercise, t
 <script type="text/javascript">
 // from fool-util
 initEditor('dofEd-logic');
-loadContent('dofEd-logic', '{{ site.baseurl }}/public/js/dof-spring.js', '20');
+loadContent('dofEd-logic', '{{ site.baseurl }}/public/js/dof-spring.js', '8');
 </script>
 <br/>
 

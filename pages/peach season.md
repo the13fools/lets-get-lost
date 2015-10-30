@@ -26,7 +26,7 @@ One other path that we briefly explored, but didn't develop was building up the 
 
 Ok that was amusing, but why start here? What does it have to do with leaves?
 
-One answer is that this stuff is that this construction is beautiful and could stand to get more play in math curricula.  Another answer is that it provides a geometric instance of an idea called [linearity](https://en.wikipedia.org/wiki/Linearity), that pervades math and physics.  In particular, that a wildly successful way of reasoning about complicated systems is to find perspectives from which the system in question can be viewed as a collection of simpler pieces which do not depend on each other.  
+One answer is that this stuff is that this construction is beautiful and could stand to get more play in math curricula.  Another answer is that it provides a geometric instance of an idea called [linearity](https://en.wikipedia.org/wiki/Linearity), that pervades math and physics (a more visual treatment of this idea can be found [here](http://maxgoldste.in/itad/)).  In particular, that a wildly successful way of reasoning about complicated systems is to find perspectives from which the system in question can be viewed as a collection of simpler pieces which do not depend on each other.
 
 More concretely, suppose we want to answer a question like: How many [peaches](https://www.youtube.com/watch?v=wvAnQqVJ3XQ) will be eaten by HCSSiM students on July 17th, 2015?
 

@@ -3,14 +3,14 @@ SpringEx = (function () {
 
 	exp.MASS = 1; // kg
 	exp.springRestDistance = 1; // m
-	exp.springConstant = 100; // Newton / meter
+	exp.springConstant = 200; // Newton / meter
 
 	exp.DAMPING = 0.0001;
 
 	exp.TIMESTEP = 1 / 100000;
 
 	// changing this in console won't work b/c of slider
-	exp.initialXposition = 1.1;
+	exp.initialXposition = 1.4;
 
 
 	// Data structure for physics

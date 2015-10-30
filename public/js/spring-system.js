@@ -144,8 +144,8 @@ SpringSystem = (function () {
 	// x_n+1 = (2 - damping) * x_n - x_n-1 + a(x_n) dt^2
 	Particle.prototype.stepForward = function(timesq) {
 		this.tmp.copy(this.position);
-		this.tmp.multiplyScalar(2 - exp.DAMPING);
-		this.tmp.sub(this.previousPosition.multiplyScalar(1 - exp.DAMPING));
+		this.tmp.multiplyScalar(2 - this.damping);
+		this.tmp.sub(this.previousPosition.multiplyScalar(1 - this.damping));
 		this.tmp.add(this.getAcceleration().multiplyScalar(timesq));
 
 		this.previousPosition.copy(this.position);

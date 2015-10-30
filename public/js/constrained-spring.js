@@ -5,7 +5,7 @@ ConstrainedEx = (function () {
 	exp.springRestDistance = 1; // m
 	exp.springConstant = 500; // Newton / meter
 
-	exp.DAMPING = 0.0001;
+	exp.DAMPING = 0;
 
 	exp.TIMESTEP = 1 / 100000;
 
@@ -15,6 +15,7 @@ ConstrainedEx = (function () {
 	exp.upperBound = 2;
 
 	var ss = SpringSystem;
+	ss.DAMPING = exp.DAMPING;
 
 	function InitSystem() {
 		var particles = [];

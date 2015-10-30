@@ -5,7 +5,7 @@ dofEx = (function () {
 	exp.springRestDistance = 1; // m
 	exp.springConstant = 500; // Newton / meter
 
-	exp.DAMPING = 0.0001;
+	exp.DAMPING = 0;
 
 	exp.TIMESTEP = 1 / 100000;
 	exp.lowerBound = .1;
@@ -16,6 +16,7 @@ dofEx = (function () {
 	exp.initP2 = 1.5;
 
 	var ss = SpringSystem;
+	ss.DAMPING = exp.DAMPING;
 
 	function InitSystem() {
 		var particles = [];
