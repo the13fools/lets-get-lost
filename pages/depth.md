@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Depth and Rotation
+title: Pan-Dimensional Circus
 position: 4
 ---
 
