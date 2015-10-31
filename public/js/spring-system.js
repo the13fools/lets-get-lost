@@ -110,7 +110,7 @@ SpringSystem = (function () {
 					con.p2.position.add(correction);
 				}
 				else if (con.p2.isFixed) {
-					con.p1.position.add(correction);
+					con.p1.position.sub(correction);
 				}
 				else { 
 					var correctionHalf = correction.multiplyScalar(0.5);
