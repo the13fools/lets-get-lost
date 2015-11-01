@@ -19,7 +19,7 @@ Now its time to play!
 
 <script type="text/javascript" src="{{ site.baseurl }}/public/js/spring.js"></script>
 
-<div id='content'>
+<div class='content'>
 	<canvas id="springex-canvas" height='150' width='700' style='width: 100%;'></canvas>
 </div>
 
@@ -50,7 +50,7 @@ We do this in the example below.  Try to see what happens when you start the sys
 <script type="text/javascript" src="{{ site.baseurl }}/public/js/spring-system.js"></script>
 <script type="text/javascript" src="{{ site.baseurl }}/public/js/constrained-spring.js"></script>
 
-<div id='content'>
+<div class='content'>
 	<canvas id="constrainedex-canvas" height='150' width='700' style='width: 100%;'></canvas>
 </div>
 
@@ -180,12 +180,12 @@ Let's reproduce the 2 degree of freedom (DOF)-system for fun.  As an exercise, t
 
 <script type="text/javascript" src="{{ site.baseurl }}/public/js/dof-spring.js"></script>
 
-<div id='content'>
+<div class='content'>
 	<canvas id="dofex-canvas" height='150' width='700' style='width: 100%;'></canvas>
 </div>
 
 <script type="text/javascript">	
-	//dofEx.initialXposition = 2;
+	dofEx.initialXposition = 2;
 	dofEx.reset();
 
 	dofExAnimate();
@@ -278,8 +278,8 @@ Anyway, here is a demo which might help to illuminate some of these thoughts!
 
 <script type="text/javascript" src="{{ site.baseurl }}/public/js/wave-spring.js"></script>
 
-<div id='content'>
-  <canvas id="waveex-canvas" height='150' width='700' style='width: 100%;'></canvas>
+<div class='content'>
+  <canvas id="waveex-canvas" height='300' width='700' style='width: 100%;'></canvas>
 </div>
 
 <script type="text/javascript"> 
