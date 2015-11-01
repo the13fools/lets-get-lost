@@ -2,14 +2,11 @@
 SpringSystem = (function () {
 	var exp = {};
 
-	exp.DAMPING = 0.0001;
-
 	// Data structure for physics
 	function Particle(x, y, z, mass) {
 		// read/write
 		this.position = new THREE.Vector3(x, y, 0); // current 
 		this.forces = new THREE.Vector3(0, 0, 0); // F = ma -> F * 1/m = a
-		this.damping = exp.DAMPING;
 
 		// read only
 		this.previousPosition = new THREE.Vector3(x, y, 0); 
@@ -37,10 +34,11 @@ SpringSystem = (function () {
 		this.maxLength = maxLength;
 	}
 
-	function System(particles, fixedPoints, springs) {
+	function System(particles, fixedPoints, springs, damping) {
 		this.particles = particles;
 		this.fixedPoints = fixedPoints;
 		this.springs = springs;
+		this.damping = damping || .0001;
 
 		for (i = 0; i < this.fixedPoints.length; i++) {
 			this.fixedPoints[i].isFixed = true;
@@ -51,6 +49,13 @@ SpringSystem = (function () {
 			assert(!this.springs[i].p1.isFixed || 
 				!this.springs[i].p2.isFixed);
 		}
+
+		// Pass the damping term into the particles 
+		for (i = 0; i < this.particles.length; i++) {
+			this.particles[i].damping = this.particles[i].damping || this.damping;
+		}
+
+
 	}
 
 	var diff = new THREE.Vector3();

@@ -26,7 +26,6 @@ waveEx = (function () {
 	exp.xFreq = 0;
 
 	var ss = SpringSystem;
-	ss.DAMPING = exp.DAMPING;
 
 	function InitSystem() {
 		var particles = [];
@@ -63,7 +62,7 @@ waveEx = (function () {
 
 	var init = InitSystem();
 	// This is down here because function calls need to come after definitions.
-	var system = new ss.System(init[0], init[1], init[2]);
+	var system = new ss.System(init[0], init[1], init[2], exp.DAMPING);
 	var driveTime = 0;
 	system.addSpringForces();
 
@@ -79,7 +78,7 @@ waveEx = (function () {
 
 	exp.reset = function () {
 		init = InitSystem();
-		system = new ss.System(init[0], init[1], init[2]);
+		system = new ss.System(init[0], init[1], init[2], exp.DAMPING);
 		system.addSpringForces();
 	}
 

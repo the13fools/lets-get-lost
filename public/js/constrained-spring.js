@@ -5,8 +5,6 @@ ConstrainedEx = (function () {
 	exp.springRestDistance = 1; // m
 	exp.springConstant = 500; // Newton / meter
 
-	exp.DAMPING = 0;
-
 	exp.TIMESTEP = 1 / 100000;
 
 	// changing this in console won't work b/c of slider
@@ -15,7 +13,6 @@ ConstrainedEx = (function () {
 	exp.upperBound = 2;
 
 	var ss = SpringSystem;
-	ss.DAMPING = exp.DAMPING;
 
 	function InitSystem() {
 		var particles = [];
@@ -39,7 +36,7 @@ ConstrainedEx = (function () {
 
 	var init = InitSystem();
 	// This is down here because function calls need to come after definitions.
-	var system = new ss.System(init[0], init[1], init[2]);
+	var system = new ss.System(init[0], init[1], init[2], exp.DAMPING);
 	var driveTime = 0;
 	system.addSpringForces();
 
@@ -52,7 +49,7 @@ ConstrainedEx = (function () {
 
 	exp.reset = function () {
 		init = InitSystem();
-		system = new ss.System(init[0], init[1], init[2]);
+		system = new ss.System(init[0], init[1], init[2], exp.DAMPING);
 		system.addSpringForces();
 	}
 

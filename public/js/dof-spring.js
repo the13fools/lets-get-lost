@@ -16,7 +16,6 @@ dofEx = (function () {
 	exp.initP2 = 1.5;
 
 	var ss = SpringSystem;
-	ss.DAMPING = exp.DAMPING;
 
 	function InitSystem() {
 		var particles = [];
@@ -59,7 +58,7 @@ dofEx = (function () {
 
 	var init = InitSystem();
 	// This is down here because function calls need to come after definitions.
-	var system = new ss.System(init[0], init[1], init[2]);
+	var system = new ss.System(init[0], init[1], init[2], exp.DAMPING);
 	var driveTime = 0;
 	system.addSpringForces();
 
@@ -73,7 +72,7 @@ dofEx = (function () {
 
 	exp.reset = function () {
 		init = InitSystem();
-		system = new ss.System(init[0], init[1], init[2]);
+		system = new ss.System(init[0], init[1], init[2], exp.DAMPING);
 		system.addSpringForces();
 	}
 
