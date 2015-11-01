@@ -7,15 +7,23 @@ waveEx = (function () {
 	exp.springRestDistance = 1 / (exp.n + 1); // m
 	exp.springConstant = 100; // Newton / meter
 
-	exp.DAMPING = 0;
+	exp.DAMPING = 0.0001;
 
 	exp.TIMESTEP = 1 / 10000;
 	exp.lowerBound = .05 / exp.n;
 	exp.upperBound = 1.2 / exp.n;
 
-	// changing this in console won't work b/c of slider
-	exp.initP1 = 1;
-	exp.initP2 = 1.5;
+	// Changing this in console won't work b/c of slider - 
+	//          Just rename the variable if you want to play
+
+	/* 
+	 * A note on units: Every time step is (by default) 1 / 10000 seconds.  
+	 * This frequency controls the number of time steps that it takes for the 
+	 * for each axis to complete an orbit.
+	 *
+	 */ 
+	exp.yFreq = 2.5;
+	exp.xFreq = 0;
 
 	var ss = SpringSystem;
 	ss.DAMPING = exp.DAMPING;
@@ -25,21 +33,11 @@ waveEx = (function () {
 		var fixedPoints = [];
 		var springs = [];
 
-	//	fixedPoints.push(new ss.Particle(0, 0, 0, exp.MASS));
 		fixedPoints.push(new ss.Particle(1, 0, 0, exp.MASS));
 
 		for (i = 1; i <= exp.n; i ++) {
 			particles.push(new ss.Particle(i / (exp.n + 1) + .01, 0, 0, exp.MASS));
 		}
-
-		// springs.push(new ss.Spring(
-		// 	fixedPoints[0],
-		// 	particles[0],
-		// 	exp.springRestDistance, 
-		// 	exp.springConstant,
-		// 	exp.lowerBound,
-		// 	exp.upperBound));
-
 
 		// wire up the wave
 		for (i = 0; i < exp.n - 1; i ++) {
@@ -93,11 +91,7 @@ waveEx = (function () {
 			return;
 		}
 
-		system.particles[0].position.setY(Math.sin(step / 10) / 10);
-		system.particles[0].position.setX(0);
-	//	system.fixedPoints[1].position.setY(Math.sin(-step / 100) / 10);
-
-		// improve accuracy by doing multiple simulation steps per render step
+		// can increase speed by doing multiple simulation steps per render step
 		for (i = 0; i < 2; i++) {
 			system.removePreviousSpringForces();
 			system.addSpringForces();
@@ -106,9 +100,13 @@ waveEx = (function () {
 				system.particles[i].stepForward(exp.TIMESTEP);
 			}
 
-	//		system.particles[0].position.setY(Math.sin(step / 100) / 100);
 			system.enforceConstraints(step);
 			step++;
+
+
+			// driving logic
+			system.particles[0].position.setY(Math.sin(step / 25 * exp.yFreq) / 10);
+			system.particles[0].position.setX(Math.cos(step / 25 * exp.xFreq) / 10);
 		}
 
 		// Draw the data to canvas https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
@@ -142,7 +140,7 @@ waveEx = (function () {
 	function drawSpring(spring, ctx) {
 		var p1 = spring.p1;
 		var p2 = spring.p2;
-		console.log(spring)
+
 		ctx.beginPath();
 		ctx.moveTo(p1.position.x * scale + xShift + massSize / 2, p1.position.y * scale + yShift);
 		for (j = 1; j <= coilCount; j++) {

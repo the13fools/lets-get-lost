@@ -104,8 +104,6 @@ dofEx = (function () {
 		var part = system.particles[0];
 		var wall = system.fixedPoints[0];
 
-		console.log(system)
-
 		for (i = 0; i < system.springs.length; i++) {
 			drawSpring(system.springs[i], ctx);
 		}
@@ -121,7 +119,7 @@ dofEx = (function () {
 	function drawSpring(spring, ctx) {
 		var p1 = spring.p1;
 		var p2 = spring.p2;
-		console.log(spring)
+
 		ctx.beginPath();
 		ctx.moveTo(p1.position.x * scale + xShift + 25, p1.position.y * scale + yShift);
 		for (j = 1; j <= 10; j++) {

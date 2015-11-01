@@ -173,7 +173,9 @@ If you are curious about the details of how the constraint enforcement is implem
 
 # Under Pressure
 
-Once you have spent enough time playing with the previous example, you might become interested in connecting a few springs together to see what happens.  One such thing you can do is to connect the springs together between two fixed points (as demonstrated [here](http://www.acs.psu.edu/drussell/Demos/multi-dof-springs/multi-dof-springs.html){:target="_blank"}, as an aside, check out some of [Dan Russell's](http://www.acs.psu.edu/drussell/demos.html){:target="_blank"} other animations).  There are a certian amount of poetics here if you think of how these sorts of [models]({{ site.baseurl }}/public/img/Romeo.pdf) might apply to interpersonal relationships.
+Once you have spent enough time playing with the previous example, you might become interested in connecting a few springs together to see what happens.  One such thing you can do is to connect the springs together between two fixed points (as demonstrated [here](http://www.acs.psu.edu/drussell/Demos/multi-dof-springs/multi-dof-springs.html){:target="_blank"}, as an aside, check out some of [Dan Russell's](http://www.acs.psu.edu/drussell/demos.html){:target="_blank"} other animations). For a more formal treatment of this thought, check out this [chapter]({{ site.baseurl }}/public/img/normalmodes.pdf) on normal modes from this [book](http://www.people.fas.harvard.edu/~djmorin/book.html) on waves.
+
+For a more poetic treatment, consider how physical [models]({{ site.baseurl }}/public/img/Romeo.pdf) might apply to interpersonal relationships.
 
 Let's reproduce the 2 degree of freedom (DOF)-system for fun.  As an exercise, try to modify the code to implement the 3 or 4 or $$n$$ DOF-system!
 
@@ -209,6 +211,7 @@ Let's reproduce the 2 degree of freedom (DOF)-system for fun.  As an exercise, t
     var initP1 = $( "#dof-initP1" ).slider( "value" );
     dofEx.initP1 = initP1;
     $("#dof-initP1-text").text(dofEx.initP1 + "");
+    console.log("sdfd");
     dofEx.reset();
   }
 
@@ -296,52 +299,61 @@ Anyway, here is a demo which might help to illuminate some of these thoughts!
     waveEx.simulate(time);
   }
 </script>
-<div class="slider-label">Particle 1</div><div id="wave-initP1" class="slider"></div><div id="wave-initP1-text" class="slider-value">1</div>
+<div class="slider-label">Transverse</div><div id="wave-yFreq" class="slider"></div><div id="wave-yFreq-text" class="slider-value">2.5</div>
 
-<div class="slider-label">Particle 2</div><div id="wave-initP2" class="slider"></div><div id="wave-initP2-text" class="slider-value">1.5</div>
+<div class="slider-label">Longitudinal</div><div id="wave-xFreq" class="slider"></div><div id="wave-xFreq-text" class="slider-value">Off</div>
 
 <br/>
 
 <script type="text/javascript">
-  function updateP1() {
-    var initP1 = $( "#wave-initP1" ).slider( "value" );
-    waveEx.initP1 = initP1;
-    $("#wave-initP1-text").text(waveEx.initP1 + "");
-    waveEx.reset();
+  function updateYFrequency() {
+    var freq = $( "#wave-yFreq" ).slider( "value" );
+    waveEx.yFreq = freq;
+    if (freq == 0) { 
+      $("#wave-yFreq-text").text("Off"); 
+    }
+    else { 
+      $("#wave-yFreq-text").text(freq + ""); 
+    }
   }
 
-  function updateP2() {
-    var initP2 = $( "#wave-initP2" ).slider( "value" );
-    waveEx.initP2 = initP2;
-    $("#wave-initP2-text").text(waveEx.initP2 + "");
-    waveEx.reset();
+  function updateXFrequency() {
+    var freq = $( "#wave-xFreq" ).slider( "value" );
+    waveEx.xFreq = freq;
+    if (freq == 0) { 
+      $("#wave-xFreq-text").text("Off"); 
+    }
+    else { 
+      $("#wave-xFreq-text").text(freq + ""); 
+    }
   }
 
   $(function() {
-    $( "#wave-initP1" ).slider({
+    $( "#wave-yFreq" ).slider({
       orientation: "horizontal",
       range: "min",
-      max: 3,
+      max: 5,
       step: .05,
-      value: 1,
-      change: updateP1
+      value: 2.5,
+      change: updateYFrequency
     });
   });
 
   $(function() {
-    $( "#wave-initP2" ).slider({
+    $( "#wave-xFreq" ).slider({
       orientation: "horizontal",
       range: "min",
-      max: 3,
+      max: 5,
       step: .05,
-      value: 1.5,
-      change: updateP2
+      value: 0,
+      change: updateXFrequency
     });
   });
 
   var update = function() {
-    updateP1();
-    updateP2();
+    updateYFrequency();
+    updateXFrequency();
+    waveEx.reset();
   }
 
   $( ".waveEd-logic.editor-run" ).click(update());
