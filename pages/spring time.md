@@ -139,8 +139,8 @@ We do this in the example below.  Try to see what happens when you start the sys
   	updateUpperBound();
   }
 
-  $( ".constraintEd-logic.editor-run" ).click(update());
-  $( ".constraintEd-system.editor-run" ).click(update());
+  $( ".constraintEd-logic.editor-run" ).click( function(){ update(); });
+  $( ".constraintEd-system.editor-run" ).click( function(){ update(); });
 
 </script>
 
@@ -206,6 +206,17 @@ Let's reproduce the 2 degree of freedom (DOF)-system for fun.  As an exercise, t
 
 <br/>
 
+<div>
+<div id="dofEd-logic" class="editor">
+</div>
+</div>
+
+<script type="text/javascript">
+// from fool-util
+initEditor('dofEd-logic');
+loadContent('dofEd-logic', '{{ site.baseurl }}/public/js/dof-spring.js', '7');
+</script>
+
 <script type="text/javascript">
   function updateP1() {
     var initP1 = $( "#dof-initP1" ).slider( "value" );
@@ -244,25 +255,16 @@ Let's reproduce the 2 degree of freedom (DOF)-system for fun.  As an exercise, t
     });
   });
 
-  var update = function() {
+  var updateDof = function() {
   	updateP1();
     updateP2();
+    console.log('update');
   }
 
-  $( ".dofEd-logic.editor-run" ).click(update());
+  $( ".dofEd-logic.editor-run" ).click( function() { updateDof(); });
 
 </script>
 
-<div>
-<div id="dofEd-logic" class="editor">
-</div>
-</div>
-
-<script type="text/javascript">
-// from fool-util
-initEditor('dofEd-logic');
-loadContent('dofEd-logic', '{{ site.baseurl }}/public/js/dof-spring.js', '7');
-</script>
 <br/>
 
 
@@ -305,10 +307,22 @@ Anyway, here is a demo which might help to illuminate some of these thoughts!
 
 <br/>
 
+<div>
+<div id="waveEd-logic" class="editor">
+</div>
+</div>
+
+<script type="text/javascript">
+// from fool-util
+initEditor('waveEd-logic');
+loadContent('waveEd-logic', '{{ site.baseurl }}/public/js/wave-spring.js', '108');
+</script>
+
 <script type="text/javascript">
   function updateYFrequency() {
     var freq = $( "#wave-yFreq" ).slider( "value" );
     waveEx.yFreq = freq;
+    console.log("blah");
     if (freq == 0) { 
       $("#wave-yFreq-text").text("Off"); 
     }
@@ -350,27 +364,27 @@ Anyway, here is a demo which might help to illuminate some of these thoughts!
     });
   });
 
-  var update = function() {
+  var updateWave = function() {
+    console.log('update');
     updateYFrequency();
     updateXFrequency();
     waveEx.reset();
-  }
+  };
 
-  $( ".waveEd-logic.editor-run" ).click(update());
+  $( ".waveEd-logic.editor-run" ).click(function(){ updateWave(); });
 
 </script>
 
-<div>
-<div id="waveEd-logic" class="editor">
-</div>
-</div>
-
-<script type="text/javascript">
-// from fool-util
-initEditor('waveEd-logic');
-loadContent('waveEd-logic', '{{ site.baseurl }}/public/js/wave-spring.js', '8');
-</script>
 <br/>
+The sliders control frequency.
+
+Some things to try: 
+
+* When the transverse frequency is high, the waves stop travelling.  This is due to an effect called impedance.  What happens to this effect when you change the damping of the system?  What happens when you change the mass of each weight? 
+* Press run on the editor to restart the simulation.  What can you say about the initial transient behavior that you see?   
+* Try setting Transverse to 0 and pressing run on the editor.  This should then allow you to study Longitudinal waves.  
+* Try changing the rendering code to make the particles smaller.  Try adding more particles to the simulation to improve the approximation.  Then try only having a few particles.  How does the behavior of the system change? 
+
 
 
 

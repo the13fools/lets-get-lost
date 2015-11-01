@@ -70,7 +70,7 @@ waveEx = (function () {
 
 	var drivingPosition = 0; 
 
-	var xShift = 50;
+	var xShift = 75;
 	var yShift = 150;
 	var scale = 550;
 
