@@ -33,7 +33,6 @@ initEditor = function(id) {
 	});
 
 	$( "." + id + ".editor-run" ).click(function() {
-		console.log('run');
 		eval(editor.getValue());
 	});
 

@@ -16,6 +16,8 @@ If find this page confusing this [beautiful](http://acko.net/blog/animate-your-w
 
 # Springs Go Boink
 
+<img src="{{ site.baseurl }}/public/img/calvinboink.gif" alt="hypersphere, woo!!!">
+
 To start on this quest, we begin by thinking about how to model springs.  To do this, we first need to notice (either by playing with a spring, or by trusting the experiments of some guy named [Hooke](https://en.wikipedia.org/wiki/Hooke's_law), that springs are linear.  To understand how this feels, imagine taking a spring and compressing it against a wall some amount X.  Now if you double the amount of compression, the amount of "force" which you feel in return will also double.  
 
 In math, we write this as: 
@@ -136,5 +138,5 @@ Some things to think about:
 
   <br><br>
 
-  In short, the internet provides a new tool for thought and communication - <a href="http://bost.ocks.org/mike/algorithms/">exploring</a> <a href="http://www.r2d3.us/visual-intro-to-machine-learning-part-1/">applications</a> of this tool that help more people to see a little further and more clearly than they would have otherwise feels like a socially productive use of time.  
+  In short, the internet provides a new tool for thought and communication - <a href="http://bost.ocks.org/mike/algorithms/">exploring</a> <a href="http://www.r2d3.us/visual-intro-to-machine-learning-part-1/">applications</a> of this <a href="http://explorableexplanations.com/">tool</a> that help more people to see a little further and more clearly than they would have otherwise feels like a socially productive use of time.  
 </p>

@@ -38,7 +38,10 @@ SpringSystem = (function () {
 		this.particles = particles;
 		this.fixedPoints = fixedPoints;
 		this.springs = springs;
-		this.damping = damping || .0001;
+		this.damping = damping;
+		if ( damping === null || damping === "" ) {
+			this.damping = .0001;
+		}
 
 		for (i = 0; i < this.fixedPoints.length; i++) {
 			this.fixedPoints[i].isFixed = true;

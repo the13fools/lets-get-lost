@@ -3,7 +3,7 @@ waveEx = (function () {
 
 	exp.n = 34; // number of nodes
 
-	exp.MASS = 1; // kg
+	exp.MASS = 10; // kg
 	exp.springRestDistance = 1 / (exp.n + 1); // m
 	exp.springConstant = 100; // Newton / meter
 
@@ -22,7 +22,7 @@ waveEx = (function () {
 	 * for each axis to complete an orbit.
 	 *
 	 */ 
-	exp.yFreq = 2.5;
+	exp.yFreq = 1.35;
 	exp.xFreq = 0;
 
 	var ss = SpringSystem;

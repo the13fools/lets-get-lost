@@ -7,6 +7,8 @@ ConstrainedEx = (function () {
 
 	exp.TIMESTEP = 1 / 100000;
 
+	exp.DAMPING = 0;
+
 	// changing this in console won't work b/c of slider
 	exp.initialXposition = 1.45;
 	exp.lowerBound = .1;

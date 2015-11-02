@@ -301,7 +301,7 @@ Anyway, here is a demo which might help to illuminate some of these thoughts!
     waveEx.simulate(time);
   }
 </script>
-<div class="slider-label">Transverse</div><div id="wave-yFreq" class="slider"></div><div id="wave-yFreq-text" class="slider-value">2.5</div>
+<div class="slider-label">Transverse</div><div id="wave-yFreq" class="slider"></div><div id="wave-yFreq-text" class="slider-value">1.35</div>
 
 <div class="slider-label">Longitudinal</div><div id="wave-xFreq" class="slider"></div><div id="wave-xFreq-text" class="slider-value">Off</div>
 
@@ -319,15 +319,34 @@ loadContent('waveEd-logic', '{{ site.baseurl }}/public/js/wave-spring.js', '108'
 </script>
 
 <script type="text/javascript">
-  function updateYFrequency() {
+  function updateYLabel() {
     var freq = $( "#wave-yFreq" ).slider( "value" );
-    waveEx.yFreq = freq;
-    console.log("blah");
     if (freq == 0) { 
       $("#wave-yFreq-text").text("Off"); 
     }
     else { 
       $("#wave-yFreq-text").text(freq + ""); 
+    }
+  }
+
+  function updateYFrequency() {
+    var freq = $( "#wave-yFreq" ).slider( "value" );
+    waveEx.yFreq = freq;
+    if (freq == 0) { 
+      $("#wave-yFreq-text").text("Off"); 
+    }
+    else { 
+      $("#wave-yFreq-text").text(freq + ""); 
+    }
+  }
+
+  function updateXLabel() {
+    var freq = $( "#wave-xFreq" ).slider( "value" );
+    if (freq == 0) { 
+      $("#wave-xFreq-text").text("Off"); 
+    }
+    else { 
+      $("#wave-xFreq-text").text(freq + ""); 
     }
   }
 
@@ -348,8 +367,9 @@ loadContent('waveEd-logic', '{{ site.baseurl }}/public/js/wave-spring.js', '108'
       range: "min",
       max: 5,
       step: .05,
-      value: 2.5,
-      change: updateYFrequency
+      value: 1.35,
+      change: updateYFrequency,
+      slide: updateYLabel
     });
   });
 
@@ -360,7 +380,8 @@ loadContent('waveEd-logic', '{{ site.baseurl }}/public/js/wave-spring.js', '108'
       max: 5,
       step: .05,
       value: 0,
-      change: updateXFrequency
+      change: updateXFrequency,
+      slide: updateXLabel
     });
   });
 
