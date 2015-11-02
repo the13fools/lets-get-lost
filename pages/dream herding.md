@@ -16,7 +16,7 @@ If find this page confusing this [beautiful](http://acko.net/blog/animate-your-w
 
 # Springs Go Boink
 
-<img src="{{ site.baseurl }}/public/img/calvinboink.gif" alt="hypersphere, woo!!!">
+<img src="{{ site.baseurl }}/public/img/calvinboink.gif" alt="Bill Watterson is the man!">
 
 To start on this quest, we begin by thinking about how to model springs.  To do this, we first need to notice (either by playing with a spring, or by trusting the experiments of some guy named [Hooke](https://en.wikipedia.org/wiki/Hooke's_law), that springs are linear.  To understand how this feels, imagine taking a spring and compressing it against a wall some amount X.  Now if you double the amount of compression, the amount of "force" which you feel in return will also double.  
 

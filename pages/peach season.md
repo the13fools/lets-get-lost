@@ -17,7 +17,7 @@ The actual runnable code for this visualization can be found on [cubetube](http:
 
 The display proved to be a very compelling and powerful teaching tool - the students in the class were captivated by it, and having a concrete visual representation helped them more fully grasp the (fairly abstract) ideas that were being discussed.  
 
-One other path that we briefly explored, but didn't develop was building up the 3-sphere via the Hopf fibration (as is illustrated [here](http://nilesjohnson.net/hopf.html)).
+One other path that we briefly explored, but didn't develop was building up the 3-sphere via the Hopf fibration (as is illustrated [here](http://nilesjohnson.net/hopf.html), or [here](http://philogb.github.io/page/hopf/#)).
 
 <div style="margin: 0px auto; text-align: center;">
 <iframe width="420" height="315" src="https://www.youtube.com/embed/AKotMPGFJYk" frameborder="0" allowfullscreen></iframe></div>
@@ -39,5 +39,9 @@ The problem on the right is then an easy problem to answer, we just ask each stu
 This approach of breaking down a problem into constituent parts that are easier to model was in many ways the goal here.  
 
 <p class="message">
-	Tangents: <a href="https://www.shadertoy.com/view/Md23Rd">A neat gyroid</a>, part of a large family of <a href="http://facstaff.susqu.edu/brakke/evolver/examples/periodic/periodic.html">minimal surfaces</a> (more examples <a href="http://www.indiana.edu/~minimal/archive/index.html">here</a>).
+	Tangents: 
+	<a href="https://www.shadertoy.com/view/Md23Rd">A neat gyroid</a>, part of a large family of <a href="http://facstaff.susqu.edu/brakke/evolver/examples/periodic/periodic.html">minimal surfaces</a> (more examples <a href="http://www.indiana.edu/~minimal/archive/index.html">here</a>).
+	<div style="margin: 0px auto; text-align: center;">
+		<iframe width="420" height="300" frameborder="0" src="https://www.shadertoy.com/embed/Md23Rd?gui=true&t=10&paused=true" allowfullscreen></iframe>
+	</div>
 </p>
