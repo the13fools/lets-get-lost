@@ -7,7 +7,8 @@ dofEx = (function () {
 
 	exp.DAMPING = 0;
 
-	exp.TIMESTEP = 1 / 100000;
+	exp.TIMESTEP = 1 / 300;
+	exp.TIMESTEP_SQ = exp.TIMESTEP * exp.TIMESTEP;
 	exp.lowerBound = .1;
 	exp.upperBound = 3;
 
@@ -88,7 +89,7 @@ dofEx = (function () {
 		system.addSpringForces();
 
 		for (i = 0; i < system.particles.length; i++) {
-			system.particles[i].stepForward(exp.TIMESTEP);
+			system.particles[i].stepForward(exp.TIMESTEP_SQ);
 		}
 
 		system.enforceConstraints(step);

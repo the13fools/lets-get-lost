@@ -9,7 +9,9 @@ waveEx = (function () {
 
 	exp.DAMPING = 0.0001;
 
-	exp.TIMESTEP = 1 / 10000;
+	exp.TIMESTEP = 1 / 300;
+	exp.TIMESTEP_SQ = exp.TIMESTEP * exp.TIMESTEP;
+
 	exp.lowerBound = .05 / exp.n;
 	exp.upperBound = 1.2 / exp.n;
 
@@ -35,7 +37,7 @@ waveEx = (function () {
 		fixedPoints.push(new ss.Particle(1, 0, 0, exp.MASS));
 
 		for (i = 1; i <= exp.n; i ++) {
-			particles.push(new ss.Particle(i / (exp.n + 1) + .01, 0, 0, exp.MASS));
+			particles.push(new ss.Particle(i / (exp.n + 1), 0, 0, exp.MASS));
 		}
 
 		// wire up the wave
@@ -96,7 +98,7 @@ waveEx = (function () {
 			system.addSpringForces();
 
 			for (i = 0; i < system.particles.length; i++) {
-				system.particles[i].stepForward(exp.TIMESTEP);
+				system.particles[i].stepForward(exp.TIMESTEP_SQ);
 			}
 
 			system.enforceConstraints(step);

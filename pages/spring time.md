@@ -405,6 +405,7 @@ Some things to try:
 * Press run on the editor to restart the simulation.  What can you say about the initial transient behavior that you see?   
 * Try setting Transverse to 0 and pressing run on the editor.  This should then allow you to study Longitudinal waves.  
 * Try changing the rendering code to make the particles smaller.  Try adding more particles to the simulation to improve the approximation.  Then try only having a few particles.  How does the behavior of the system change? 
+* Use this system to implement a simulator for [Fermi-Pasta-Ulam-Tsingou](http://www.scholarpedia.org/article/Fermi-Pasta-Ulam_nonlinear_lattice_oscillations), one of the first experimental mathematics/physics problems.
 
 
 

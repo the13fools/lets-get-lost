@@ -5,7 +5,8 @@ ConstrainedEx = (function () {
 	exp.springRestDistance = 1; // m
 	exp.springConstant = 500; // Newton / meter
 
-	exp.TIMESTEP = 1 / 100000;
+	exp.TIMESTEP = 1 / 300;
+	exp.TIMESTEP_SQ = exp.TIMESTEP * exp.TIMESTEP;
 
 	exp.DAMPING = 0;
 
@@ -66,7 +67,7 @@ ConstrainedEx = (function () {
 		system.removePreviousSpringForces();
 		system.addSpringForces();
 
-		system.particles[0].stepForward(exp.TIMESTEP);
+		system.particles[0].stepForward(exp.TIMESTEP_SQ);
 		system.enforceConstraints(step);
 		step++;
 

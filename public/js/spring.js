@@ -7,7 +7,8 @@ SpringEx = (function () {
 
 	exp.DAMPING = 0.0001;
 
-	exp.TIMESTEP = 1 / 100000;
+	exp.TIMESTEP = 1 / 300;
+	exp.TIMESTEP_SQ = exp.TIMESTEP * exp.TIMESTEP;
 
 	// changing this in console won't work b/c of slider
 	exp.initialXposition = 1.4;
@@ -149,7 +150,7 @@ SpringEx = (function () {
 		system.removePreviousSpringForces();
 		system.addSpringForces();
 
-		system.particles[0].stepForward(exp.TIMESTEP);
+		system.particles[0].stepForward(exp.TIMESTEP_SQ);
 
 		// Draw the data to canvas https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
 
