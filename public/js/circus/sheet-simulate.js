@@ -1,4 +1,4 @@
-circleSim = (function () {
+sheetSim = (function () {
 	var exp = {};
 
 	exp.TIMESTEP = 1 / 424;
@@ -16,13 +16,13 @@ circleSim = (function () {
 	exp.xFreq = 0;
 
 	// Display options
-	var xShift = 300;
-	var yShift = 200;
-	var scale = 150;
+	var xShift = 100;
+	var yShift = 100;
+	var scale = 300;
 
 	var massSize = 15;
 
-	exp.system = circleInit.system;
+	exp.system = sheetInit.system;
 
 
 	var lastTime;
@@ -47,18 +47,18 @@ circleSim = (function () {
 			step++;
 
 
-			// driving logic
-			if (exp.yFreq != 0) {
-		    	exp.system.particles[0].position.setY(Math.sin(step / 50 * exp.yFreq) / 5 + 1);
-			    exp.system.particles[0].position.setX(0);
-			}
-			exp.system.fixedPoints[0].position.setX(Math.sin(step / 50 * exp.xFreq) / 10);
+			// // driving logic
+			// if (exp.yFreq != 0) {
+		 //    	exp.system.particles[0].position.setY(Math.sin(step / 50 * exp.yFreq) / 5 + 1);
+			//     exp.system.particles[0].position.setX(0);
+			// }
+			// exp.system.fixedPoints[0].position.setX(Math.sin(step / 50 * exp.xFreq) / 10);
 	//		exp.system.fixedPoints[0].position.setY(0);
 		}
 
 		// Draw the data to canvas https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
 
-		var canvas = document.getElementById("circle-canvas");
+		var canvas = document.getElementById("sheet-canvas");
 		var ctx = canvas.getContext("2d");
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 

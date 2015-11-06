@@ -12,6 +12,8 @@ url:                 http://foolzone.com
 baseurl:             '/lets-get-lost'
 markdown: 		     kramdown
 
+github:  			 'https://github.com/the13fools/lets-get-lost'
+
 # About/contact
 author:
   name:              Josh Vekhter

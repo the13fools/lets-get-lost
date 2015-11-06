@@ -43,18 +43,18 @@ SpringSystem = (function () {
 			this.damping = .0001;
 		}
 
-		for (i = 0; i < this.fixedPoints.length; i++) {
+		for (var i = 0; i < this.fixedPoints.length; i++) {
 			this.fixedPoints[i].isFixed = true;
 		}
 
 		// For sanity, ensure constrained points are free to move.
-		for (i = 0; i < this.springs.length; i++) {
+		for (var i = 0; i < this.springs.length; i++) {
 			assert(!this.springs[i].p1.isFixed || 
 				!this.springs[i].p2.isFixed);
 		}
 
 		// Pass the damping term into the particles 
-		for (i = 0; i < this.particles.length; i++) {
+		for (var i = 0; i < this.particles.length; i++) {
 			this.particles[i].damping = this.particles[i].damping || this.damping;
 		}
 
@@ -65,7 +65,7 @@ SpringSystem = (function () {
 	System.prototype.removePreviousSpringForces = function() {
 		// We are modelling connections using Hooke's law: 
 		// F = kX, where X is declenation from the "natural" length
-		for (i = 0; i < this.springs.length; i++) {
+		for (var i = 0; i < this.springs.length; i++) {
 			var spring = this.springs[i];
 			diff.subVectors(spring.p1.previousPosition, 
 							spring.p2.previousPosition);
@@ -81,7 +81,7 @@ SpringSystem = (function () {
 	};
 
 	System.prototype.addSpringForces = function() {
-		for (i = 0; i < this.springs.length; i++) {
+		for (var i = 0; i < this.springs.length; i++) {
 			var spring = this.springs[i];
 			diff.subVectors(spring.p1.position, 
 							spring.p2.position);
@@ -131,12 +131,12 @@ SpringSystem = (function () {
 		// tighten from both ends 
 		var len = this.springs.length;
 		if (step % 2 == 0) {
-			for (i = 0; i < len; i++) {
+			for (var i = 0; i < len; i++) {
 				enforce( (~~(step / 2) + i) % len, this);
 			}
 		}
 		else {
-			for (i = len - 1; i >= 0; i--) {
+			for (var i = len - 1; i >= 0; i--) {
 				enforce( (~~(step / 2) + i) % len, this);
 			}
 		}

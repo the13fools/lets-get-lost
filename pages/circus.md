@@ -5,30 +5,31 @@ position: 4
 ---
 
 <script src="{{ site.baseurl }}/public/js/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="{{ site.baseurl }}/public/js/lib/jquery.visible.min.js"></script>
 <!-- load ace themelist extension -->
 <script src="{{ site.baseurl }}/public/js/lib/ace/ext-themelist.js" type="text/javascript" charset="utf-8"></script>
 <script src="{{ site.baseurl }}/public/js/lib/fool-util.js" type="text/javascript" charset="utf-8"></script>
 <script src="{{ site.baseurl }}/public/js/lib/three.min.js"></script> 
 <script type="text/javascript" src="{{ site.baseurl }}/public/js/spring-system.js"></script>
 
-Ok, so let's recap.  The first three chapters respectively touched on ideas from topology, numerical analysis, and the physics of waves.  
+Ok, so let's recap.  The first three chapters respectively touched on ideas from topology, numerical analysis, and the physics of waves.  In this chapter, we will unite these ideas by moving up into the third dimension. 
 
 <div style="margin: 0px auto; text-align: center;">
 <iframe src="https://player.vimeo.com/video/103736199" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 </div>
 
-In this chapter, we will unite these ideas by moving up into the third dimension. To do this, we will have to venture forth to the land of computer graphics.  In particular, we will be making use of a library called [three.js](http://threejs.org/), which is a wrapper for a technology called WebGL, which is a port of a storied technology called [OpenGL](https://open.gl/drawing).
+To do this, we will have to venture forth to the land of computer graphics.  In particular, we will be making use of a library called [three.js](http://threejs.org/), which is a wrapper for a technology called WebGL, which is a port of a storied technology called [OpenGL](https://open.gl/drawing).
 
 Going down this road will allow us to create interactive 3D environments directly in the browser - which for better or worse will probably end up being one of the most culturally impactful technologies of this decade (just look at infrastructure levels of investment going into [VR](https://www.oculus.com/) and [AR](http://www.magicleap.com/#/home)).
 
 All this to say that we might just be able to draw a leaf pretty soon!
 
-# Refactoring 
+# Resonant Refactoring 
 
 Starting to use a more heavy handed computer machinery, we hit upon the point where it becomes distracting to attempt to hold all parts of the program in view simultaneously.  
 The programmers solution to this problem is generally called [seperation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns) or [encapsulation](https://en.wikipedia.org/wiki/Encapsulation_%28computer_programming%29), and basically refers to splitting up the program into files where each one has a specific purpose.
 
-As an exersize, let's do it to the program we have been building. In the example below, we connect a ring of masses with springs and then connect each mass to a central node.  The sliders change the driving frequency of either the bottom node or the central node.  Note how upon initialization, it is possible to find a resonant mode with [five fold](http://www.aps.org/units/dfd/pressroom/gallery/2012/rajchenbach12.cfm){:target="_blank"} symmetry.  What other modes can you discover? Can you find the [spanish dancer]({{ site.baseurl }}/public/img/spanish_dancer.jpg){:target="_blank"}?
+As an exersize, let's do it to the program we have been building. In the example below, we connect a ring of masses with springs and then connect each mass to a central node.  The sliders change the driving frequency of either the bottom node or the central node.  Note how upon initialization, a resonant mode with [five fold](http://www.aps.org/units/dfd/pressroom/gallery/2012/rajchenbach12.cfm){:target="_blank"} symmetry appears.  What other modes can you discover? Can you find the [spanish dancer]({{ site.baseurl }}/public/img/spanish_dancer.jpg){:target="_blank"}?
 
 
 <script type="text/javascript" src="{{ site.baseurl }}/public/js/circus/circle-init.js"></script>
@@ -44,12 +45,17 @@ As an exersize, let's do it to the program we have been building. In the example
 
   circleAnimate();
 
+  var animate_circle = true;
+
   function circleAnimate() {
     requestAnimationFrame( circleAnimate );
 
     var time = Date.now();
 
-    circleSim.simulate(time);
+    animate_circle = animate_circle || $('#circle-canvas').visible( true );
+    if (animate_circle) {
+    	circleSim.simulate(time);
+	}
   }
 </script>
 <div class="slider-label">Bottom</div><div id="circle-yFreq" class="slider"></div><div id="circle-yFreq-text" class="slider-value">1.49</div>
@@ -161,6 +167,7 @@ loadContent('circleEd-system', '{{ site.baseurl }}/public/js/spring-system.js', 
     updateYFrequency();
     updateXFrequency();
     circleInit.reset();
+    circleSim.system = circleInit.system;
   };
 
   $( ".circleEd-init.editor-run" ).click(function(){ updateCircleParams(); });
@@ -172,46 +179,144 @@ loadContent('circleEd-system', '{{ site.baseurl }}/public/js/spring-system.js', 
 
 </script>
 
+# Up Up and Away!!!
 
-We already did this by seperating out the physics library code, but we will now do it again to split the code which initializes our system from the code which is concerned with coordinating the simulation at each step and then displaying the corresponding computer representation to the screen.  
+In the previous section, we returned to the central theme of our exploration, namely the study of the way in which high order structure emerges from local rules.  
 
+In this section, we will use our system to build a simple cloth simulator, adapted from this [demo](http://threejs.org/examples/webgl_animation_cloth.html).
 
+<script type="text/javascript" src="{{ site.baseurl }}/public/js/circus/sheet-init.js"></script>
+<script type="text/javascript" src="{{ site.baseurl }}/public/js/circus/sheet-simulate.js"></script>
 
+<div class='content'>
+  <canvas id="sheet-canvas" height='400' width='700' style='width: 100%;'></canvas>
+</div>
 
+<script type="text/javascript"> 
+  // sheetEx.initialXposition = 2;
+  sheetInit.reset();
 
+  sheetAnimate();
 
-a feat which is certainly something of a technological achievement.   
+  var animate_sheet = false;
 
+  function sheetAnimate() {
+    requestAnimationFrame( sheetAnimate );
 
+    var time = Date.now();
 
+    if ($('#sheet-canvas').visible( true )) {
+    	animate_circle = false;
+    	sheetSim.simulate(time);
+	}
+  }
+</script>
+<div class="slider-label">Bottom</div><div id="sheet-yFreq" class="slider"></div><div id="sheet-yFreq-text" class="slider-value">1.49</div>
 
-The first chapter focused on topology of dimention, and the idea of linearity.  The second chapter developed some mathematical methods for integration.  In the third we worked our way up to developing a system that allowed us to study wave phenomenon in things like strings.   
+<div class="slider-label">Center</div><div id="sheet-xFreq" class="slider"></div><div id="sheet-xFreq-text" class="slider-value">Off</div>
 
+<br/>
 
-<p class="message">
-  Hey there! This page is included as an example. Feel free to customize it for your own use upon downloading. Carry on!
-</p>
+Initialization: 
+<div>
+<div id="sheetEd-init" class="editor">
+</div>
+</div>
 
-In the novel, *The Strange Case of Dr. Jeykll and Mr. Hyde*, Mr. Poole is Dr. Jekyll's virtuous and loyal butler. Similarly, Poole is an upstanding and effective butler that helps you build Jekyll themes. It's made by [@mdo](https://twitter.com/mdo).
+<br/>
+Simulation:
+<div>
+<div id="sheetEd-simulate" class="editor">
+</div>
+</div>
 
-There are currently two themes built on Poole:
+<script type="text/javascript">
+// from fool-util
+initEditor('sheetEd-init');
+loadContent('sheetEd-init', '{{ site.baseurl }}/public/js/circus/sheet-init.js', '8');
 
-* [Hyde](http://hyde.getpoole.com)
-* [Lanyon](http://lanyon.getpoole.com)
+initEditor('sheetEd-simulate');
+loadContent('sheetEd-simulate', '{{ site.baseurl }}/public/js/circus/sheet-simulate.js', '31');
+</script>
 
-Learn more and contribute on [GitHub](https://github.com/poole).
+<script type="text/javascript">
+ //  function updateYLabel() {
+ //    var freq = $( "#sheet-yFreq" ).slider( "value" );
+ //    if (freq == 0) { 
+ //      $("#sheet-yFreq-text").text("Off"); 
+ //    }
+ //    else { 
+ //      $("#sheet-yFreq-text").text(freq + ""); 
+ //    }
+ //  }
 
-## Setup
+ //  function updateYFrequency() {
+ //    var freq = $( "#sheet-yFreq" ).slider( "value" );
+ //    sheetSim.yFreq = freq;
+ //    if (freq == 0) { 
+ //      $("#sheet-yFreq-text").text("Off"); 
+ //    }
+ //    else { 
+ //      $("#sheet-yFreq-text").text(freq + ""); 
+ //    }
+ //  }
 
-Some fun facts about the setup of this project include:
+ //  function updateXLabel() {
+ //    var freq = $( "#sheet-xFreq" ).slider( "value" );
+ //    if (freq == 0) { 
+ //      $("#sheet-xFreq-text").text("Off"); 
+ //    }
+ //    else { 
+ //      $("#sheet-xFreq-text").text(freq + ""); 
+ //    }
+ //  }
 
-* Built for [Jekyll](http://jekyllrb.com)
-* Developed on GitHub and hosted for free on [GitHub Pages](https://pages.github.com)
-* Coded with [Sublime Text 2](http://sublimetext.com), an amazing code editor
-* Designed and developed while listening to music like [Blood Bros Trilogy](https://soundcloud.com/maddecent/sets/blood-bros-series)
+ //  function updateXFrequency() {
+ //    var freq = $( "#sheet-xFreq" ).slider( "value" );
+ //    sheetSim.xFreq = freq;
+ //    if (freq == 0) { 
+ //      $("#sheet-xFreq-text").text("Off"); 
+ //    }
+ //    else { 
+ //      $("#sheet-xFreq-text").text(freq + ""); 
+ //    }
+ //  }
 
-Have questions or suggestions? Feel free to [open an issue on GitHub](https://github.com/poole/issues/new) or [ask me on Twitter](https://twitter.com/mdo).
+ //  $(function() {
+ //    $( "#sheet-yFreq" ).slider({
+ //      orientation: "horizontal",
+ //      range: "min",
+ //      max: 5,
+ //      step: .01,
+ //      value: 1.49,
+ //      change: updateYFrequency,
+ //      slide: updateYLabel
+ //    });
+ //  });
 
-Thanks for reading!
+ //  $(function() {
+ //    $( "#sheet-xFreq" ).slider({
+ //      orientation: "horizontal",
+ //      range: "min",
+ //      max: 5,
+ //      step: .01,
+ //      value: 0,
+ //      change: updateXFrequency,
+ //      slide: updateXLabel
+ //    });
+ //  });
 
-https://github.com/poole/lanyon
+ //  var updateSheetParams = function() {
+ //    updateYFrequency();
+ //    updateXFrequency();
+ //    sheetInit.reset();
+ //    sheetSim.system = sheetInit.system;
+ //  };
+
+ //  $( ".sheetEd-init.editor-run" ).click(function(){ updateSheetParams(); });
+ //  $( ".sheetEd-simulate.editor-run" ).click(function(){     
+	//   	updateYFrequency();
+	//     updateXFrequency(); 
+	// });
+ //  $( ".sheetEd-system.editor-run" ).click(function(){ updateSheetParams(); });
+
