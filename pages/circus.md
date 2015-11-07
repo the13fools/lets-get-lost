@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Pan-Dimensional Circus
-position: 4
+position: 3
 ---
 
 <script src="{{ site.baseurl }}/public/js/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
@@ -12,7 +12,7 @@ position: 4
 <script src="{{ site.baseurl }}/public/js/lib/three.min.js"></script> 
 <script type="text/javascript" src="{{ site.baseurl }}/public/js/spring-system.js"></script>
 
-Ok, so let's recap.  The first three chapters respectively touched on ideas from topology, numerical analysis, and the physics of waves.  In this chapter, we will unite these ideas by moving up into the third dimension. 
+Ok, so let's recap.  In the first two chapters we developed a physics engine, and used it to simulate a string with mass as a way of studying the physics of waves.  In this chapter we will build on this work by moving up into the third dimension.  
 
 <div style="margin: 0px auto; text-align: center;">
 <iframe src="https://player.vimeo.com/video/103736199" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
@@ -183,7 +183,13 @@ loadContent('circleEd-system', '{{ site.baseurl }}/public/js/spring-system.js', 
 
 In the previous section, we returned to the central theme of our exploration, namely the study of the way in which high order structure emerges from local rules.  
 
-In this section, we will use our system to build a simple cloth simulator, adapted from this [demo](http://threejs.org/examples/webgl_animation_cloth.html).
+Now is a good place to take an interlude to learn a little more about some of the things that one should keep in mind when making computers draw in 3D with webGL.  A good tutorial on the subject can be found [here](http://acko.net/files/fullfrontal/fullfrontal/webglmath/online.html). 
+
+We will avoid repeating that material here, instead moving forward to building a simple cloth simulator (adapted from this [demo](http://threejs.org/examples/webgl_animation_cloth.html)).  We have already essentially done this.  The first step is to initialize a "[fabric]({{ site.baseurl }}/public/img/provot_cloth_simulation_96.pdf)" of springs.
+<img src="{{ site.baseurl }}/public/img/bouncing carpet.gif" alt="bounce bounce!!!">
+
+Having done this we need to do all manner of incantations to summon a webGL context (to initialize a camera and define shaders and things).  We won't go into these details for fear of getting too far afield, but certianly try changing values in the editor and rerunning things.  It's a great way to understand the different parts of a big system.  
+
 
 <script type="text/javascript" src="{{ site.baseurl }}/public/js/circus/sheet-init.js"></script>
 <script type="text/javascript" src="{{ site.baseurl }}/public/js/circus/sheet-simulate.js"></script>
@@ -306,17 +312,19 @@ loadContent('sheetEd-simulate', '{{ site.baseurl }}/public/js/circus/sheet-simul
  //    });
  //  });
 
- //  var updateSheetParams = function() {
- //    updateYFrequency();
- //    updateXFrequency();
- //    sheetInit.reset();
- //    sheetSim.system = sheetInit.system;
- //  };
+  var updateSheetParams = function() {
+ //   updateYFrequency();
+ //   updateXFrequency();
+    sheetInit.reset();
+    sheetSim.system = sheetInit.system;
+  };
 
- //  $( ".sheetEd-init.editor-run" ).click(function(){ updateSheetParams(); });
+   $( ".sheetEd-init.editor-run" ).click(function(){ updateSheetParams(); });
  //  $( ".sheetEd-simulate.editor-run" ).click(function(){     
 	//   	updateYFrequency();
 	//     updateXFrequency(); 
 	// });
  //  $( ".sheetEd-system.editor-run" ).click(function(){ updateSheetParams(); });
+
+</script>
 

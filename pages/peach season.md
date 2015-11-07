@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Peach Season
-position: 1
+position: 4
 ---
 
 Our meandering journey to the land of leaves begins at breakfast.  One of the great secrets of summer in western massachussets is the peaches.  They are juicy, sweet, and fragrant, a full sensory experience.  

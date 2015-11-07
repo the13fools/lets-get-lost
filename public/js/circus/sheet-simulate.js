@@ -17,7 +17,7 @@ sheetSim = (function () {
 
 	// Display options
 	var xShift = 100;
-	var yShift = 100;
+	var yShift = 50;
 	var scale = 300;
 
 	var massSize = 15;

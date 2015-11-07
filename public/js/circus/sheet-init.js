@@ -4,7 +4,7 @@ sheetInit = (function () {
 	exp.n = 10; // number of nodes
 
 	exp.MASS = .1; // kg
-	exp.springRestDistance = 1 / (exp.n); // m
+	exp.springRestDistance = 1 / (exp.n + 1); // m
 	exp.springConstant = 10000; // Newton / meter
 
 	exp.DAMPING = 0.000;

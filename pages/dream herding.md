@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Dream Herding
-position: 2
+position: 1
 ---
 
 <p class="message">
@@ -12,7 +12,7 @@ In this section, the goal is to create toy system that simulates physics (as a s
 
 As a warning, this discussion will feature an ad-hoc collection of technical ideas.  If you find yourself getting lost, take solace in the course name.  If you are looking for a more "textbook" path which explores the use of computers for physical simulation, take a look at [Nature of Code](http://natureofcode.com/). 
 
-If find this page confusing this [beautiful](http://acko.net/blog/animate-your-way-to-glory/){:target="_blank"} interactive presentation touches many of the same ideas.  
+<!-- If find this page confusing this [beautiful](http://acko.net/blog/animate-your-way-to-glory/){:target="_blank"} interactive presentation touches many of the same ideas.   -->
 
 # Springs Go Boink
 
