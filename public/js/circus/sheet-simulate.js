@@ -24,7 +24,7 @@ sheetSim = (function () {
 
 	exp.system = sheetInit.system;
 	exp.three = sheetInit.three;
-
+	exp.sheetGeometry = sheetInit.sheetGeometry;
 
 	var lastTime;
 	var step = 0;

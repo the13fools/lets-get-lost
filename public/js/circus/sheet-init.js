@@ -14,6 +14,7 @@ sheetInit = (function () {
 
 	exp.three;
 	exp.texturePath;
+	exp.sheetGeometry;
 
 	var ss = SpringSystem;
 
@@ -42,7 +43,7 @@ sheetInit = (function () {
 		exp.sheetGeometry = new THREE.ParametricGeometry( sheetFunction, exp.n, exp.n );
 		exp.sheetGeometry.dynamic = true;
 		exp.sheetGeometry.computeFaceNormals();
-		
+
 		var uniforms = { texture:  { type: "t", value: clothTexture } };
 		var vertexShader = document.getElementById( 'vertexShaderDepth' ).textContent;
 		var fragmentShader = document.getElementById( 'fragmentShaderDepth' ).textContent;
