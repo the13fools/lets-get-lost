@@ -5,11 +5,17 @@ position: 3
 ---
 
 <script src="{{ site.baseurl }}/public/js/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
-<script src="{{ site.baseurl }}/public/js/lib/jquery.visible.min.js"></script>
-<!-- load ace themelist extension -->
 <script src="{{ site.baseurl }}/public/js/lib/ace/ext-themelist.js" type="text/javascript" charset="utf-8"></script>
+
+<script src="{{ site.baseurl }}/public/js/lib/jquery.visible.min.js"></script>
 <script src="{{ site.baseurl }}/public/js/lib/fool-util.js" type="text/javascript" charset="utf-8"></script>
+
 <script src="{{ site.baseurl }}/public/js/lib/three.min.js"></script> 
+<script src="{{ site.baseurl }}/public/js/three_libs/stats.min.js"></script> 
+<script src="{{ site.baseurl }}/public/js/lib/OrbitControls.js"></script> 
+<script src="{{ site.baseurl }}/public/js/lib/Detector.js"></script> 
+
+
 <script type="text/javascript" src="{{ site.baseurl }}/public/js/spring-system.js"></script>
 
 Ok, so let's recap.  In the first two chapters we developed a physics engine, and used it to simulate a string with mass as a way of studying the physics of waves.  In this chapter we will build on this work by moving up into the third dimension.  
@@ -20,7 +26,7 @@ Ok, so let's recap.  In the first two chapters we developed a physics engine, an
 
 To do this, we will have to venture forth to the land of computer graphics.  In particular, we will be making use of a library called [three.js](http://threejs.org/), which is a wrapper for a technology called WebGL, which is a port of a storied technology called [OpenGL](https://open.gl/drawing).
 
-Going down this road will allow us to create interactive 3D environments directly in the browser - which for better or worse will probably end up being one of the most culturally impactful technologies of this decade (just look at infrastructure levels of investment going into [VR](https://www.oculus.com/) and [AR](http://www.magicleap.com/#/home)).
+Going down this road will allow us to create interactive 3D environments directly in the browser - which for better or worse will probably end up being one of the most culturally impactful technologies of this decade (just look at the infrastructure levels of investment going into [VR](https://www.oculus.com/) and [AR](http://www.magicleap.com/#/home)).
 
 All this to say that we might just be able to draw a leaf pretty soon!
 
@@ -178,6 +184,12 @@ loadContent('circleEd-system', '{{ site.baseurl }}/public/js/spring-system.js', 
   $( ".circleEd-system.editor-run" ).click(function(){ updateCircleParams(); });
 
 </script>
+<br/>
+Things to Think: 
+
+* Try changing the physics constants in the initialization.  What happens when you increase the mass?  When you increase the spring constant?  
+* Why does the system behave as it does when the middle node moves?  What would you expect to happen in three dimentions?
+* Why does the 5-fold symmetry appear?  Can you find a closed form way of predicting/discovering other symmetric modes?  
 
 # Up Up and Away!!!
 
@@ -188,8 +200,49 @@ Now is a good place to take an interlude to learn a little more about some of th
 We will avoid repeating that material here, instead moving forward to building a simple cloth simulator (adapted from this [demo](http://threejs.org/examples/webgl_animation_cloth.html)).  We have already essentially done this.  The first step is to initialize a "[fabric]({{ site.baseurl }}/public/img/provot_cloth_simulation_96.pdf)" of springs.
 <img src="{{ site.baseurl }}/public/img/bouncing carpet.gif" alt="bounce bounce!!!">
 
-Having done this we need to do all manner of incantations to summon a webGL context (to initialize a camera and define shaders and things).  We won't go into these details for fear of getting too far afield, but certianly try changing values in the editor and rerunning things.  It's a great way to understand the different parts of a big system.  
+Having done this we need to do all manner of incantations to summon a webGL context (to initialize a camera and define shaders and things).  We won't go into these details for fear of getting too far afield, but certianly try changing values in the editor and rerunning things.  It's a great way to study the different parts of a big system.  
 
+<script type="x-shader/x-fragment" id="fragmentShaderDepth">
+
+  uniform sampler2D texture;
+  varying vec2 vUV;
+
+  vec4 pack_depth( const in float depth ) {
+
+    const vec4 bit_shift = vec4( 256.0 * 256.0 * 256.0, 256.0 * 256.0, 256.0, 1.0 );
+    const vec4 bit_mask  = vec4( 0.0, 1.0 / 256.0, 1.0 / 256.0, 1.0 / 256.0 );
+    vec4 res = fract( depth * bit_shift );
+    res -= res.xxyz * bit_mask;
+    return res;
+
+  }
+
+  void main() {
+
+    vec4 pixel = texture2D( texture, vUV );
+
+    if ( pixel.a < 0.5 ) discard;
+
+    gl_FragData[ 0 ] = pack_depth( gl_FragCoord.z );
+
+  }
+</script>
+
+<script type="x-shader/x-vertex" id="vertexShaderDepth">
+
+  varying vec2 vUV;
+
+  void main() {
+
+    vUV = 0.75 * uv;
+
+    vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+
+    gl_Position = projectionMatrix * mvPosition;
+
+  }
+
+</script>
 
 <script type="text/javascript" src="{{ site.baseurl }}/public/js/circus/sheet-init.js"></script>
 <script type="text/javascript" src="{{ site.baseurl }}/public/js/circus/sheet-simulate.js"></script>
@@ -198,9 +251,25 @@ Having done this we need to do all manner of incantations to summon a webGL cont
   <canvas id="sheet-canvas" height='400' width='700' style='width: 100%;'></canvas>
 </div>
 
+<div class='content' id='sheet-gl'>
+</div>
+
+<style> 
+#stats { position: absolute; top:0; left: 0 }
+      #stats #fps { background: transparent !important }
+      #stats #fps #fpsText { color: #aaa !important }
+      #stats #fps #fpsGraph { display: none }
+
+      #sheet-gl { width: 500px; height: 500px;}
+</style>
+
 <script type="text/javascript"> 
-  // sheetEx.initialXposition = 2;
+  sheetInit.three = initThree('sheet-gl');
+  sheetInit.texturePath = '{{ site.baseurl }}/public/img/textures/';
   sheetInit.reset();
+
+  sheetSim.sheetGeometry = sheetInit.sheetGeometry;
+  sheetSim.three = sheetInit.three;
 
   sheetAnimate();
 
@@ -214,6 +283,7 @@ Having done this we need to do all manner of incantations to summon a webGL cont
     if ($('#sheet-canvas').visible( true )) {
     	animate_circle = false;
     	sheetSim.simulate(time);
+      sheetSim.render();
 	}
   }
 </script>
@@ -317,6 +387,7 @@ loadContent('sheetEd-simulate', '{{ site.baseurl }}/public/js/circus/sheet-simul
  //   updateXFrequency();
     sheetInit.reset();
     sheetSim.system = sheetInit.system;
+    sheetSim.sheetGeometry = sheetInit.sheetGeometry;
   };
 
    $( ".sheetEd-init.editor-run" ).click(function(){ updateSheetParams(); });

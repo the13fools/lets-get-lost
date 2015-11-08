@@ -6,7 +6,9 @@ position: 5
 
 ## Structural 
 
-This course was made possible though the trust and support of David Kelly and Susan Geoff - I am very grateful for having had the opportunity to explore this summer.  Similarly, I'd like to thank everyone at HCSSiM this summer (particularly those in this mini) who put up with my silliness.
+This course was made possible though the trust and support of David Kelly and Susan Geoff - I am grateful for having had the opportunity to explore this thought this summer.  Similarly, I'd like to thank everyone at HCSSiM this summer (particularly those in this mini) who put up with my silliness.
+
+While on the subject, if you are in (high) school and want more of this flavor of thinking in your life, get in touch with [HCSSiM](http://hcssim.org) or [mathILy](http://www.mathily.org/).  If you are in college consider [BSM](http://www.budapestsemesters.com/).
 
 ## Software
 
@@ -21,6 +23,8 @@ This course was made possible though the trust and support of David Kelly and Su
 </p>
 
 ## Philisophical
+
+https://github.com/ledeprogram/courses/tree/master/platforms
 
 My interest in experimenting with using web technologies to make explorable explinations LINK, goes back some time.  Vi Hart one.  Also, Cathy lede program class.  
 

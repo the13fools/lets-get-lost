@@ -12,7 +12,51 @@ sheetInit = (function () {
 	exp.lowerBound = .05;
 	exp.upperBound = 10; 
 
+	exp.three;
+	exp.texturePath;
+
 	var ss = SpringSystem;
+
+	var sheetFunction = plane(25 * exp.n, 25 * exp.n);
+
+	function plane(width, height) {
+
+		return function(u, v) {
+			var x = (u - 0.5) * width;
+			var y = (v + 0.5) * height;
+			var z = 0;
+
+			return new THREE.Vector3(x, y, z);
+		};
+	}
+
+	function InitThreeGeometry() {
+		// cloth material
+		var clothTexture = THREE.ImageUtils.loadTexture( exp.texturePath + 'circuit_pattern.png' );
+		clothTexture.wrapS = clothTexture.wrapT = THREE.RepeatWrapping;
+		clothTexture.anisotropy = 16;
+
+		var clothMaterial = new THREE.MeshPhongMaterial( { alphaTest: 0.5, color: 0xffffff, specular: 0x030303, emissive: 0x111111, shiness: 10, map: clothTexture, side: THREE.DoubleSide } );
+
+		// cloth geometry
+		exp.sheetGeometry = new THREE.ParametricGeometry( sheetFunction, exp.n, exp.n );
+		exp.sheetGeometry.dynamic = true;
+		exp.sheetGeometry.computeFaceNormals();
+		
+		var uniforms = { texture:  { type: "t", value: clothTexture } };
+		var vertexShader = document.getElementById( 'vertexShaderDepth' ).textContent;
+		var fragmentShader = document.getElementById( 'fragmentShaderDepth' ).textContent;
+
+		// cloth mesh
+
+		var object = new THREE.Mesh( exp.sheetGeometry, clothMaterial );
+		object.position.set( 0, 0, 0 );
+		object.castShadow = true;
+		object.receiveShadow = true;
+		exp.three.scene.add( object );
+
+		object.customDepthMaterial = new THREE.ShaderMaterial( { uniforms: uniforms, vertexShader: vertexShader, fragmentShader: fragmentShader } );
+	}
 
 	function InitSystem() {
 		var particles = [];
@@ -66,28 +110,6 @@ sheetInit = (function () {
 			}
 		}
 
-		// wire up the wave
-		// for (var i = 0; i < exp.n; i ++) {
-
-		// 	springs.push(new ss.Spring(
-		// 		particles[i],
-		// 		particles[(i + 1) % exp.n],
-		// 		exp.springRestDistance, 
-		// 		exp.springConstant,
-		// 		exp.lowerBound,
-		// 		exp.upperBound));
-
-		// 	springs.push(new ss.Spring(
-		// 		particles[i],
-		// 		fixedPoints[0],
-		// 		1, 
-		// 		exp.springConstant / 1000,
-		// 		.001,
-		// 		1.3));
-		// }
-
-		console.log(springs);
-
 		return [particles, fixedPoints, springs];
 	}
 
@@ -99,6 +121,7 @@ sheetInit = (function () {
 
 	exp.reset = function () {
 		init = InitSystem();
+		InitThreeGeometry();
 		exp.system = new ss.System(init[0], init[1], init[2], exp.DAMPING);
 		exp.system.addSpringForces();
 	}

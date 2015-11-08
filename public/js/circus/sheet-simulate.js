@@ -23,6 +23,7 @@ sheetSim = (function () {
 	var massSize = 15;
 
 	exp.system = sheetInit.system;
+	exp.three = sheetInit.three;
 
 
 	var lastTime;
@@ -96,6 +97,36 @@ sheetSim = (function () {
 		ctx.strokeStyle = colors[4]
 		ctx.stroke();
 		ctx.closePath()
+	}
+
+	exp.render = function() {
+		// var timer = Date.now() * 0.0002;
+
+		var sheet = exp.system.particles;
+
+		for ( var i = 0, il = sheet.length; i < il; i ++ ) {
+
+			exp.sheetGeometry.vertices[ i ].copy( sheet[ i ].position );
+
+		}
+
+		exp.sheetGeometry.computeFaceNormals();
+		exp.sheetGeometry.computeVertexNormals();
+
+		exp.sheetGeometry.normalsNeedUpdate = true;
+		exp.sheetGeometry.verticesNeedUpdate = true;
+
+		// if ( rotate ) {
+
+		// 	camera.position.x = Math.cos( timer ) * 1500;
+		// 	camera.position.z = Math.sin( timer ) * 1500;
+
+		// }
+
+		exp.three.camera.lookAt( exp.three.scene.position );
+
+		exp.three.renderer.render( exp.three.scene, exp.three.camera );
+
 	}
 
 	return exp;
