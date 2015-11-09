@@ -263,30 +263,6 @@ Having done this we need to do all manner of incantations to summon a webGL cont
       #sheet-gl { width: 500px; height: 500px;}
 </style>
 
-<script type="text/javascript"> 
-  sheetInit.three = initThree('sheet-gl');
-  sheetInit.texturePath = '{{ site.baseurl }}/public/img/textures/';
-  sheetInit.reset();
-
-  sheetSim.sheetGeometry = sheetInit.sheetGeometry;
-  sheetSim.three = sheetInit.three;
-
-  sheetAnimate();
-
-  var animate_sheet = false;
-
-  function sheetAnimate() {
-    requestAnimationFrame( sheetAnimate );
-
-    var time = Date.now();
-
-    if ($('#sheet-canvas').visible( true )) {
-    	animate_circle = false;
-    	sheetSim.simulate(time);
-      sheetSim.render();
-	}
-  }
-</script>
 <div class="slider-label">Bottom</div><div id="sheet-yFreq" class="slider"></div><div id="sheet-yFreq-text" class="slider-value">1.49</div>
 
 <div class="slider-label">Center</div><div id="sheet-xFreq" class="slider"></div><div id="sheet-xFreq-text" class="slider-value">Off</div>
@@ -307,12 +283,35 @@ Simulation:
 </div>
 
 <script type="text/javascript">
+var sheetThree = initThree('sheet-gl');
+var sheetTexturePath = '{{ site.baseurl }}/public/img/textures/';
+var startSheetAnimation = function () {
+  sheetInit.reset();
+  sheetSim.sheetGeometry = sheetInit.sheetGeometry;
+
+  sheetAnimate();
+
+  function sheetAnimate() {
+    requestAnimationFrame( sheetAnimate );
+
+    var time = Date.now();
+
+    if ($('#sheet-gl').visible( true )) {
+      animate_circle = false;
+      sheetSim.simulate(time);
+      sheetSim.render();
+  }
+  }
+}
 // from fool-util
 initEditor('sheetEd-init');
-loadContent('sheetEd-init', '{{ site.baseurl }}/public/js/circus/sheet-init.js', '8');
+loadContent('sheetEd-init', '{{ site.baseurl }}/public/js/circus/sheet-init.js', '8', startSheetAnimation);
 
 initEditor('sheetEd-simulate');
 loadContent('sheetEd-simulate', '{{ site.baseurl }}/public/js/circus/sheet-simulate.js', '31');
+
+// in function to work around some editor loading bug.
+// startSheetAnimation();
 </script>
 
 <script type="text/javascript">
@@ -386,6 +385,7 @@ loadContent('sheetEd-simulate', '{{ site.baseurl }}/public/js/circus/sheet-simul
  //   updateYFrequency();
  //   updateXFrequency();
     sheetInit.reset();
+
     sheetSim.system = sheetInit.system;
     sheetSim.sheetGeometry = sheetInit.sheetGeometry;
   };

@@ -47,7 +47,7 @@ initEditor = function(id) {
 	
 }
 
-loadContent = function(id, contentUrl, lineNumber) {
+loadContent = function(id, contentUrl, lineNumber, initFn) {
 
 	var editor = ace.edit(id);
 
@@ -61,6 +61,9 @@ loadContent = function(id, contentUrl, lineNumber) {
 		editor.setValue(js);
 		editor.clearSelection();
 		editor.gotoLine(lineNumber);
+		if (initFn) {
+			initFn(); // This is a hack :(
+		}
 	});
 
 }

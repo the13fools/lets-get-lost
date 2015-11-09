@@ -22,8 +22,10 @@ sheetSim = (function () {
 
 	var massSize = 15;
 
+	console.log("sheetSim, sheetInit.geom");
+	console.log(sheetInit.sheetGeometry);
+
 	exp.system = sheetInit.system;
-	exp.three = sheetInit.three;
 	exp.sheetGeometry = sheetInit.sheetGeometry;
 
 	var lastTime;
@@ -33,6 +35,10 @@ sheetSim = (function () {
 		if (!lastTime) {
 			lastTime = time;
 			return;
+		}
+
+		if (step % 17 === 0 && step < 170) {
+			console.log(step);
 		}
 
 		// can increase speed by doing multiple simulation steps per render step
@@ -123,9 +129,9 @@ sheetSim = (function () {
 
 		// }
 
-		exp.three.camera.lookAt( exp.three.scene.position );
+		sheetThree.camera.lookAt( sheetThree.scene.position );
 
-		exp.three.renderer.render( exp.three.scene, exp.three.camera );
+		sheetThree.renderer.render( sheetThree.scene, sheetThree.camera );
 
 	}
 

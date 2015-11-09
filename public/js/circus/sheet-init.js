@@ -1,10 +1,11 @@
 sheetInit = (function () {
+
 	var exp = {};
 
-	exp.n = 10; // number of nodes
+	exp.n = 5; // number of nodes
 
-	exp.MASS = .1; // kg
-	exp.springRestDistance = 1 / (exp.n + 1); // m
+	exp.MASS = 1; // kg
+	exp.springRestDistance = 1 / (exp.n); // m
 	exp.springConstant = 10000; // Newton / meter
 
 	exp.DAMPING = 0.000;
@@ -12,52 +13,11 @@ sheetInit = (function () {
 	exp.lowerBound = .05;
 	exp.upperBound = 10; 
 
-	exp.three;
-	exp.texturePath;
+	var sheetFunction = plane(25 * exp.n, 25 * exp.n);
+	exp.sheet;
 	exp.sheetGeometry;
 
 	var ss = SpringSystem;
-
-	var sheetFunction = plane(25 * exp.n, 25 * exp.n);
-
-	function plane(width, height) {
-
-		return function(u, v) {
-			var x = (u - 0.5) * width;
-			var y = (v + 0.5) * height;
-			var z = 0;
-
-			return new THREE.Vector3(x, y, z);
-		};
-	}
-
-	function InitThreeGeometry() {
-		// cloth material
-		var clothTexture = THREE.ImageUtils.loadTexture( exp.texturePath + 'circuit_pattern.png' );
-		clothTexture.wrapS = clothTexture.wrapT = THREE.RepeatWrapping;
-		clothTexture.anisotropy = 16;
-
-		var clothMaterial = new THREE.MeshPhongMaterial( { alphaTest: 0.5, color: 0xffffff, specular: 0x030303, emissive: 0x111111, shiness: 10, map: clothTexture, side: THREE.DoubleSide } );
-
-		// cloth geometry
-		exp.sheetGeometry = new THREE.ParametricGeometry( sheetFunction, exp.n, exp.n );
-		exp.sheetGeometry.dynamic = true;
-		exp.sheetGeometry.computeFaceNormals();
-
-		var uniforms = { texture:  { type: "t", value: clothTexture } };
-		var vertexShader = document.getElementById( 'vertexShaderDepth' ).textContent;
-		var fragmentShader = document.getElementById( 'fragmentShaderDepth' ).textContent;
-
-		// cloth mesh
-
-		var object = new THREE.Mesh( exp.sheetGeometry, clothMaterial );
-		object.position.set( 0, 0, 0 );
-		object.castShadow = true;
-		object.receiveShadow = true;
-		exp.three.scene.add( object );
-
-		object.customDepthMaterial = new THREE.ShaderMaterial( { uniforms: uniforms, vertexShader: vertexShader, fragmentShader: fragmentShader } );
-	}
 
 	function InitSystem() {
 		var particles = [];
@@ -114,18 +74,70 @@ sheetInit = (function () {
 		return [particles, fixedPoints, springs];
 	}
 
-	var init = InitSystem();
-	// This is down here because function calls need to come after definitions.
-	exp.system = new ss.System(init[0], init[1], init[2], exp.DAMPING);
-	var driveTime = 0;
-	exp.system.addSpringForces();
-
 	exp.reset = function () {
 		init = InitSystem();
-		InitThreeGeometry();
+		console.log("reset 1")
+
 		exp.system = new ss.System(init[0], init[1], init[2], exp.DAMPING);
 		exp.system.addSpringForces();
+		if (sheetThree) {
+			var sheet = sheetThree.scene.getObjectByName("sheet")
+			sheetThree.scene.remove( sheet );
+			InitThreeGeometry();
+		}
 	}
+
+	function plane(width, height) {
+
+		return function(u, v) {
+			var x = (u - 0.5) * width;
+			var y = (v + 0.5) * height;
+			var z = 0;
+
+			return new THREE.Vector3(x, y, z);
+		};
+	}
+
+	function InitThreeGeometry() {
+		// cloth material
+		var clothTexture = THREE.ImageUtils.loadTexture( sheetTexturePath + 'circuit_pattern.png' );
+		clothTexture.wrapS = clothTexture.wrapT = THREE.RepeatWrapping;
+		clothTexture.anisotropy = 16;
+
+		var clothMaterial = new THREE.MeshPhongMaterial( { alphaTest: 0.5, color: 0xffffff, specular: 0x030303, emissive: 0x111111, shiness: 10, map: clothTexture, side: THREE.DoubleSide } );
+
+		// cloth geometry
+		exp.sheetGeometry = new THREE.ParametricGeometry( sheetFunction, exp.n, exp.n );
+		exp.sheetGeometry.dynamic = true;
+		exp.sheetGeometry.computeFaceNormals();
+
+		var uniforms = { texture:  { type: "t", value: clothTexture } };
+		var vertexShader = document.getElementById( 'vertexShaderDepth' ).textContent;
+		var fragmentShader = document.getElementById( 'fragmentShaderDepth' ).textContent;
+
+		// cloth mesh
+
+		var obj = new THREE.Mesh( exp.sheetGeometry, clothMaterial );
+		obj.position.set( 0, 0, 0 );
+		obj.castShadow = true;
+		obj.receiveShadow = true;
+		this.sheetThree.scene.add( obj );
+
+		obj.customDepthMaterial = new THREE.ShaderMaterial( { uniforms: uniforms, vertexShader: vertexShader, fragmentShader: fragmentShader } );
+		obj.name = "sheet";
+		sheet = obj;
+		console.log(sheet)
+	}
+
+	// exp.reset = function () {
+	// 	init = InitSystem();
+	// //	this.sheetThree.scene.remove( sheet );
+	// //	InitThreeGeometry();
+	// 	console.log("init reset")
+	// //	console.log(exp.sheetGeometry);
+	// 	exp.system = new ss.System(init[0], init[1], init[2], exp.DAMPING);
+	// 	exp.system.addSpringForces();
+	// }
 
 	return exp;
 }());
