@@ -379,6 +379,7 @@ loadContent('sheetEd-simulate', '{{ site.baseurl }}/public/js/circus/sheet-simul
 </script>
 
 <br/>
+
 <p class="message">
 Tangents:
 People have done a lot of work organizing families of graphs.  One project which helps organize this data is the <a href="http://hog.grinvin.org/">house of graphs</a>.
@@ -387,8 +388,6 @@ Some people have even attempted to apply the approach we are taking here to prod
 
 
 <a href="http://www.cise.ufl.edu/research/sparse/matrices/Andrianov/fxm4_6.html"><img src="{{ site.baseurl }}/public/img/poppy_fxm4_6.gif" alt="sweet"></a>
-
-
 </p>
 
 
