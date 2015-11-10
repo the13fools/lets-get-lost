@@ -382,7 +382,7 @@ loadContent('sheetEd-simulate', '{{ site.baseurl }}/public/js/circus/sheet-simul
   Tangents:
   People have done a lot of work organizing families of graphs.  One project which helps organize this data is the <a href="http://hog.grinvin.org/">house of graphs</a>.
 
-  Some people have even attempted to apply the approach we are taking here to produce pretty <a href="http://yifanhu.net/GALLERY/GRAPHS/index.html">visualizations</a>.  These visualization make use powerful matrix computation <a href="http://faculty.cse.tamu.edu/davis/matrices.html">libraries</a>.
+  Some people have even attempted to apply the approach we are taking here to produce pretty <a href="http://yifanhu.net/GALLERY/GRAPHS/index.html">visualizations</a>.  These visualization use fancy matrix computation <a href="http://faculty.cse.tamu.edu/davis/matrices.html">libraries</a>.
 
 
 <a href="http://www.cise.ufl.edu/research/sparse/matrices/Andrianov/fxm4_6.html"><img src="{{ site.baseurl }}/public/img/poppy_fxm4_6.gif" alt="sweet"></a>
