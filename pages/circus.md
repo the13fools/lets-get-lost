@@ -198,7 +198,7 @@ In the previous section, we returned to the central theme of our exploration, na
 Now is a good place to take an interlude to learn a little more about some of the things that one should keep in mind when making computers draw in 3D with webGL.  A good tutorial on the subject can be found [here](http://acko.net/files/fullfrontal/fullfrontal/webglmath/online.html). 
 
 We will avoid repeating that material here, instead moving forward to building a simple cloth simulator (adapted from this [demo](http://threejs.org/examples/webgl_animation_cloth.html)).  We have already essentially done this.  The first step is to initialize a "[fabric]({{ site.baseurl }}/public/img/provot_cloth_simulation_96.pdf)" of springs.
-<img src="{{ site.baseurl }}/public/img/bouncing carpet.gif" alt="bounce bounce!!!">
+<a href="{{ site.baseurl }}/public/img/bouncing carpet2.gif"><img src="{{ site.baseurl }}/public/img/bouncing carpet.gif" alt="bounce bounce!!!"></a>
 
 Having done this we need to do all manner of incantations to summon a webGL context (to initialize a camera and define shaders and things).  We won't go into these details for fear of getting too far afield, but certianly try changing values in the editor and rerunning things.  It's a great way to study the different parts of a big system.  
 

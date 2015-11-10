@@ -22,9 +22,6 @@ sheetSim = (function () {
 
 	var massSize = 15;
 
-	console.log("sheetSim, sheetInit.geom");
-	console.log(sheetInit.sheetGeometry);
-
 	exp.system = sheetInit.system;
 	exp.sheetGeometry = sheetInit.sheetGeometry;
 
@@ -105,14 +102,23 @@ sheetSim = (function () {
 		ctx.closePath()
 	}
 
+	timer = 0;
 	exp.render = function() {
 		// var timer = Date.now() * 0.0002;
+		if (!exp.system) {
+			return;
+		}
 
 		var sheet = exp.system.particles;
 
-		for ( var i = 0, il = sheet.length; i < il; i ++ ) {
+        var shift = new THREE.Vector3( -.5, -.5, 0 );
 
-			exp.sheetGeometry.vertices[ i ].copy( sheet[ i ].position );
+		var il = sheet.length;
+		for ( var i = 0; i < il; i ++ ) {
+			exp.sheetGeometry.vertices[ i ]
+				.copy( sheet[ i ].position )
+				.add(shift)
+				.multiplyScalar(350);
 
 		}
 
@@ -121,13 +127,6 @@ sheetSim = (function () {
 
 		exp.sheetGeometry.normalsNeedUpdate = true;
 		exp.sheetGeometry.verticesNeedUpdate = true;
-
-		// if ( rotate ) {
-
-		// 	camera.position.x = Math.cos( timer ) * 1500;
-		// 	camera.position.z = Math.sin( timer ) * 1500;
-
-		// }
 
 		sheetThree.camera.lookAt( sheetThree.scene.position );
 

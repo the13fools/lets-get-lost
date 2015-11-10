@@ -2,9 +2,9 @@ sheetInit = (function () {
 
 	var exp = {};
 
-	exp.n = 5; // number of nodes
+	exp.n = 7; // number of nodes
 
-	exp.MASS = 1; // kg
+	exp.MASS = 10; // kg
 	exp.springRestDistance = 1 / (exp.n); // m
 	exp.springConstant = 10000; // Newton / meter
 
@@ -13,8 +13,7 @@ sheetInit = (function () {
 	exp.lowerBound = .05;
 	exp.upperBound = 10; 
 
-	var sheetFunction = plane(25 * exp.n, 25 * exp.n);
-	exp.sheet;
+	var sheetFunction = plane();
 	exp.sheetGeometry;
 
 	var ss = SpringSystem;
@@ -76,7 +75,6 @@ sheetInit = (function () {
 
 	exp.reset = function () {
 		init = InitSystem();
-		console.log("reset 1")
 
 		exp.system = new ss.System(init[0], init[1], init[2], exp.DAMPING);
 		exp.system.addSpringForces();
@@ -87,14 +85,10 @@ sheetInit = (function () {
 		}
 	}
 
-	function plane(width, height) {
+	function plane() {
 
 		return function(u, v) {
-			var x = (u - 0.5) * width;
-			var y = (v + 0.5) * height;
-			var z = 0;
-
-			return new THREE.Vector3(x, y, z);
+			return new THREE.Vector3(0, 0, 0);
 		};
 	}
 
@@ -107,7 +101,7 @@ sheetInit = (function () {
 		var clothMaterial = new THREE.MeshPhongMaterial( { alphaTest: 0.5, color: 0xffffff, specular: 0x030303, emissive: 0x111111, shiness: 10, map: clothTexture, side: THREE.DoubleSide } );
 
 		// cloth geometry
-		exp.sheetGeometry = new THREE.ParametricGeometry( sheetFunction, exp.n, exp.n );
+		exp.sheetGeometry = new THREE.ParametricGeometry( sheetFunction, exp.n - 1, exp.n -1 );
 		exp.sheetGeometry.dynamic = true;
 		exp.sheetGeometry.computeFaceNormals();
 
@@ -125,19 +119,7 @@ sheetInit = (function () {
 
 		obj.customDepthMaterial = new THREE.ShaderMaterial( { uniforms: uniforms, vertexShader: vertexShader, fragmentShader: fragmentShader } );
 		obj.name = "sheet";
-		sheet = obj;
-		console.log(sheet)
 	}
-
-	// exp.reset = function () {
-	// 	init = InitSystem();
-	// //	this.sheetThree.scene.remove( sheet );
-	// //	InitThreeGeometry();
-	// 	console.log("init reset")
-	// //	console.log(exp.sheetGeometry);
-	// 	exp.system = new ss.System(init[0], init[1], init[2], exp.DAMPING);
-	// 	exp.system.addSpringForces();
-	// }
 
 	return exp;
 }());
