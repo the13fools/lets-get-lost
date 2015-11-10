@@ -16,11 +16,15 @@ sheetSim = (function () {
 	exp.xFreq = 0;
 
 	// Display options
-	var xShift = 100;
+	var xShift = 200;
 	var yShift = 50;
 	var scale = 300;
 
 	var massSize = 15;
+	var rotateCamera = true;
+	var showMasses = false;
+
+	exp.drive = 144;
 
 	exp.system = sheetInit.system;
 	exp.sheetGeometry = sheetInit.sheetGeometry;
@@ -53,8 +57,10 @@ sheetSim = (function () {
 
 			// // driving logic
 			// if (exp.yFreq != 0) {
-		    	exp.system.particles[0].position.setZ(Math.sin(step / 50 * exp.yFreq) / 5 + 1);
-		//	    exp.system.particles[0].position.setX(0);
+			var original = exp.system.particles[exp.drive].original;
+		    exp.system.particles[exp.drive].position.setZ(Math.sin(step / 50 * exp.yFreq) / 5);
+			exp.system.particles[exp.drive].position.setX(original.x);
+			exp.system.particles[exp.drive].position.setY(original.y);
 			// }
 			// exp.system.fixedPoints[0].position.setX(Math.sin(step / 50 * exp.xFreq) / 10);
 	//		exp.system.fixedPoints[0].position.setY(0);
@@ -72,11 +78,18 @@ sheetSim = (function () {
 
 		
 		for (i = 0; i < exp.system.particles.length; i++) {
-			ctx.fillStyle = colors[i % 3 + 7];
+			if (i == exp.drive || showMasses) {
+				ctx.fillStyle = colors[0];
+
+			if (i != exp.drive) {
+				ctx.fillStyle = colors[i % 3 + 7];
+			}
+			
 			var part = exp.system.particles[i];
 			ctx.fillRect(part.position.x * scale + xShift - massSize / 2, 
 						 part.position.y * scale + yShift - massSize / 2, 
 						 massSize, massSize);
+			}
 		}
 
 	}
@@ -126,6 +139,12 @@ sheetSim = (function () {
 
 		exp.sheetGeometry.normalsNeedUpdate = true;
 		exp.sheetGeometry.verticesNeedUpdate = true;
+
+		if (rotateCamera) { 
+			sheetThree.camera.position.x = Math.cos( timer / 500 ) * 1500;
+			sheetThree.camera.position.z = Math.sin( timer / 500 ) * 1500;
+			timer ++;
+		}
 
 		sheetThree.camera.lookAt( sheetThree.scene.position );
 

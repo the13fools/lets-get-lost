@@ -2,7 +2,7 @@ sheetInit = (function () {
 
 	var exp = {};
 
-	exp.n = 20; // number of nodes
+	exp.n = 17; // number of nodes
 
 	exp.MASS = 10; // kg
 	exp.springRestDistance = 1 / (exp.n + 1); // m
@@ -10,8 +10,8 @@ sheetInit = (function () {
 
 	exp.DAMPING = 0.000;
 
-	exp.lowerBound = .05 / exp.n;
-	exp.upperBound = 1; 
+	exp.lowerBound = 1 / (exp.n * 3);
+	exp.upperBound = 1 / (exp.n / 1.1); 
 
 	var sheetFunction = plane();
 	exp.sheetGeometry;

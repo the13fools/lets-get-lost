@@ -255,8 +255,8 @@ Having done this we need to do all manner of incantations to summon a webGL cont
   <canvas id="sheet-canvas" height='400' width='700' style='width: 100%;'></canvas>
 </div>
 
-<div class='content' id='sheet-gl'>
-    <canvas id="sheet-gl" height='400' width='700' style='width: 100%;'></canvas>
+<div class='content'>
+  <div id="sheet-gl" style='width: 100%; display:block; height:400px;'></div>
 </div>
 
 <style> 
@@ -268,9 +268,7 @@ Having done this we need to do all manner of incantations to summon a webGL cont
       #sheet-gl { width: 500px; height: 500px;}
 </style>
 
-<div class="slider-label">Bottom</div><div id="sheet-yFreq" class="slider"></div><div id="sheet-yFreq-text" class="slider-value">1.49</div>
-
-<div class="slider-label">Center</div><div id="sheet-xFreq" class="slider"></div><div id="sheet-xFreq-text" class="slider-value">Off</div>
+<div class="slider-label">Drive Point</div><div id="sheet-drive" class="slider"></div><div id="sheet-drive-text" class="slider-value">144</div>
 
 <br/>
 
@@ -301,7 +299,8 @@ var startSheetAnimation = function () {
 
     var time = Date.now();
 
-    if ($('#sheet-gl').visible( true )) {
+    if ($('#sheet-canvas').visible( true ) || 
+        $('#sheet-gl').visible( true )) {
       animate_circle = false;
       sheetSim.simulate(time);
       sheetSim.render();
@@ -313,7 +312,7 @@ initEditor('sheetEd-init');
 loadContent('sheetEd-init', '{{ site.baseurl }}/public/js/circus/sheet-init.js', '8', startSheetAnimation);
 
 initEditor('sheetEd-simulate');
-loadContent('sheetEd-simulate', '{{ site.baseurl }}/public/js/circus/sheet-simulate.js', '31');
+loadContent('sheetEd-simulate', '{{ site.baseurl }}/public/js/circus/sheet-simulate.js', '23');
 
 // in function to work around some editor loading bug.
 // startSheetAnimation();
@@ -337,87 +336,41 @@ loadContent('sheetEd-simulate', '{{ site.baseurl }}/public/js/circus/sheet-simul
 </script>
 
 <script type="text/javascript">
- //  function updateYLabel() {
- //    var freq = $( "#sheet-yFreq" ).slider( "value" );
- //    if (freq == 0) { 
- //      $("#sheet-yFreq-text").text("Off"); 
- //    }
- //    else { 
- //      $("#sheet-yFreq-text").text(freq + ""); 
- //    }
- //  }
+  function updateSheetDriveLabel() {
+    var point = $( "#sheet-drive" ).slider( "value" );
+    $("#sheet-drive-text").text(point + ""); 
+  }
 
- //  function updateYFrequency() {
- //    var freq = $( "#sheet-yFreq" ).slider( "value" );
- //    sheetSim.yFreq = freq;
- //    if (freq == 0) { 
- //      $("#sheet-yFreq-text").text("Off"); 
- //    }
- //    else { 
- //      $("#sheet-yFreq-text").text(freq + ""); 
- //    }
- //  }
+  function updateSheetDrivePoint() {
+    var point = $( "#sheet-drive" ).slider( "value" );
+    sheetSim.drive = point;
+    $("#sheet-drive-text").text(point + ""); 
+  }
 
- //  function updateXLabel() {
- //    var freq = $( "#sheet-xFreq" ).slider( "value" );
- //    if (freq == 0) { 
- //      $("#sheet-xFreq-text").text("Off"); 
- //    }
- //    else { 
- //      $("#sheet-xFreq-text").text(freq + ""); 
- //    }
- //  }
-
- //  function updateXFrequency() {
- //    var freq = $( "#sheet-xFreq" ).slider( "value" );
- //    sheetSim.xFreq = freq;
- //    if (freq == 0) { 
- //      $("#sheet-xFreq-text").text("Off"); 
- //    }
- //    else { 
- //      $("#sheet-xFreq-text").text(freq + ""); 
- //    }
- //  }
-
- //  $(function() {
- //    $( "#sheet-yFreq" ).slider({
- //      orientation: "horizontal",
- //      range: "min",
- //      max: 5,
- //      step: .01,
- //      value: 1.49,
- //      change: updateYFrequency,
- //      slide: updateYLabel
- //    });
- //  });
-
- //  $(function() {
- //    $( "#sheet-xFreq" ).slider({
- //      orientation: "horizontal",
- //      range: "min",
- //      max: 5,
- //      step: .01,
- //      value: 0,
- //      change: updateXFrequency,
- //      slide: updateXLabel
- //    });
- //  });
+  $(function() {
+    $( "#sheet-drive" ).slider({
+      orientation: "horizontal",
+      range: "min",
+      max: 288,
+      step: 1,
+      value: 144,
+      change: updateSheetDrivePoint,
+      slide: updateSheetDriveLabel
+    });
+  });
 
   var updateSheetParams = function() {
- //   updateYFrequency();
- //   updateXFrequency();
+    updateSheetDrivePoint();
     sheetInit.reset();
 
     sheetSim.system = sheetInit.system;
     sheetSim.sheetGeometry = sheetInit.sheetGeometry;
   };
 
-   $( ".sheetEd-init.editor-run" ).click(function(){ updateSheetParams(); });
- //  $( ".sheetEd-simulate.editor-run" ).click(function(){     
-	//   	updateYFrequency();
-	//     updateXFrequency(); 
-	// });
- //  $( ".sheetEd-system.editor-run" ).click(function(){ updateSheetParams(); });
+  $( ".sheetEd-init.editor-run" ).click(function(){ updateSheetParams(); });
+  $( ".sheetEd-simulate.editor-run" ).click(function(){ 
+    updateSheetDrivePoint(); 
+  });
 
 </script>
 
