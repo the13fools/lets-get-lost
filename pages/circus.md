@@ -18,6 +18,10 @@ position: 3
 
 <script type="text/javascript" src="{{ site.baseurl }}/public/js/spring-system.js"></script>
 
+<p class="message">
+What I cannot create, I do not understand. - Richard Feynman
+</p>
+
 Ok, so let's recap.  In the first two chapters we developed a physics engine, and used it to simulate a string with mass as a way of studying the physics of waves.  In this chapter we will build on this work by moving up into the third dimension.  
 
 <div style="margin: 0px auto; text-align: center;">
@@ -252,6 +256,7 @@ Having done this we need to do all manner of incantations to summon a webGL cont
 </div>
 
 <div class='content' id='sheet-gl'>
+    <canvas id="sheet-gl" height='400' width='700' style='width: 100%;'></canvas>
 </div>
 
 <style> 

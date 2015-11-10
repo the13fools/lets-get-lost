@@ -60,46 +60,6 @@ sheetSim = (function () {
 	//		exp.system.fixedPoints[0].position.setY(0);
 		}
 
-		// Draw the data to canvas https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
-
-		var canvas = document.getElementById("sheet-canvas");
-		var ctx = canvas.getContext("2d");
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-		for (i = 0; i < exp.system.springs.length; i++) {
-			drawSpring(exp.system.springs[i], ctx);
-		}
-
-		
-		for (i = 0; i < exp.system.particles.length; i++) {
-			ctx.fillStyle = colors[i % 3 + 7];
-			var part = exp.system.particles[i];
-			ctx.fillRect(part.position.x * scale + xShift - massSize / 2, 
-						 part.position.y * scale + yShift - massSize / 2, 
-						 massSize, massSize);
-		}
-
-	}
-
-	var coilCount = 4;
-	function drawSpring(spring, ctx) {
-		var p1 = spring.p1;
-		var p2 = spring.p2;
-
-		ctx.beginPath();
-		ctx.moveTo(p1.position.x * scale + xShift + massSize / 2, p1.position.y * scale + yShift);
-		for (j = 1; j <= coilCount; j++) {
-			var shift = j % 2 == 0 ?  massSize / 2 : - massSize / 2;
-			if (j == coilCount) { shift = 0; }
-			ctx.lineTo(((coilCount - j) * (p1.position.x + massSize / 2 / scale) + 
-						          j * (p2.position.x -  massSize / 2 / scale) ) / coilCount * scale + xShift, 
-				       ((coilCount - j) * p1.position.y + j * p2.position.y) / coilCount * scale + shift + yShift);
-		} 
-
-		ctx.lineWidth = 1;
-		ctx.strokeStyle = colors[4]
-		ctx.stroke();
-		ctx.closePath()
 	}
 
 	timer = 0;

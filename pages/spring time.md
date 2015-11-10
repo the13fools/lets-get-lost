@@ -279,7 +279,7 @@ Perceptually, these are interesting because longitudinal waves provide a good mo
 
 While this is physically intersting, it doesn't immediately provide a model for generating sound that mimics a violin. An (apparently) convincing way of doing this for a plucked string is called the [Karplus–Strong](http://music.columbia.edu/cmc/musicandcomputers/chapter4/04_09.php) algorithm (the rest of this [book](http://music.columbia.edu/cmc/musicandcomputers/){:target="_blank"} is compelling as well).
 
-Anyway, here is a demo which might help to illuminate some of these thoughts!
+Anyway, here is a demo which might help to illuminate some of these thoughts!  What is going on below is that we have a row of masses connected by springs.  The leftmost spring is being driven (i.e. we force it to occupy a particular point in space at a particular point in time), and the right most spring is fixed.
 
 <script type="text/javascript" src="{{ site.baseurl }}/public/js/wave-spring.js"></script>
 

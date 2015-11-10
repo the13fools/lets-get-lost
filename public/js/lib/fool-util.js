@@ -130,8 +130,8 @@ initThree = function(id){
 
 	//
 
-	stats = new Stats();
-	container.appendChild( stats.domElement );
+	// stats = new Stats();
+	// container.appendChild( stats.domElement );
 
 	//
 
