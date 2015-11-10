@@ -2,15 +2,15 @@ sheetInit = (function () {
 
 	var exp = {};
 
-	exp.n = 7; // number of nodes
+	exp.n = 20; // number of nodes
 
 	exp.MASS = 10; // kg
-	exp.springRestDistance = 1 / (exp.n); // m
+	exp.springRestDistance = 1 / (exp.n + 1); // m
 	exp.springConstant = 10000; // Newton / meter
 
 	exp.DAMPING = 0.000;
 
-	exp.lowerBound = .05;
+	exp.lowerBound = .05 / exp.n;
 	exp.upperBound = 10; 
 
 	var sheetFunction = plane();
@@ -23,17 +23,17 @@ sheetInit = (function () {
 		var fixedPoints = [];
 		var springs = [];
 
-		// fixedPoints.push(new ss.Particle(0, 0, 0, exp.MASS));
-		// fixedPoints.push(new ss.Particle(0, 1, 0, exp.MASS));
-		// fixedPoints.push(new ss.Particle(1, 0, 0, exp.MASS));
-		// fixedPoints.push(new ss.Particle(1, 1, 0, exp.MASS));
+		fixedPoints.push(new ss.Particle(0, 0, 0, exp.MASS));
+		fixedPoints.push(new ss.Particle(0, 1, 0, exp.MASS));
+		fixedPoints.push(new ss.Particle(1, 0, 0, exp.MASS));
+		fixedPoints.push(new ss.Particle(1, 1, 0, exp.MASS));
 
-		for (var i = 1; i <= exp.n; i ++) {
-				fixedPoints.push(new ss.Particle(i / (exp.n + 1), 0, 0, exp.MASS));
-				fixedPoints.push(new ss.Particle(0, i / (exp.n + 1), 0, exp.MASS));
-				fixedPoints.push(new ss.Particle(i / (exp.n + 1), 1, 0, exp.MASS));
-				fixedPoints.push(new ss.Particle(1, i / (exp.n + 1), 0, exp.MASS));
-		}
+		// for (var i = 1; i <= exp.n; i ++) {
+		// 		fixedPoints.push(new ss.Particle(i / (exp.n + 1), 0, 0, exp.MASS));
+		// 		fixedPoints.push(new ss.Particle(0, i / (exp.n + 1), 0, exp.MASS));
+		// 		fixedPoints.push(new ss.Particle(i / (exp.n + 1), 1, 0, exp.MASS));
+		// 		fixedPoints.push(new ss.Particle(1, i / (exp.n + 1), 0, exp.MASS));
+		// }
 
 		for (var i = 1; i <= exp.n; i ++) {
 			for (var j = 1; j <= exp.n; j ++) {
@@ -69,6 +69,38 @@ sheetInit = (function () {
 				}
 			}
 		}
+
+		springs.push(new ss.Spring(
+					fixedPoints[0],
+					particles[0],
+					exp.springRestDistance, 
+					exp.springConstant,
+					exp.lowerBound,
+					exp.upperBound));
+
+		springs.push(new ss.Spring(
+					fixedPoints[1],
+					particles[exp.n - 1],
+					exp.springRestDistance, 
+					exp.springConstant,
+					exp.lowerBound,
+					exp.upperBound));
+
+		springs.push(new ss.Spring(
+					fixedPoints[2],
+					particles[exp.n * (exp.n - 1)],
+					exp.springRestDistance, 
+					exp.springConstant,
+					exp.lowerBound,
+					exp.upperBound));
+
+		springs.push(new ss.Spring(
+					fixedPoints[3],
+					particles[(exp.n * exp.n) - 1],
+					exp.springRestDistance, 
+					exp.springConstant,
+					exp.lowerBound,
+					exp.upperBound));
 
 		return [particles, fixedPoints, springs];
 	}

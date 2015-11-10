@@ -99,7 +99,7 @@ initThree = function(id){
 	light.position.multiplyScalar( 1.3 );
 
 	light.castShadow = true;
-	light.shadowCameraVisible = true;
+//	light.shadowCameraVisible = true;
 
 	light.shadowMapWidth = 1024;
 	light.shadowMapHeight = 1024;

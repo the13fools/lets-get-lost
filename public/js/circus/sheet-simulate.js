@@ -53,8 +53,8 @@ sheetSim = (function () {
 
 			// // driving logic
 			// if (exp.yFreq != 0) {
-		 //    	exp.system.particles[0].position.setY(Math.sin(step / 50 * exp.yFreq) / 5 + 1);
-			//     exp.system.particles[0].position.setX(0);
+		    	exp.system.particles[0].position.setZ(Math.sin(step / 50 * exp.yFreq) / 5 + 1);
+		//	    exp.system.particles[0].position.setX(0);
 			// }
 			// exp.system.fixedPoints[0].position.setX(Math.sin(step / 50 * exp.xFreq) / 10);
 	//		exp.system.fixedPoints[0].position.setY(0);
@@ -104,7 +104,6 @@ sheetSim = (function () {
 
 	timer = 0;
 	exp.render = function() {
-		// var timer = Date.now() * 0.0002;
 		if (!exp.system) {
 			return;
 		}

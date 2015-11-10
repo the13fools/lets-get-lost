@@ -315,6 +315,23 @@ loadContent('sheetEd-simulate', '{{ site.baseurl }}/public/js/circus/sheet-simul
 </script>
 
 <script type="text/javascript">
+// ground
+
+  var groundTexture = THREE.ImageUtils.loadTexture( '{{ site.baseurl }}/public/img/textures/' + "ground3.jpg" );
+  groundTexture.wrapS = groundTexture.wrapT = THREE.RepeatWrapping;
+  groundTexture.repeat.set( 25, 25 );
+  groundTexture.anisotropy = 16;
+
+  var groundMaterial = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0x111111, map: groundTexture } );
+
+  var mesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 20000, 20000 ), groundMaterial );
+  mesh.position.y = -300;
+  mesh.rotation.x = - Math.PI / 2;
+  mesh.receiveShadow = true;
+  sheetThree.scene.add( mesh );
+</script>
+
+<script type="text/javascript">
  //  function updateYLabel() {
  //    var freq = $( "#sheet-yFreq" ).slider( "value" );
  //    if (freq == 0) { 
