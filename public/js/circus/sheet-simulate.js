@@ -20,9 +20,9 @@ sheetSim = (function () {
 	var yShift = 50;
 	var scale = 300;
 
-	var massSize = 15;
+	var massSize = 5;
 	var rotateCamera = true;
-	var showMasses = false;
+	var showMasses = true;
 
 	exp.drive = 144;
 
@@ -78,17 +78,23 @@ sheetSim = (function () {
 
 		
 		for (i = 0; i < exp.system.particles.length; i++) {
-			if (i == exp.drive || showMasses) {
+			if (showMasses) {
 				ctx.fillStyle = colors[0];
 
-			if (i != exp.drive) {
-				ctx.fillStyle = colors[i % 3 + 7];
-			}
-			
-			var part = exp.system.particles[i];
-			ctx.fillRect(part.position.x * scale + xShift - massSize / 2, 
-						 part.position.y * scale + yShift - massSize / 2, 
-						 massSize, massSize);
+				var mSize = massSize;
+
+				if (i != exp.drive) {
+					ctx.fillStyle = colors[i % 3 + 7];
+				}
+				else {
+					mSize = 10;
+				}
+
+				
+				var part = exp.system.particles[i];
+				ctx.fillRect(part.position.x * scale + xShift - mSize / 2, 
+							 part.position.y * scale + yShift - mSize / 2, 
+							 mSize, mSize);
 			}
 		}
 
@@ -141,8 +147,8 @@ sheetSim = (function () {
 		exp.sheetGeometry.verticesNeedUpdate = true;
 
 		if (rotateCamera) { 
-			sheetThree.camera.position.x = Math.cos( timer / 500 ) * 1500;
-			sheetThree.camera.position.z = Math.sin( timer / 500 ) * 1500;
+			sheetThree.camera.position.x = Math.cos( timer / 500 ) * 1000;
+			sheetThree.camera.position.z = Math.sin( timer / 500 ) * 1000;
 			timer ++;
 		}
 

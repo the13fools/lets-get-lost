@@ -10,7 +10,7 @@ sheetInit = (function () {
 
 	exp.DAMPING = 0.000;
 
-	exp.lowerBound = 1 / (exp.n * 3);
+	exp.lowerBound = 1 / (exp.n * 1.1);
 	exp.upperBound = 1 / (exp.n / 1.1); 
 
 	var sheetFunction = plane();
