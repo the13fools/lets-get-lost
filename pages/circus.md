@@ -25,7 +25,7 @@ What I cannot create, I do not understand. - Richard Feynman
 Ok, so let's recap.  In the first two chapters we developed a physics engine, and used it to simulate a string with mass as a way of studying the physics of waves.  In this chapter we will build on this work by moving up into the third dimension.  
 
 <div style="margin: 0px auto; text-align: center;">
-<iframe src="https://player.vimeo.com/video/103736199" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<iframe src="https://player.vimeo.com/video/103736199" width="500" height="281" frameborder="0" style='width: 100%;' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 </div>
 
 To do this, we will have to venture forth to the land of computer graphics.  In particular, we will be making use of a library called [three.js](http://threejs.org/), which is a wrapper for a technology called WebGL, which is a port of a storied technology called [OpenGL](https://open.gl/drawing).
@@ -206,7 +206,7 @@ We will avoid repeating that material here, instead moving forward to building a
 
 Having done this we need to do all manner of incantations to summon a webGL context (to initialize a camera and define shaders and things).  We won't go into these details for fear of getting too far afield, but certianly try changing values in the editor and rerunning things.  It's a great way to study the different parts of a big system.  
 
-As this is our first step into the third dimension we keep the two dimentional representation above (with the red node marking the driving location), and the webGL representation below it.  Note how the three dimensional shape of the fabric changes as the driving location moves around the fabric.
+In the system below, we have a fabric attached to fixed points at four corners, and driven from a variable place in the Z axis.  The top visualization of this data projects each point to the XY-plane, and marks the point being driven in red.  The bottom visualization allows one to witness the three dimensional structure of the fabric.  If you would like to turn off the camera rotation in order to get a closer look, set rotateCamera to false, and re-run the simulation script. 
 
 <script type="x-shader/x-fragment" id="fragmentShaderDepth">
 
@@ -384,7 +384,7 @@ loadContent('sheetEd-simulate', '{{ site.baseurl }}/public/js/circus/sheet-simul
 Tangents:
 People have done a lot of work organizing families of graphs.  One project which helps organize this data is the <a href="http://hog.grinvin.org/">house of graphs</a>.
 
-Some people have even attempted to apply the approach we are taking here to produce pretty <a href="http://yifanhu.net/GALLERY/GRAPHS/index.html">visualizations</a>.  These visualization use fancy matrix computation <a href="http://faculty.cse.tamu.edu/davis/matrices.html">libraries</a>.
+Some people have even attempted to apply the approach we are taking here to produce pretty <a href="http://yifanhu.net/GALLERY/GRAPHS/index.html">visualizations</a>.  They make use of fancy matrix computation <a href="http://faculty.cse.tamu.edu/davis/matrices.html">libraries</a>.
 
 
 <a href="http://www.cise.ufl.edu/research/sparse/matrices/Andrianov/fxm4_6.html"><img src="{{ site.baseurl }}/public/img/poppy_fxm4_6.gif" alt="sweet"></a>

@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Peach Season
-position: 4
+position: 5
 ---
 
 Our meandering journey to the land of leaves begins at breakfast.  One of the great secrets of summer in western massachussets is the peaches.  They are juicy, sweet, and fragrant, a full sensory experience.  
@@ -20,7 +20,7 @@ The display proved to be a very compelling and powerful teaching tool - the stud
 One other path that we briefly explored, but didn't develop was building up the 3-sphere via the Hopf fibration (as is illustrated [here](http://nilesjohnson.net/hopf.html), or [here](http://philogb.github.io/page/hopf/#)).
 
 <div style="margin: 0px auto; text-align: center;">
-<iframe width="420" height="315" src="https://www.youtube.com/embed/AKotMPGFJYk" frameborder="0" allowfullscreen></iframe></div>
+<iframe width="420" height="315" style='width: 100%;' src="https://www.youtube.com/embed/AKotMPGFJYk" frameborder="0" allowfullscreen></iframe></div>
 
 ## Context
 
