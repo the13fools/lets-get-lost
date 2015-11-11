@@ -18,9 +18,9 @@ position: 3
 
 <script type="text/javascript" src="{{ site.baseurl }}/public/js/spring-system.js"></script>
 
-<p class="message">
+<!-- <p class="message">
 What I cannot create, I do not understand. - Richard Feynman
-</p>
+</p> -->
 
 Ok, so let's recap.  In the first two chapters we developed a physics engine, and used it to simulate a string with mass as a way of studying the physics of waves.  In this chapter we will build on this work by moving up into the third dimension.  
 
