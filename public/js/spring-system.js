@@ -5,12 +5,12 @@ SpringSystem = (function () {
 	// Data structure for physics
 	function Particle(x, y, z, mass) {
 		// read/write
-		this.position = new THREE.Vector3(x, y, 0); // current 
+		this.position = new THREE.Vector3(x, y, z); // current 
 		this.forces = new THREE.Vector3(0, 0, 0); // F = ma -> F * 1/m = a
 
 		// read only
-		this.previousPosition = new THREE.Vector3(x, y, 0); 
-		this.original = new THREE.Vector3(x, y, 0);
+		this.previousPosition = new THREE.Vector3(x, y, z); 
+		this.original = new THREE.Vector3(x, y, z);
 		this.invMass = 1 / mass;
 		this.isFixed = false;
 

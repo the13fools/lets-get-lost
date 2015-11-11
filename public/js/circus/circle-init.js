@@ -23,8 +23,8 @@ circleInit = (function () {
 
 		for (i = 1; i <= exp.n; i ++) {
 			particles.push(new ss.Particle(
-				Math.sin(i / (exp.n + 1) * 2 * Math.PI), 
-				Math.cos(i / (exp.n + 1) * 2 * Math.PI), 
+				Math.sin(i / (exp.n) * 2 * Math.PI), 
+				Math.cos(i / (exp.n) * 2 * Math.PI), 
 				0, 
 				exp.MASS));
 		}

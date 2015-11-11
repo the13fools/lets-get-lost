@@ -4,6 +4,10 @@ title: Peach Season
 position: 5
 ---
 
+THIS SECTION IS BEING RE-WRITTEN. I am leaving it here for now because the experiment with explaining the hypersphere by drawing it on a 3D display was a surprisingly successful classroom exercise.
+
+----
+
 Our meandering journey to the land of leaves begins at breakfast.  One of the great secrets of summer in western massachussets is the peaches.  They are juicy, sweet, and fragrant, a full sensory experience.  
 
 One suggested explanation for this is that the peaches in this corner of the world are actually shadows of even fuller hyper-peaches (in the spirit of [flatland](http://www.math.harvard.edu/~knill/mathmovies/swf/flatland1965.html) or this great hungarian [animated short](anim.mome.hu/en/films/rabbitanddeer/)).  In our mini, we started along this thought, and arrived a way of building up a 3-ball and 3-sphere (actually a 3-peach and 3-peel) from lower dimentional versions.  
