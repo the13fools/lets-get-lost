@@ -26,8 +26,6 @@ Where $$k$$ is the "characteristic" of how spring-y your spring is, and $$X$$ is
 
 But we want to draw the spring in the computer, where we can't feel it with our hands. Instead we will feel it with our eyes by the way that it changes in time.  To do this, we must evolve the system.  To do that, we need some calculus - specifically, we must implement a scheme for doing numerical integration.  
 
-One advantage of this approach is that it makes it much easier to see high Xposition phenomena, another is that it allows us to simulate systems that might be very technically challenging to actually build.  
-
 ## Numerical Integration
 
 This is a large subject in it's own right, and there are many resources [avalible](http://physics.bu.edu/py502/lectures3/cmotion.pdf) which provide a more complete view the problems that arise (like numerical stability, speed of convergence, ect). 

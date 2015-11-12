@@ -40,6 +40,10 @@ Finally, there are some rich explorations going on following the line of thought
 
 With that literature review considered, let's build our first demo, of a single node with variable curvature. 
 
+A great intuitive treatment of curvature can be found in [Experiencing Geometry](http://www.math.cornell.edu/~henderson/ExpGeom/) by David Henderson.  He has also released a more advanced differential geometry [book](http://projecteuclid.org/euclid.bia/1399917369#toc) for free.
+
+The purpose of this demo is to give one a sense of how changing the ratio between the length of the circumference and the radius can influence global geometry.  This sort of demo fits well into the system we have created so far because it allows us to establish a desired "curvature", but allows the system to find it's own balance.  If you are trying to relate this demo to other materials on the subject, note that the slider having a value greater than 1 gives the surface *negative* curvature, and a value less than 1 has *positive* curvature. 
+
 <script type="x-shader/x-fragment" id="fragmentShaderDepth">
 
   uniform sampler2D texture;
@@ -206,3 +210,10 @@ loadContent('rippleEd-simulate', '{{ site.baseurl }}/public/js/curvy/ripple-simu
   });
 
 </script>
+<br/>
+
+Things to think about:
+
+* Experiement with moving the slider to values that are less than 1. What is the resulting shape?  Is it what you expect?  
+* Try reducing the number of nodes (exp.n in the initialization script).  What happens?  Is it what you expect? 
+* The phenomenon being modeled here appears everywhere in architecture.  A room with a corner where 5 walls meet at 90 degree angles has negative curvature, and a corner where 3 walls meet has positive curvature.  

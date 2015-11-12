@@ -129,7 +129,7 @@ sheetSim = (function () {
 
 		var sheet = exp.system.particles;
 
-        var shift = new THREE.Vector3( -.5, -.5, -.5 );
+        var shift = new THREE.Vector3( -.5, -.5, 0 );
 
 		var il = sheet.length;
 		for ( var i = 0; i < il; i ++ ) {
@@ -147,6 +147,7 @@ sheetSim = (function () {
 		exp.sheetGeometry.verticesNeedUpdate = true;
 
 		if (rotateCamera) { 
+		//	sheetThree.scene.getObjectByName("sheet").rotation.x += .1;
 			sheetThree.camera.position.x = Math.cos( timer / 500 ) * 1000;
 			sheetThree.camera.position.z = Math.sin( timer / 500 ) * 1000;
 			timer ++;
