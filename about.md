@@ -6,7 +6,7 @@ position: 6
 
 ## Structural 
 
-This course was made possible though the trust and support of David Kelly and Susan Geoff - I am grateful for having had the opportunity to explore this thought this summer.  Similarly, I'd like to thank everyone at HCSSiM this summer (particularly those in this mini) who put up with my silliness.
+This course was made possible though the trust and support of David Kelly and Susan Geoff - I am grateful for having had the opportunity to explore this thought this summer.  Similarly, I'd like to thank everyone at HCSSiM this summer (particularly those in this mini) who put up with my foolishness.
 
 While on the subject, if you are in (high) school and want more of this flavor of thinking in your life, get in touch with [HCSSiM](http://hcssim.org) or [mathILy](http://www.mathily.org/).  If you are in college consider [BSM](http://www.budapestsemesters.com/).
 
@@ -14,7 +14,7 @@ This website was created as part of the [Woven Collective](http://www.wovencolle
 
 ## Academic 
 
-I'd like to thank all the great teachers/mentors I've had the good fortune to have along the years.  This site is my attempt to make sense of lessons that have been bouncing around for a while.  In particular, [Adam](https://web.math.princeton.edu/~amarcus/index.html), for getting me started, [James West](https://www.math.cornell.edu/m/People/bynetid/jew13) for pushing me to grow in school, [Steve Marschner](http://www.cs.cornell.edu/~srm/) for showing me the technological onion, and [Cathy](http://mathbabe.org/) for fostering my tendency towards chaos.  
+I'd like to thank all the great teachers/mentors I've had the good fortune to have along the years.  This site is my attempt to make sense of lessons that have been bouncing around for a while.  In particular, [Adam](https://web.math.princeton.edu/~amarcus/index.html), for getting me started, [James West](https://www.math.cornell.edu/m/People/bynetid/jew13) for pushing me to grow in school, [Steve Marschner](http://www.cs.cornell.edu/~srm/) for showing me the technological onion, and [Cathy](http://mathbabe.org/) for supporting chaos and silliness.  
 
 ## Personal
 
