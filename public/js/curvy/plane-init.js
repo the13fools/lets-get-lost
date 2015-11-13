@@ -3,7 +3,7 @@ planeInit = (function () {
 	var exp = {};
 	exp.curvature = 1.5;
 
-	exp.n = 10; // number of nodes
+	exp.n = 100; // number of nodes
 
 	exp.MASS = 1; // kg
 	exp.springRestDistance = Math.sin(Math.PI * 2 / (exp.n)); // m
