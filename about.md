@@ -12,6 +12,14 @@ While on the subject, if you are in (high) school and want more of this flavor o
 
 This website was created as part of the [Woven Collective](http://www.wovencollective.org/the-band/). More projects coming.
 
+## Academic 
+
+I'd like to thank all the great teachers/mentors I've had the good fortune to have along the years.  This site is my attempt to make sense of lessons that have been bouncing around for a while.  In particular, [Adam](https://web.math.princeton.edu/~amarcus/index.html), for getting me started, [James West](https://www.math.cornell.edu/m/People/bynetid/jew13) for pushing me to grow in school, [Steve Marschner](http://www.cs.cornell.edu/~srm/) for showing me the technological onion, and [Cathy](http://mathbabe.org/) for fostering my tendency towards chaos.  
+
+## Personal
+
+I'd like to thank my [brother](https://danscreativeoutlet.wordpress.com/) for teaching me how to play, my dad for teaching me how to build, my mom for teaching me how to draw, and my grandparents for teaching me how to care.  
+
 ## Software
 
 * This website uses an adapted version of [@mdo](https://twitter.com/mdo)'s [Lanyon](http://lanyon.getpoole.com) theme for [Jekyll](http://jekyllrb.com)
