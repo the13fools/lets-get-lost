@@ -12,7 +12,7 @@ position: 4
 
 <script src="{{ site.baseurl }}/public/js/lib/delaunay.js"></script> 
 
-<script src="{{ site.baseurl }}/public/js/lib/three.min.js"></script> 
+<script src="{{ site.baseurl }}/public/js/lib/three.js"></script> 
 <script src="{{ site.baseurl }}/public/js/three_libs/stats.min.js"></script> 
 <script src="{{ site.baseurl }}/public/js/lib/OrbitControls.js"></script> 
 <script src="{{ site.baseurl }}/public/js/lib/Detector.js"></script> 
@@ -282,7 +282,7 @@ var startPlaneAnimation = function () {
         $('#plane-gl').visible( true )) {
       animate_circle = false;
       planeSim.simulate(time);
-   //   planeSim.render();
+      planeSim.render();
   }
   }
 }

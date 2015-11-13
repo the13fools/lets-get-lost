@@ -16,9 +16,9 @@ planeSim = (function () {
 	exp.xFreq = 0;
 
 	// Display options
-	var xShift = 350;
-	var yShift = 200;
-	var scale = 150;
+	var xShift = 200;
+	var yShift = 100;
+	var scale = 250;
 
 	var massSize = 5;
 	var rotateCamera = false;
@@ -129,12 +129,14 @@ planeSim = (function () {
 
 		var plane = exp.system.particles;
 
+		var shift = new THREE.Vector3( -.5, -.5, 0 );
 
 		var il = plane.length;
-		for ( var i = 0; i < il + 1; i ++ ) {
-			exp.planeGeometry.vertices[ i + 1 ]
-				.copy( plane[ i % il ].position )
-				.multiplyScalar(350);
+		for ( var i = 0; i < il; i ++ ) {
+			exp.planeGeometry.vertices[ i ]
+				.copy( plane[ i ].position )
+				.add(shift)
+				.multiplyScalar(400);
 
 		}
 
