@@ -220,15 +220,17 @@ Things to think about:
 * Try reducing the number of nodes (exp.n in the initialization script).  What happens?  Is it what you expect? 
 * The phenomenon being modeled here appears everywhere in architecture.  A room with a corner where 5 walls meet at 90 degree angles has negative curvature, and a corner where 3 walls meet has positive curvature.  
 
-# Triangulation 
+# Leafy Arrival
 
-Ok so that was one node where we could control the curvature.  What if we could do this for a sheet where we could control the curvature at multiple points?  
+In this section we finally arrive at the place we set out for - to make a computer draw a leaf (of sorts).  This is however merely the shoreline of a rich island of thought.  More detailed trailmaps have been produced by [L. Mahadevan](http://www.seas.harvard.edu/softmat/) and [P. Prusinkiewicz](http://algorithmicbotany.org/papers/) (among others).
+
+Here though, we set out to control the curvature of a plane by building a "fabric" with multiple nodes like the ones in the above example.  
 
 To achieve this, we will persue the following implementation to generate a suitable mesh:
 
 1. Randomly place points in a square.
-2. Add control points like in the above example.
-3. Get a [Deluanay](https://en.wikipedia.org/wiki/Delaunay_triangulation) [Triangulation](http://travellermap.com/tmp/delaunay.htm) of our point cloud (fun fact, the deluanay triangulation is the dual of the [Voronoi](https://en.wikipedia.org/wiki/Voronoi_diagram) [Tessellation](http://bl.ocks.org/mbostock/4060366) used in the sidebar on this site).
+2. Add control points.
+3. Get a [Deluanay](https://en.wikipedia.org/wiki/Delaunay_triangulation) [Triangulation](http://travellermap.com/tmp/delaunay.htm) of our point cloud (fun fact, the deluanay triangulation is the [dual](https://en.wikipedia.org/wiki/Dual_graph) of the [Voronoi](https://en.wikipedia.org/wiki/Voronoi_diagram) [Tessellation](http://bl.ocks.org/mbostock/4060366) used in the sidebar on this site).
 4. Use the curvature approach from above to manipulate our fabric.  
 
 <script type="text/javascript" src="{{ site.baseurl }}/public/js/curvy/plane-init.js"></script>
