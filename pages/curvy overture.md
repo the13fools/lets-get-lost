@@ -10,6 +10,8 @@ position: 4
 <script src="{{ site.baseurl }}/public/js/lib/jquery.visible.min.js"></script>
 <script src="{{ site.baseurl }}/public/js/lib/fool-util.js" type="text/javascript" charset="utf-8"></script>
 
+<script src="{{ site.baseurl }}/public/js/lib/delaunay.js"></script> 
+
 <script src="{{ site.baseurl }}/public/js/lib/three.min.js"></script> 
 <script src="{{ site.baseurl }}/public/js/three_libs/stats.min.js"></script> 
 <script src="{{ site.baseurl }}/public/js/lib/OrbitControls.js"></script> 
@@ -222,9 +224,134 @@ Things to think about:
 
 Ok so that was one node where we could control the curvature.  What if we could do this for a sheet where we could control the curvature at multiple points?  
 
-Well, we can, but in order to do this, we'd have to figure out the implementation issue of generating a mesh with suitable control points.  To do this, we will use the following approach: 
+To achieve this, we will persue the following implementation to generate a suitable mesh:
 
 1. Randomly place points in a square.
-2. Clear out space for control points, and then place many points along the boundary.  
+2. Add control points like in the above example.
 3. Get a [Deluanay](https://en.wikipedia.org/wiki/Delaunay_triangulation) [Triangulation](http://travellermap.com/tmp/delaunay.htm) of our point cloud (fun fact, the deluanay triangulation is the dual of the [Voronoi](https://en.wikipedia.org/wiki/Voronoi_diagram) [Tessellation](http://bl.ocks.org/mbostock/4060366) used in the sidebar on this site).
 4. Use the curvature approach from above to manipulate our fabric.  
+
+<script type="text/javascript" src="{{ site.baseurl }}/public/js/curvy/plane-init.js"></script>
+<script type="text/javascript" src="{{ site.baseurl }}/public/js/curvy/plane-simulate.js"></script>
+
+<div class='content'>
+  <canvas id="plane-canvas" height='400' width='700' style='width: 100%;'></canvas>
+</div>
+
+<div class='content'>
+  <div id="plane-gl" style='width: 100%; display:block; height:350px;'></div>
+</div>
+
+<br/>
+
+<div class="slider-label">Curvature Point</div><div id="plane-curvature" class="slider"></div><div id="plane-curvature-text" class="slider-value">1.5</div>
+
+<br/>
+
+Initialization: 
+<div>
+<div id="planeEd-init" class="editor">
+</div>
+</div>
+
+<br/>
+Simulation:
+<div>
+<div id="planeEd-simulate" class="editor">
+</div>
+</div>
+
+<script type="text/javascript">
+var planeThree = initThree('plane-gl');
+var planeTexturePath = '{{ site.baseurl }}/public/img/textures/';
+
+
+// in function to work around some editor loading bug.
+var startPlaneAnimation = function () {
+  planeInit.reset();
+  planeSim.planeGeometry = planeInit.planeGeometry;
+
+  planeAnimate();
+
+  function planeAnimate() {
+    requestAnimationFrame( planeAnimate );
+
+    var time = Date.now();
+
+    if ($('#plane-canvas').visible( true ) || 
+        $('#plane-gl').visible( true )) {
+      animate_circle = false;
+      planeSim.simulate(time);
+   //   planeSim.render();
+  }
+  }
+}
+// from fool-util
+initEditor('planeEd-init');
+loadContent('planeEd-init', '{{ site.baseurl }}/public/js/curvy/plane-init.js', '8', startPlaneAnimation);
+
+initEditor('planeEd-simulate');
+loadContent('planeEd-simulate', '{{ site.baseurl }}/public/js/curvy/plane-simulate.js', '23');
+</script>
+
+<script type="text/javascript">
+// ground
+
+  var groundTexture = THREE.ImageUtils.loadTexture( '{{ site.baseurl }}/public/img/textures/' + "ground3.jpg" );
+  groundTexture.wrapS = groundTexture.wrapT = THREE.RepeatWrapping;
+  groundTexture.repeat.set( 25, 25 );
+  groundTexture.anisotropy = 16;
+
+  var groundMaterial = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0x111111, map: groundTexture } );
+
+  var mesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 20000, 20000 ), groundMaterial );
+  mesh.position.y = -350;
+  mesh.rotation.x = - Math.PI / 2;
+  mesh.receiveShadow = true;
+  planeThree.scene.add( mesh );
+</script>
+
+<script type="text/javascript">
+  function updatePlaneCurvatureLabel() {
+    var curve = $( "#plane-curvature" ).slider( "value" );
+    $("#plane-curvature-text").text(curve + ""); 
+  }
+
+  function updatePlaneCurvature() {
+    var curve = $( "#plane-curvature" ).slider( "value" );
+    // var springs = planeSim.system.springs;
+    // for (var i = 0; i < springs.length; i++) {
+    //  if (i % 2 == 0) {
+    //    springs[i].restLength = curve * planeInit.springRestDistance;
+    //  }
+    // }
+    planeInit.curvature = curve;
+    updatePlaneParams();
+    $("#plane-curvature-text").text(curve + ""); 
+  }
+
+  $(function() {
+    $( "#plane-curvature" ).slider({
+      orientation: "horizontal",
+      range: "min",
+      max: 10,
+      step: .05,
+      value: 1.5,
+      change: updatePlaneCurvature,
+      slide: updatePlaneCurvatureLabel
+    });
+  });
+
+  var updatePlaneParams = function() {
+    planeInit.reset();
+    planeSim.system = planeInit.system;
+
+    planeSim.planeGeometry = planeInit.planeGeometry;
+  };
+
+  $( ".planeEd-init.editor-run" ).click(function(){ updatePlaneParams(); });
+  $( ".planeEd-simulate.editor-run" ).click(function(){ 
+    updatePlaneCurvature(); 
+  });
+
+</script>
