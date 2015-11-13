@@ -26,7 +26,7 @@ In this section, we will then experiment with ways in which we can use these too
 
 One is the emerging field of [Discrete Differential Geometry](http://ddg.cs.columbia.edu/), which seeks to define ways of measuring curvature in a setting where all the peices of your geometry are locally triangles in a mesh.  
 
-Another perspective is furnished by the concept of [zippergons]({{ site.baseurl}}/public/img/thurston-zippergon.pdf), i.e. perhaps there is an interesting family of "flat" manifolds to study that are not [polyhedra](https://stemkoski.github.io/Three.js/Polyhedra.html).  One cute application of this idea is the [2014 World Cup Ball](http://www.science4all.org/le-nguyen-hoang/brazuca/).
+Another perspective is furnished by the concept of [zippergons]({{ site.baseurl}}/public/img/thurston-zippergon.pdf), i.e. that you can make technically "flat" manifolds look a lot like they have curvature by stepping away from the study of [polyhedra](https://stemkoski.github.io/Three.js/Polyhedra.html).  One cute application of this idea is the [2014 World Cup Ball](http://www.science4all.org/le-nguyen-hoang/brazuca/).
 
 Finally, there are some rich explorations going on following the line of thought set out in D'Arcy Wentworth Thompson's [On Growth and Form]({{ site.baseurl}}/public/img/ongrowthform00thom.djvu).  In particular, my favorites of these are the following two explorations: 
 
