@@ -21,7 +21,7 @@ planeSim = (function () {
 	var scale = 250;
 
 	var massSize = 5;
-	var rotateCamera = false;
+	var rotateCamera = true;
 	var showMasses = true;
 
 	exp.drive = 144;
@@ -147,8 +147,9 @@ planeSim = (function () {
 		exp.planeGeometry.verticesNeedUpdate = true;
 
 		if (rotateCamera) { 
-			planeThree.camera.position.x = Math.cos( timer / 500 ) * 1500;
-			planeThree.camera.position.z = Math.sin( timer / 500 ) * 1500;
+			planeThree.scene.getObjectByName("plane").rotation.y -= .01;
+			// planeThree.camera.position.x = Math.cos( timer / 500 ) * 1500;
+			// planeThree.camera.position.z = Math.sin( timer / 500 ) * 1500;
 			timer ++;
 		}
 

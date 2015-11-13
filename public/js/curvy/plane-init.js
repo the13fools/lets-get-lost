@@ -13,7 +13,7 @@ planeInit = (function () {
 
 	exp.lowerBound = .01;
 	exp.upperBound = 10; 
-	exp.controlPoints = [[.1, .1], [.5, .5], [.9, .9]];
+	exp.controlPoints = [[.5, .5], [.1, .1], [.1, .9], [.9, .1], [.9, .9]];
 	exp.controlRadius = .05;
 	exp.controlCount = 10;
  
