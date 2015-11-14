@@ -11,7 +11,7 @@ planeInit = (function () {
 	exp.DAMPING = 0.01;
 
 	exp.lowerBound = .00001;
-	exp.upperBound = 10; 
+	exp.upperBound = 3; 
 	exp.controlPoints = [[.5, .5], [.1, .1]] // can add points here if you want extra control points to play with.  Just be sure to add a corresponding entry to exp.lengthMultiplier
 	exp.lengthMultiplier = [.1, 2];
 	exp.controlRadius = .1;
@@ -132,7 +132,7 @@ planeInit = (function () {
 		clothTexture.wrapS = clothTexture.wrapT = THREE.RepeatWrapping;
 		clothTexture.anisotropy = 16;
 
-			var clothMaterial = new THREE.MeshPhongMaterial( { alphaTest: 0.5, color: colors[2], specular: 0x030303, emissive: 0x111111, shiness: 10, map:kaleTexture, alphaMap: clothTexture, side: THREE.DoubleSide } );
+			var clothMaterial = new THREE.MeshPhongMaterial( { alphaTest: 0.5, color: colors[1], specular: 0x030303, emissive: 0x111111, shiness: 10, map:kaleTexture, alphaMap: clothTexture, side: THREE.DoubleSide } );
 
 		// geometry
 
