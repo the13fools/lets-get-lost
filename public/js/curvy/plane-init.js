@@ -127,9 +127,9 @@ planeInit = (function () {
 			var tri = [triangulation[i * 3], triangulation[i * 3 + 1], triangulation[i * 3 + 2]];
 			exp.planeGeometry.faces.push( new THREE.Face3( tri[0], tri[1], tri[2] ) );
 			exp.planeGeometry.faceVertexUvs[0].push(
-					[new THREE.Vector2(particles[tri[0]].position.x, particles[tri[0]].position.y), 
-					 new THREE.Vector2(particles[tri[1]].position.x, particles[tri[1]].position.y), 
-					 new THREE.Vector2(particles[tri[2]].position.x, particles[tri[2]].position.y)]);
+					[new THREE.Vector2(particles[tri[0]].position.x % 1, particles[tri[0]].position.y % 1), 
+					 new THREE.Vector2(particles[tri[1]].position.x % 1, particles[tri[1]].position.y % 1), 
+					 new THREE.Vector2(particles[tri[2]].position.x % 1, particles[tri[2]].position.y % 1)]);
 		}
 
 		////////
