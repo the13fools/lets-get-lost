@@ -20,7 +20,7 @@ circleSim = (function () {
 	var yShift = 200;
 	var scale = 150;
 
-	var massSize = 15;
+	var massSize = 12;
 
 	exp.system = circleInit.system;
 

@@ -1,9 +1,8 @@
 planeInit = (function () {
 
 	var exp = {};
-	exp.curvature = 1.5;
 
-	exp.n = 100; // number of nodes
+	exp.n = 200; // number of nodes
 
 	exp.MASS = 1; // kg
 	exp.springRestDistance = Math.sin(Math.PI * 2 / (exp.n)); // m
@@ -11,11 +10,12 @@ planeInit = (function () {
 
 	exp.DAMPING = 0.01;
 
-	exp.lowerBound = .01;
+	exp.lowerBound = .00001;
 	exp.upperBound = 10; 
-	exp.controlPoints = [[.5, .5], [.1, .1], [.1, .9], [.9, .1], [.9, .9]];
-	exp.controlRadius = .05;
-	exp.controlCount = 10;
+	exp.controlPoints = [[.5, .5], [.1, .1]] // can add points here if you want extra control points to play with.  Just be sure to add a corresponding entry to exp.lengthMultiplier
+	exp.lengthMultiplier = [.1, 2];
+	exp.controlRadius = .1;
+	exp.controlCount = 100;
  
 
 	exp.planeGeometry;
@@ -31,11 +31,15 @@ planeInit = (function () {
 
 		fixedPoints.push(new ss.Particle(0, 0, 0, exp.MASS));
 		var coordinates = [];
+		var restLenCorrection_Idx = [];
 
 		for (var i = 1; i <= exp.n; i++) {
 			var coord = [Math.random(), Math.random()];
 			coordinates.push(coord);
+			restLenCorrection_Idx.push(-1);
 		}
+
+
 
 		for (var i = 0; i < exp.controlPoints.length; i++) {
 
@@ -46,9 +50,11 @@ planeInit = (function () {
 				var dist = Math.sqrt(xDist * xDist + yDist * yDist);
 				if (dist < exp.controlRadius) { 
 					coordinates.splice(j, 1);
+					restLenCorrection_Idx.splice(j, 1);
 				}
 			}
 			coordinates.push(exp.controlPoints[i]);
+			restLenCorrection_Idx.push(-1);
 
 			// draw circle around control point
 			for (var k = 0; k < exp.controlCount; k++) {
@@ -56,6 +62,11 @@ planeInit = (function () {
 				coordinates.push(
 					[Math.sin(2 * Math.PI * k / exp.controlCount) * exp.controlRadius + center[0], 
 					 Math.cos(2 * Math.PI * k / exp.controlCount) * exp.controlRadius + center[1]]);
+			    coordinates.push(
+					[Math.sin(2 * Math.PI * k / exp.controlCount) * exp.controlRadius * 2 + center[0], 
+					 Math.cos(2 * Math.PI * k / exp.controlCount) * exp.controlRadius * 2 + center[1]]);
+				restLenCorrection_Idx.push(i);
+				restLenCorrection_Idx.push(i);
 			}
 		}
 
@@ -69,10 +80,17 @@ planeInit = (function () {
 		}
 
 		triangulation = Delaunay.triangulate(coordinates);
-		var coordDist = function(a, b) {
-			var xDist = coordinates[a][0] - coordinates[b][0];
-			var yDist = coordinates[a][1] - coordinates[b][1];
-			return Math.sqrt(xDist * xDist + yDist * yDist);
+
+		var getRestLength = function (co1, co2) {
+			var xDist = coordinates[co1][0] - coordinates[co2][0];
+			var yDist = coordinates[co1][1] - coordinates[co2][1];
+			var dist = Math.sqrt(xDist * xDist + yDist * yDist);
+			if (restLenCorrection_Idx[co1] === restLenCorrection_Idx[co2] && 
+				restLenCorrection_Idx[co1] > -1) {
+				var cor_idx = restLenCorrection_Idx[co1];
+				return dist * exp.lengthMultiplier[cor_idx];
+			}
+			return dist;
 		}
 
 		for (var i = 0; i < triangulation.length / 3; i++) {
@@ -84,7 +102,7 @@ planeInit = (function () {
 				springs.push(new ss.Spring(
 					particles[triangle[j]],
 					particles[triangle[(j + 1) % 3]],
-					coordDist(triangle[j], triangle[(j + 1) % 3]) * 1.2, 
+					getRestLength(triangle[j], triangle[(j + 1) % 3]), 
 					exp.springConstant,
 					exp.lowerBound,
 					exp.upperBound));
@@ -114,7 +132,7 @@ planeInit = (function () {
 		clothTexture.wrapS = clothTexture.wrapT = THREE.RepeatWrapping;
 		clothTexture.anisotropy = 16;
 
-			var clothMaterial = new THREE.MeshPhongMaterial( { alphaTest: 0.5, color: colors[1], specular: 0x030303, emissive: 0x111111, shiness: 10, map:kaleTexture, alphaMap: clothTexture, side: THREE.DoubleSide } );
+			var clothMaterial = new THREE.MeshPhongMaterial( { alphaTest: 0.5, color: colors[2], specular: 0x030303, emissive: 0x111111, shiness: 10, map:kaleTexture, alphaMap: clothTexture, side: THREE.DoubleSide } );
 
 		// geometry
 

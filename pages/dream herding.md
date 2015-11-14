@@ -91,9 +91,7 @@ loadContent('e1', '{{ site.baseurl }}/public/js/spring.js', '8');
 </script>
 
 <br>
-Take a moment to play with this example and to get familiar with the code.  We will be expanding on it in the coming sections.  
-
-Some things to think about:
+We will be expanding on this code in the coming sections.  If you want to follow along, some things to think about:
 
 * Notice how there are constants at the top of the file.  Try changing them and rerunning the simulation.  Does it behave as you would expect? This is the "physics" of our simulation.
 * The middle of the file is the implementation of numerical integration.  Think about the connection between the code and the mathematical ideas. This is the "math" of simulation.

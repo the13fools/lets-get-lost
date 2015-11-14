@@ -246,7 +246,9 @@ To achieve this, we will persue the following implementation to generate a suita
 
 <br/>
 
-<div class="slider-label">Curvature Point</div><div id="plane-curvature" class="slider"></div><div id="plane-curvature-text" class="slider-value">1.5</div>
+<div class="slider-label">Center</div><div id="plane-center" class="slider"></div><div id="plane-center-text" class="slider-value">0.1</div>
+<div class="slider-label">Corner</div><div id="plane-corner" class="slider"></div><div id="plane-corner-text" class="slider-value">2</div>
+<div class="slider-label">Drive Point</div><div id="plane-drive" class="slider"></div><div id="plane-drive-text" class="slider-value">Off</div>
 
 <br/>
 
@@ -314,40 +316,80 @@ loadContent('planeEd-simulate', '{{ site.baseurl }}/public/js/curvy/plane-simula
 </script>
 
 <script type="text/javascript">
-  function updatePlaneCurvatureLabel() {
-    var curve = $( "#plane-curvature" ).slider( "value" );
-    $("#plane-curvature-text").text(curve + ""); 
+  function updatePlaneCenterLabel() {
+    var point = $( "#plane-center" ).slider( "value" );
+    $("#plane-center-text").text(point + ""); 
   }
 
-  function updatePlaneCurvature() {
-    var curve = $( "#plane-curvature" ).slider( "value" );
-    // var springs = planeSim.system.springs;
-    // for (var i = 0; i < springs.length; i++) {
-    //  if (i % 2 == 0) {
-    //    springs[i].restLength = curve * planeInit.springRestDistance;
-    //  }
-    // }
-    planeInit.curvature = curve;
-    updatePlaneParams();
-    $("#plane-curvature-text").text(curve + ""); 
+  function updatePlaneCenter() {
+    var point = $( "#plane-center" ).slider( "value" );
+    planeInit.lengthMultiplier[0] = point;
+    $("#plane-center-text").text(point + ""); 
+  }
+
+  function updatePlaneCornerLabel() {
+    var point = $( "#plane-corner" ).slider( "value" );
+    $("#plane-corner-text").text(point + ""); 
+  }
+
+  function updatePlaneCorner() {
+    var point = $( "#plane-corner" ).slider( "value" );
+    planeInit.lengthMultiplier[1] = point;
+    $("#plane-corner-text").text(point + ""); 
+  }
+
+  function updatePlaneDrive() {
+    var point = $( "#plane-drive" ).slider( "value" );
+    if (point == 0) {
+      $("#plane-drive-text").text("Off");
+    }
+    else {
+      $("#plane-drive-text").text(point + "");
+    }
+    planeSim.drive = point;
   }
 
   $(function() {
-    $( "#plane-curvature" ).slider({
+    $( "#plane-center" ).slider({
       orientation: "horizontal",
       range: "min",
-      max: 10,
+      max: 6,
       step: .05,
-      value: 1.5,
-      change: updatePlaneCurvature,
-      slide: updatePlaneCurvatureLabel
+      value: .1,
+      change: updatePlaneParams,
+      slide: updatePlaneCenterLabel
+    });
+  });
+
+  $(function() {
+    $( "#plane-corner" ).slider({
+      orientation: "horizontal",
+      range: "min",
+      max: 6,
+      step: .05,
+      value: 2,
+      change: updatePlaneParams,
+      slide: updatePlaneCornerLabel
+    });
+  });
+
+  $(function() {
+    $( "#plane-drive" ).slider({
+      orientation: "horizontal",
+      range: "min",
+      max: 200,
+      step: 1,
+      value: 0,
+      change: updatePlaneDrive,
+      slide: updatePlaneDrive
     });
   });
 
   var updatePlaneParams = function() {
+    updatePlaneCenter();
+    updatePlaneCorner();
     planeInit.reset();
     planeSim.system = planeInit.system;
-
     planeSim.planeGeometry = planeInit.planeGeometry;
   };
 

@@ -12,8 +12,8 @@ ConstrainedEx = (function () {
 
 	// changing this in console won't work b/c of slider
 	exp.initialXposition = 1.45;
-	exp.lowerBound = .1;
-	exp.upperBound = 2;
+	exp.lowerBound = .2;
+	exp.upperBound = 2.5;
 
 	var ss = SpringSystem;
 

@@ -21,10 +21,10 @@ planeSim = (function () {
 	var scale = 250;
 
 	var massSize = 5;
-	var rotateCamera = true;
+	var rotateCamera = false;
 	var showMasses = true;
 
-	exp.drive = 144;
+	exp.drive = 0;
 
 	exp.system = planeInit.system;
 	exp.planeGeometry = planeInit.planeGeometry;
@@ -54,26 +54,23 @@ planeSim = (function () {
 			exp.system.enforceConstraints(step);
 			step++;
 
-		//	exp.system.particles[0].position = new THREE.Vector3(0, .9, .1);
-			// // driving logic
-			// if (exp.yFreq != 0) {
-			// var original = exp.system.particles[exp.drive].original;
-		 //    exp.system.particles[exp.drive].position.setZ(Math.sin(step / 50 * exp.yFreq) / 5);
-			// exp.system.particles[exp.drive].position.setX(original.x);
-			// exp.system.particles[exp.drive].position.setY(original.y);
-			// }
-			// exp.system.fixedPoints[0].position.setX(Math.sin(step / 50 * exp.xFreq) / 10);
-	//		exp.system.fixedPoints[0].position.setY(0);
+			if (exp.drive > 0) {
+				var original = exp.system.particles[exp.drive].original;
+			    exp.system.particles[exp.drive - 1].position.setZ(Math.sin(step / 200 * exp.yFreq) / 4 );
+				exp.system.particles[exp.drive - 1].position.setX(Math.cos(step / 200 * exp.yFreq) / 2 );
+				exp.system.particles[exp.drive - 1].position.setY(Math.sin(step / 50 * exp.yFreq) / 10);
+			}
 		}
 
 		// Draw the data to canvas https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
 
 		var canvas = document.getElementById("plane-canvas");
 		var ctx = canvas.getContext("2d");
+		var height = canvas.height;
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 		for (i = 0; i < exp.system.springs.length; i++) {
-			drawSpring(exp.system.springs[i], ctx);
+			drawSpring(exp.system.springs[i], ctx, height);
 		}
 
 		
@@ -83,7 +80,7 @@ planeSim = (function () {
 
 				var mSize = massSize;
 
-				if (i != exp.drive) {
+				if (i != exp.drive - 1) {
 					ctx.fillStyle = colors[i % 3 + 7];
 				}
 				else {
@@ -93,7 +90,7 @@ planeSim = (function () {
 				
 				var part = exp.system.particles[i];
 				ctx.fillRect(part.position.x * scale + xShift - mSize / 2, 
-							 part.position.y * scale + yShift - mSize / 2, 
+							 height - (part.position.y * scale + yShift + mSize / 2), 
 							 mSize, mSize);
 			}
 		}
@@ -101,18 +98,18 @@ planeSim = (function () {
 	}
 
 	var coilCount = 4;
-	function drawSpring(spring, ctx) {
+	function drawSpring(spring, ctx, height) {
 		var p1 = spring.p1;
 		var p2 = spring.p2;
 
 		ctx.beginPath();
-		ctx.moveTo(p1.position.x * scale + xShift + massSize / 2, p1.position.y * scale + yShift);
+		ctx.moveTo(p1.position.x * scale + xShift + massSize / 2, height - (p1.position.y * scale + yShift));
 		for (j = 1; j <= coilCount; j++) {
 			var shift = j % 2 == 0 ?  massSize / 2 : - massSize / 2;
 			if (j == coilCount) { shift = 0; }
 			ctx.lineTo(((coilCount - j) * (p1.position.x + massSize / 2 / scale) + 
 						          j * (p2.position.x -  massSize / 2 / scale) ) / coilCount * scale + xShift, 
-				       ((coilCount - j) * p1.position.y + j * p2.position.y) / coilCount * scale + shift + yShift);
+				       height - (((coilCount - j) * p1.position.y + j * p2.position.y) / coilCount * scale + shift + yShift) );
 		} 
 
 		ctx.lineWidth = 1;
@@ -148,8 +145,6 @@ planeSim = (function () {
 
 		if (rotateCamera) { 
 			planeThree.scene.getObjectByName("plane").rotation.y -= .01;
-			// planeThree.camera.position.x = Math.cos( timer / 500 ) * 1500;
-			// planeThree.camera.position.z = Math.sin( timer / 500 ) * 1500;
 			timer ++;
 		}
 

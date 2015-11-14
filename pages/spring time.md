@@ -219,15 +219,12 @@ loadContent('dofEd-logic', '{{ site.baseurl }}/public/js/dof-spring.js', '7');
     var initP1 = $( "#dof-initP1" ).slider( "value" );
     dofEx.initP1 = initP1;
     $("#dof-initP1-text").text(dofEx.initP1 + "");
-    console.log("sdfd");
-    dofEx.reset();
   }
 
   function updateP2() {
     var initP2 = $( "#dof-initP2" ).slider( "value" );
     dofEx.initP2 = initP2;
     $("#dof-initP2-text").text(dofEx.initP2 + "");
-    dofEx.reset();
   }
 
   $(function() {
@@ -237,7 +234,7 @@ loadContent('dofEd-logic', '{{ site.baseurl }}/public/js/dof-spring.js', '7');
       max: 3,
       step: .05,
       value: 1,
-      change: updateP1
+      change: updateDof
     });
   });
 
@@ -248,14 +245,14 @@ loadContent('dofEd-logic', '{{ site.baseurl }}/public/js/dof-spring.js', '7');
       max: 3,
       step: .05,
       value: 1.5,
-      change: updateP2
+      change: updateDof
     });
   });
 
   var updateDof = function() {
   	updateP1();
     updateP2();
-    console.log('update');
+    dofEx.reset();
   }
 
   $( ".dofEd-logic.editor-run" ).click( function() { updateDof(); });
