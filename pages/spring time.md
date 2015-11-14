@@ -68,9 +68,9 @@ We do this in the example below.  Try to see what happens when you start the sys
 		ConstrainedEx.simulate(time);
 	}
 </script>
-<div class="slider-label">X position</div><div id="con-Xposition" class="slider"></div><div id="con-Xposition-text" class="slider-value">1.45</div>
-
 <div class="slider-label">Min Value</div><div id="con-lower-bound" class="slider"></div><div id="con-lower-bound-text" class="slider-value">0.2</div>
+
+<div class="slider-label">X position</div><div id="con-Xposition" class="slider"></div><div id="con-Xposition-text" class="slider-value">1.45</div>
 
 <div class="slider-label">Max Value</div><div id="con-upper-bound" class="slider"></div><div id="con-upper-bound-text" class="slider-value">2.5</div>
 
@@ -84,7 +84,7 @@ We do this in the example below.  Try to see what happens when you start the sys
       max: 3,
       step: .05,
       value: 1.45,
-      change: updateXposition
+      change: updateConstrained
     });
   });
 
@@ -92,10 +92,10 @@ We do this in the example below.  Try to see what happens when you start the sys
   	$( "#con-lower-bound" ).slider({
       orientation: "horizontal",
       range: "min",
-      max: 1,
+      max: 3,
       step: .05,
       value: .2,
-      change: updateLowerBound
+      change: updateConstrained
     });
   });
 
@@ -103,11 +103,10 @@ We do this in the example below.  Try to see what happens when you start the sys
   	$( "#con-upper-bound" ).slider({
       orientation: "horizontal",
       range: "min",
-      max: 3.5,
-      min: .9,
+      max: 3,
       step: .05,
       value: 2.5,
-      change: updateUpperBound
+      change: updateConstrained
     });
   });
 
@@ -115,32 +114,30 @@ We do this in the example below.  Try to see what happens when you start the sys
     var Xposition = $( "#con-Xposition" ).slider( "value" );
     ConstrainedEx.initialXposition = Xposition;
     $("#con-Xposition-text").text(ConstrainedEx.initialXposition + "");
-    ConstrainedEx.reset();
   }
 
   function updateLowerBound() {
     var bound = $( "#con-lower-bound" ).slider( "value" );
     ConstrainedEx.lowerBound = bound;
     $("#con-lower-bound-text").text(ConstrainedEx.lowerBound + "");
-    ConstrainedEx.reset();
   }
 
   function updateUpperBound() {
     var bound = $( "#con-upper-bound" ).slider( "value" );
     ConstrainedEx.upperBound = bound;
     $("#con-upper-bound-text").text(ConstrainedEx.upperBound + "");
-    ConstrainedEx.reset();
   }
 
 
-  var update = function() {
+  var updateConstrained = function() {
   	updateXposition();
   	updateLowerBound();
   	updateUpperBound();
+    ConstrainedEx.reset();
   }
 
-  $( ".constraintEd-logic.editor-run" ).click( function(){ update(); });
-  $( ".constraintEd-system.editor-run" ).click( function(){ update(); });
+  $( ".constraintEd-logic.editor-run" ).click( function(){ updateConstrained(); });
+  $( ".constraintEd-system.editor-run" ).click( function(){ updateConstrained(); });
 
 </script>
 

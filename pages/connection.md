@@ -12,4 +12,4 @@ I would also appreciate it if you spread word of this site to your friends/co-wo
 
 If you have ideas for potential collaborations or want to otherwise contribute, contact <a href="mailto:fool@foolzone.com?Subject=Let's%20be%20friends!" target="_top">fool@foolzone.com</a>.  
 
-I am interested in running this class again now that a detailed set of notes exists.  It would greatly improve this site and would likely produce all sorts of interesting artifacts. If you or someone you know could facilitate that (or could provide a workshop to prototype a totally different class), I'd love to hear from you.
+I am interested in running this class again now that a detailed set of notes exists.  It has the promise to produce all manner of interesting artifacts. If you or someone you know could facilitate this (or could provide a workshop to prototype a totally different class), I'd love to hear from you.

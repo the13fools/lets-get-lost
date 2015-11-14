@@ -3,7 +3,7 @@ ConstrainedEx = (function () {
 
 	exp.MASS = 1; // kg
 	exp.springRestDistance = 1; // m
-	exp.springConstant = 500; // Newton / meter
+	exp.springConstant = 50; // Newton / meter
 
 	exp.TIMESTEP = 1 / 300;
 	exp.TIMESTEP_SQ = exp.TIMESTEP * exp.TIMESTEP;
@@ -47,7 +47,7 @@ ConstrainedEx = (function () {
 
 	var drivingPosition = 0; 
 
-	var xShift = 250;
+	var xShift = 150;
 	var yShift = 100;
 
 	exp.reset = function () {
@@ -64,12 +64,15 @@ ConstrainedEx = (function () {
 			return;
 		}
 
-		system.removePreviousSpringForces();
-		system.addSpringForces();
+		// speed up animation by performing several simulation steps per render step
+		for (var i = 0; i < 5; i++) {
+			system.removePreviousSpringForces();
+			system.addSpringForces();
 
-		system.particles[0].stepForward(exp.TIMESTEP_SQ);
-		system.enforceConstraints(step);
-		step++;
+			system.particles[0].stepForward(exp.TIMESTEP_SQ);
+			system.enforceConstraints(step);
+			step++;
+		}
 
 		// Draw the data to canvas https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
 
