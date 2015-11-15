@@ -11,9 +11,9 @@ position: 2
 <script src="{{ site.baseurl }}/public/js/lib/fool-util.js" type="text/javascript" charset="utf-8"></script>
 <script src="{{ site.baseurl }}/public/js/lib/three.min.js"></script> 
 
-The previous section referenced a whirlwind of technical ideas and developed a code framework which implements them.  
+Hooke's law is fairly standard material for intro physics classes, and in the previous section we implemented a system that simulates it.  
 
-Now its time to play!
+Now let's take our system and play!
 
 # Let's Get Physical
 
@@ -39,13 +39,15 @@ Now its time to play!
 	}
 </script>
 
-One thing you may have noticed in playing with the previous example is that with enough initial displacement, the mass will cross over the wall that it is attached to (see the example above).  This suggests that Hooke's law only holds for small displacements, after which the systems in question begin acting non-linearly.  
+Before we get too far into exploring, let's refine our physics model.  In particular, you may have noticed that with enough initial displacement, the mass will cross over the wall that it is attached to (see the example above).
+
+Real springs don't do that, if you try to stretch or squeeze them enough, they stop wanting to move (this non-linearity is illustrated in the chart below):
 
 <img src="{{ site.baseurl }}/public/img/hookeslawforspring.png" alt="via https://commons.wikimedia.org/wiki/File:HookesLawForSpring-English.png">
 
 Modelling this sort of non-linearity is doable, but for our purposes, we can get pretty close by simply by placing constraints on the length that a spring can take. 
 
-We do this in the example below.  Try to see what happens when you start the system outside of the constraints.  Why is the system behaving like that?
+We do this in the following example.  Try to see what happens when you start the system outside of the constraints.  Why is the system behaving like that?
 
 <script type="text/javascript" src="{{ site.baseurl }}/public/js/spring-system.js"></script>
 <script type="text/javascript" src="{{ site.baseurl }}/public/js/constrained-spring.js"></script>

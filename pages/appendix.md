@@ -58,4 +58,4 @@ That said, as this class was happening at a summer math program, this pragmatic 
 
 "[The Bet](http://www.eastoftheweb.com/short-stories/UBooks/Bet.shtml)" by Chekhov and by "[The Phantom Tollbooth](http://www.amazon.com/The-Phantom-Tollbooth-Norton-Juster/dp/0394820371)" by Norton Juster, have little to do with anything discussed, but are excellent and worthy of (re)reading if they haven't been considered recently.
 
-<img src="{{ site.baseurl }}/public/img/intro.jpg" alt="Wander!">	
+	

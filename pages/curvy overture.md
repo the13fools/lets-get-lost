@@ -404,7 +404,7 @@ loadContent('planeEd-simulate', '{{ site.baseurl }}/public/js/curvy/plane-simula
 
 <p class="message">
   Tangents: 
-  Another approach to generating a hyperbolic surface would be to apply this same technique to a tiling of the <a href="http://www.malinc.se/math/noneuclidean/poincaretilingen.php">Poincaré Disc</a>.
+  Another approach to generating a hyperbolic surface would be to apply our physical modelling approach to a tiling of the <a href="http://www.malinc.se/math/noneuclidean/poincaretilingen.php">Poincaré Disc</a>.
 
   <br/> <br/>
 

@@ -115,9 +115,11 @@ Our journey begins with a single mass on a single spring, and our destination is
 
 ## How to use this site
 
-If you are just passing through, this site aims to entertain by telling a compelling visual story.  If you are curious, it aims to enlighten by providing easily accessible levers that can be used to probe the demonstrations.  If you are exploring, the site comes equipped with an easy to modify framework for testing related ideas and searching for new destinations.
+If you are just passing through, this site aims to entertain by telling a compelling visual story.  If you are curious, it aims to enlighten by providing easily accessible levers that can be used to probe the demonstrations.  If you are exploring, the site comes equipped with a framework which allows for investigation without installation, to help you get on the way of finding new destinations as quickly as possible.
 
 Regardless of who you are the trail is marked with numerous references and tangents to facilitate connections between ideas that could stand to be closer.
+
+<img src="{{ site.baseurl }}/public/img/intro.jpg" alt="Wander!">
 
 
 
