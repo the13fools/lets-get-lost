@@ -399,3 +399,16 @@ loadContent('planeEd-simulate', '{{ site.baseurl }}/public/js/curvy/plane-simula
   });
 
 </script>
+
+<br/>
+<p class="message">
+  Tangents: 
+  Another approach to generating a hyperbolic surface would be to apply this same technique to a tiling of the <a href="http://www.malinc.se/math/noneuclidean/poincaretilingen.php">Poincaré Disc</a>.
+
+  <br/><br/>
+
+  Another approach which is conceptually different, but which ultimately gets at the same question of finding "interesting" surfaces embedded in 3D is the study of <a href="http://facstaff.susqu.edu/brakke/evolver/examples/periodic/periodic.html">minimal surfaces</a> (more examples <a href="http://www.indiana.edu/~minimal/archive/index.html">here</a>).
+  <div style="margin: 0px auto; text-align: center;">
+  <iframe width="420" height="315" style='width: 100%;' frameborder="0" src="https://www.shadertoy.com/embed/Md23Rd?gui=true&t=10&paused=true" allowfullscreen></iframe>
+  </div>
+</p>

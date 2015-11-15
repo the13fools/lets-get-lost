@@ -132,7 +132,8 @@ planeInit = (function () {
 		clothTexture.wrapS = clothTexture.wrapT = THREE.RepeatWrapping;
 		clothTexture.anisotropy = 16;
 
-			var clothMaterial = new THREE.MeshPhongMaterial( { alphaTest: 0.5, color: colors[1], specular: 0x030303, emissive: 0x111111, shiness: 10, map:kaleTexture, alphaMap: clothTexture, side: THREE.DoubleSide } );
+		// map:kaleTexture, 
+		var clothMaterial = new THREE.MeshPhongMaterial( { alphaTest: 0.5, color: colors[0], specular: 0x030303, emissive: 0x111111, shiness: 10, alphaMap: clothTexture, side: THREE.DoubleSide } );
 
 		// geometry
 

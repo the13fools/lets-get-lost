@@ -21,7 +21,7 @@ planeSim = (function () {
 	var scale = 250;
 
 	var massSize = 5;
-	var rotateCamera = false;
+	var rotateCamera = true;
 	var showMasses = true;
 
 	exp.drive = 0;
