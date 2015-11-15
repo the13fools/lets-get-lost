@@ -40,6 +40,7 @@ In this way you can build up n-cubes in arbitrary dimensions.
 A subsequent question is if there is a way of doing a similar construction for the [n-sphere](https://en.wikipedia.org/wiki/N-sphere).  It turns out there is, an it two discussions of this argument can be found [here](https://glyphobet.net/3-sphere/node2.html#SECTION00021000000000000000) and [here](http://www.geocities.ws/jsfhome/Think4d/Hyprsphr/envsintr.html).  There are also videos which encode the 2-sphere (i.e. tennis ball) in a plane with color as the third dimension [here](http://www.msri.org/publications/sgp/jim/geom/r4/sphere/index.html).
 
 In this class, I was fortunate enough to have access to a 3d display: 
+
 <div style="margin: 0px auto; text-align: center;">
 <iframe width="420" height="315" style='width: 100%;' src="https://player.vimeo.com/video/121566038" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 </div>
@@ -61,4 +62,21 @@ This is a special case of the general approach of studying a higher dimensional 
 
 ## Potential Applications
 
-Potential applications
+We introduce this subject because there is much room to develop a richer theory of two-dimensional surfaces which evolve in time.  Low dimensional topology is a place where people have already considered some of the questions that might arise in such an exploration, and thus being versed in its language seems useful.  
+
+One potential application that it might be useful to draw on topological result in the construction of more sophisticated filters for video/3D medical data.  
+
+Another potential application is in exploring if there is geometric data that could be used to provide features for machine learning applications (in the spirit of [Topological Data Analysis](https://en.wikipedia.org/wiki/Topological_data_analysis).
+
+<p class="message">
+  Tangents: 
+  Check out some sphere eversions! 
+
+<div style="margin: 0px auto; text-align: center;">
+<iframe width="420" height="315" style='width: 100%;'  src="https://www.youtube.com/embed/-6g3ZcmjJ7k" frameborder="0" allowfullscreen></iframe> 
+</div>
+
+<div style="margin: 0px auto; text-align: center;">
+<iframe width="420" height="315" style='width: 100%;' src="https://www.youtube.com/embed/gs_eUoQPjHc" frameborder="0" allowfullscreen></iframe>  
+</div>
+</p>
