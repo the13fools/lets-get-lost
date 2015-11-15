@@ -406,9 +406,13 @@ loadContent('planeEd-simulate', '{{ site.baseurl }}/public/js/curvy/plane-simula
   Tangents: 
   Another approach to generating a hyperbolic surface would be to apply this same technique to a tiling of the <a href="http://www.malinc.se/math/noneuclidean/poincaretilingen.php">Poincaré Disc</a>.
 
-  <br/>
+  <br/> <br/>
 
-  Another approach which is conceptually different, but which ultimately gets at the same question of finding "interesting" surfaces embedded in 3D is the study of <a href="http://facstaff.susqu.edu/brakke/evolver/examples/periodic/periodic.html">minimal surfaces</a> (more examples <a href="http://www.indiana.edu/~minimal/archive/index.html">here</a>).
+  Another approach which is conceptually different, but which ultimately gets at the same question of finding "interesting" surfaces embedded in 3D is the study of <a href="http://facstaff.susqu.edu/brakke/evolver/examples/periodic/periodic.html">minimal surfaces</a> (more examples <a href="http://www.indiana.edu/~minimal/archive/index.html">here</a>).  A good overview for generating gyroids can be found <a href="{{ site.baseurl }}/public/img/gyroid.gif">here</a>.  One neat thing about them is that people are trying to manufacture this geometry in order to create more effecient batteries and <a href="http://pubs.acs.org/doi/abs/10.1021/nl803174p">solar cells</a>.  
+
+  <br/><br/>
+
+  If you perfer physics to chemistry, <a href="http://www.physics.upenn.edu/~kamien/kamiengroup/talks/ILCC%202006.html">Randall Kamien</a> approaches these sorts of problems from the perspective of liquid crystals.
 
   <div style="margin: 0px auto; text-align: center;">
   <iframe width="420" height="315" style='width: 100%;' frameborder="0" src="https://www.shadertoy.com/embed/Md23Rd?gui=true&t=10&paused=true" allowfullscreen></iframe>
