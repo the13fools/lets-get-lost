@@ -111,6 +111,8 @@ The idea that drives this site is to explore space and shape by thinking about s
 
 Our journey begins with a single mass on a single spring, and our destination is generating a computer model of a crunchy fall leaf. 
 
+<img src="{{ site.baseurl }}/public/img/runthrough.gif" alt="come play!!!">
+
 ## How to use this site
 
 If you are just passing through, this site aims to entertain by telling a compelling visual story.  If you are curious, it aims to enlighten by providing easily accessible levers that can be used to probe the demonstrations.  If you are exploring, the site comes equipped with an easy to modify framework for testing related ideas and searching for new destinations.
