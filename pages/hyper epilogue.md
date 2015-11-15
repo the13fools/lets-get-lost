@@ -4,48 +4,61 @@ title: Hyper Epilogue
 position: 5
 ---
 
-THIS SECTION IS BEING RE-WRITTEN. I am leaving it here for now because the experiment with explaining the hypersphere by drawing it on a 3D display was a surprisingly successful classroom exercise.
+In the previous section, we explored some of the thinking around form finding - particularly explorations of ways to use local rules in the control of global form of two dimensional surfaces that live in three dimensions. 
 
-----
+In this section, we bump those numbers up by one and mention a few thoughts related to the study of "[three-manifolds](https://en.wikipedia.org/wiki/3-manifold)", three dimensional surfaces that live in four dimensions.  
 
-Our meandering journey to the land of leaves begins at breakfast.  One of the great secrets of summer in western massachussets is the peaches.  They are juicy, sweet, and fragrant, a full sensory experience.  
+Before delving into why this is something that is potentially interesting to think about, let's take a look at some materials which might help clarify the flavor of what we will be talking about.  
 
-One suggested explanation for this is that the peaches in this corner of the world are actually shadows of even fuller hyper-peaches (in the spirit of [flatland](http://www.math.harvard.edu/~knill/mathmovies/swf/flatland1965.html) or this great hungarian [animated short](anim.mome.hu/en/films/rabbitanddeer/)).  In our mini, we started along this thought, and arrived a way of building up a 3-ball and 3-sphere (actually a 3-peach and 3-peel) from lower dimentional versions.  
+# Truth from Fiction
 
-A full reproduction of this exercise will have to come another time.  On a high level though, what we did was explored the construction of 3-spheres via [Heegaard Splitting](https://en.wikipedia.org/wiki/Heegaard_splitting). In particular, the class independently arrived at a similar construction to the one discussed [here](https://glyphobet.net/3-sphere/node2.html#SECTION00021000000000000000) or [here](http://www.geocities.ws/jsfhome/Think4d/Hyprsphr/envsintr.html).
+One classic exposition of this subject is [flatland](http://www.math.harvard.edu/~knill/mathmovies/swf/flatland1965.html). Another, more modern treatment is this great hungarian short: 
 
-One thing that I think was unique about the presentation though was that we used a [3d display](http://www.cubetube.org/) to create a perceptual representation of a hypersphere after the class invented a model.  
+<div style="margin: 0px auto; text-align: center;">
+<iframe width="420" height="315" style='width: 100%;' src="https://player.vimeo.com/video/51153134" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> 
+</div>
+
+More recently, people have been toying with the idea of making video games that allow one to explore four spacial dimensions. Of these two notable projects are [Tetraspace](http://rantonels.itch.io/tetraspace) and (its inspiration) [Miegakure](http://miegakure.com/).
+
+Finally, for more exploratory tools for studying related ideas, Jeffrey Weeks has a collection of tools for exploring geometry [here](http://geometrygames.org/). 
+
+<img src="{{ site.baseurl }}/public/img/curved-spaces.gif" alt="hyperbolic 3">
+
+[Curved Spaces](http://geometrygames.org/CurvedSpaces/index.html) is particularly remarkable.  
+
+# Let's Build a Hypershape
+
+So all of that is pretty, but really there is no substitute for exercise and play if you are after understanding.  A great first exercise is to implement a system which rotates a hypercube - like this [one](http://hypersolid.milosz.ca/).  
+
+There are two steps that come with implementing something like this.  The first is figuring out how to explain a hypercube to a computer, and the second part is rotating the cube.  We will focus on the encoding question.
+
+It turns out that the trick to representing the n-cube though is to take two copies of the n-1 cube that are "shifted" relative to each other, and then to connect each vertex to it's "clone".  One visual explination of this process can be found [here](http://maxgoldste.in/itad/).  
+<!-- http://hi.gher.space/classic/introduction.htm -->
+
+In this way you can build up n-cubes in arbitrary dimensions.  
+
+A subsequent question is if there is a way of doing a similar construction for the [n-sphere](https://en.wikipedia.org/wiki/N-sphere).  It turns out there is, an it two discussions of this argument can be found [here](https://glyphobet.net/3-sphere/node2.html#SECTION00021000000000000000) and [here](http://www.geocities.ws/jsfhome/Think4d/Hyprsphr/envsintr.html).  There are also videos which encode the 2-sphere (i.e. tennis ball) in a plane with color as the third dimension [here](http://www.msri.org/publications/sgp/jim/geom/r4/sphere/index.html).
+
+In this class, I was fortunate enough to have access to a 3d display: 
+<div style="margin: 0px auto; text-align: center;">
+<iframe width="420" height="315" style='width: 100%;' src="https://player.vimeo.com/video/121566038" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+</div>
+
+We used this display to create an animations of the 3-sphere and 4-ball.  
 <img src="{{ site.baseurl }}/public/img/hypersphere.gif" alt="hypersphere, woo!!!">
 
 The actual runnable code for this visualization can be found on [cubetube](http://www.cubetube.org/viz/726/). 
 
-The display proved to be a very compelling and powerful teaching tool - the students in the class were captivated by it, and having a concrete visual representation helped them more fully grasp the (fairly abstract) ideas that were being discussed.  
+As an aside, the general technical name for this technique is called [Heegaard Splitting](https://en.wikipedia.org/wiki/Heegaard_splitting).
 
-One other path that we briefly explored, but didn't develop was building up the 3-sphere via the Hopf fibration (as is illustrated [here](http://nilesjohnson.net/hopf.html), or [here](http://philogb.github.io/page/hopf/#)).
+There are also other ways to build up the three sphere which reveal other aspects of it's geometry.  One particularly notable construction is the Hopf fibration (as is illustrated [here](http://nilesjohnson.net/hopf.html), or [here](http://philogb.github.io/page/hopf/#)).
 
 <div style="margin: 0px auto; text-align: center;">
 <iframe width="420" height="315" style='width: 100%;' src="https://www.youtube.com/embed/AKotMPGFJYk" frameborder="0" allowfullscreen></iframe></div>
 
-## Context
 
-Ok that was amusing, but why start here? What does it have to do with leaves?
+This is a special case of the general approach of studying a higher dimensional space by understanding how to build it up as the union of a collection of lower dimensional surfaces.  The general name for this technique is called [Foliation Theory](https://en.wikipedia.org/wiki/Foliation).  One reason that this approach is interesting is that it offers a way of studying the dynamics of a process which lives in a higher dimensional geometry.  
 
-One answer is that this stuff is that this construction is beautiful and could stand to get more play in math curricula.  Another answer is that it provides a geometric instance of an idea called [linearity](https://en.wikipedia.org/wiki/Linearity), that pervades math and physics (a more visual treatment of this idea can be found [here](http://maxgoldste.in/itad/)).  In particular, that a wildly successful way of reasoning about complicated systems is to find perspectives from which the system in question can be viewed as a collection of simpler pieces which do not depend on each other.
+## Potential Applications
 
-More concretely, suppose we want to answer a question like: How many [peaches](https://www.youtube.com/watch?v=wvAnQqVJ3XQ) will be eaten by HCSSiM students on July 17th, 2015?
-
-In order to answer this question we can create the formalism where $$S$$ is our set of students, and f is a "function" which models the number of peaches eaten any set of students on 7/17/2015.  Using this methodology, if we say that $$S = \{ a, b, c \}$$, and that f is linear, this gives that: 
-\\[ 
-f(S) = f(\{ a, b, c \}) = f(\{ a \}) + f(\{ b \}) + f(\{ c \})
-\\]
-The problem on the right is then an easy problem to answer, we just ask each student how many peaches they ate, and in this way get an answer to the original question. 
-
-This approach of breaking down a problem into constituent parts that are easier to model was in many ways the goal here.  
-
-<p class="message">
-	Tangents: 
-	<a href="https://www.shadertoy.com/view/Md23Rd">A neat gyroid</a>, part of a large family of <a href="http://facstaff.susqu.edu/brakke/evolver/examples/periodic/periodic.html">minimal surfaces</a> (more examples <a href="http://www.indiana.edu/~minimal/archive/index.html">here</a>).
-	<div style="margin: 0px auto; text-align: center;">
-		<iframe width="420" height="300" frameborder="0" src="https://www.shadertoy.com/embed/Md23Rd?gui=true&t=10&paused=true" allowfullscreen></iframe>
-	</div>
-</p>
+Potential applications
