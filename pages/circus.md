@@ -37,7 +37,7 @@ All this to say that we might just be able to draw a leaf pretty soon!
 # Resonant Refactoring 
 
 Starting to use a more heavy handed computer machinery, we hit upon the point where it becomes distracting to attempt to hold all parts of the program in view simultaneously.  
-The programmers solution to this problem is generally called [seperation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns) or [encapsulation](https://en.wikipedia.org/wiki/Encapsulation_%28computer_programming%29), and basically refers to splitting up the program into files where each one has a specific purpose.
+The programmers solution to this problem is generally called [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns) or [encapsulation](https://en.wikipedia.org/wiki/Encapsulation_%28computer_programming%29), and basically refers to splitting up the program into files where each one has a specific purpose.
 
 As an exersize, let's do it to the program we have been building. In the example below, we connect a ring of masses with springs and then connect each mass to a central node.  The sliders change the driving frequency of either the bottom node or the central node.  Note how upon initialization, a resonant mode with [five fold](http://www.aps.org/units/dfd/pressroom/gallery/2012/rajchenbach12.cfm){:target="_blank"} symmetry appears.  What other modes can you discover? Can you find the [spanish dancer]({{ site.baseurl }}/public/img/spanish_dancer.jpg){:target="_blank"}?
 
